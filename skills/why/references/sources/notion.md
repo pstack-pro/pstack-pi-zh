@@ -1,55 +1,56 @@
-# Notion Docs
+# Notion 文档
 
-## What this source contains
+## 这个来源里有什么
 
-- PRDs (product requirement documents)
-- Technical specs and RFCs
-- Architectural decision records (ADRs)
-- Meeting notes from design reviews
-- Team pages with domain context
-- Postmortems from incidents
-- Runbooks that may explain defensive code
-- Strategy documents that set priorities
+- PRD（产品需求文档）
+- 技术规格和 RFC
+- 架构决策记录（ADR）
+- 设计评审的会议纪要
+- 带领域上下文的团队页面
+- 事故的事后复盘
+- 可能解释防御性代码的 runbook
+- 定下优先级的战略文档
 
-Notion is where "why" often lives in long-form before it becomes code. A significant feature usually has a doc.
+「为什么」常常先在 Notion 里写成长文，然后才变成代码。一个重要功能通常会有一份文档。
 
-## How to search it
+## 怎么搜
 
-Use the Notion MCP.
+使用 Notion MCP。
 
-1. **Keyword searches with `notion-search`.** Try:
-   - The feature name
-   - Key symbols / class names from the target code
-   - Author handles (design docs are often authored before the code lands)
-   - Error strings or user-visible terms
-   - Time-bounded queries if you know when the code shipped
-2. **Fetch candidate pages with `notion-fetch`.** Read the full content, not the preview. Rationale is often buried mid-document.
-3. **Follow backlinks and child pages.** Design docs often have sub-pages for alternatives considered, appendices, or implementation notes.
-4. **Check related databases.** `notion-query-data-sources` and `notion-query-meeting-notes` can surface meeting notes that discussed the decision.
-5. **Search author-specific spaces.** If the PR author has a personal notebook (common at some companies), it may hold exploratory thinking that preceded the code.
+1. **用 `notion-search` 做关键词搜索。** 可以试：
+   - 功能名
+   - 目标代码里的关键符号 / 类名
+   - 作者的 handle（设计文档常常在代码落地之前就写好了）
+   - 错误字符串，或用户能看见的词
+   - 如果知道代码什么时候上线，把查询限在那段时间
+2. **用 `notion-fetch` 把候选页拉下来。** 读全文，不要只看预览。理由常常埋在文档中部。
+3. **跟着反向链接和子页走。** 设计文档常常有子页，用来写考虑过的替代方案、附录或实现笔记。
+4. **查相关数据库。** `notion-query-data-sources` 和 `notion-query-meeting-notes` 能翻出讨论过这个决定的会议纪要。
+5. **搜作者自己的空间。** 如果 PR 作者有个人笔记空间（有些公司里很常见），里面可能有先于代码的探索。
 
-## What good evidence looks like here
+## 怎样算好证据
 
-- A PRD with a "Problem statement" or "Motivation" section that matches the target code's purpose
-- An "Alternatives considered" or "Rejected approaches" section
-- A postmortem that names the target code as the fix for a specific incident
-- Meeting notes that record "we decided X because Y" and tie to the same author/date range as the PR
-- An ADR template filled out non-trivially (status, context, decision, consequences)
+- 一份 PRD，里面的 "Problem statement"（问题陈述）或 "Motivation"（动机）对得上目标代码在干什么
+- 有 "Alternatives considered"（考虑过的替代方案）或 "Rejected approaches"（没采纳的做法）
+- 一份事后复盘，点名目标代码是某次事故的修复
+- 会议纪要里写着「我们决定 X，因为 Y」，作者和时间范围又和这条 PR 对得上
+- ADR 模板填得不敷衍（status、context、decision、consequences 都有实打实的内容）
 
-## Common pitfalls
+## 常见陷阱
 
-- **Outdated docs.** Specs are often written before implementation and not updated. The doc may describe a plan that changed. Cross-check against the actual PR.
-- **Doc vs. reality drift.** A spec may say "we'll do X" but the code actually does Y. Flag the divergence. The synthesizer will surface the contradiction.
-- **Boilerplate templates.** Some orgs require a "Why" section that gets filled with fluff. Look for specificity.
-- **Unlinked docs.** The most relevant doc may not be linked from anywhere. Broad keyword searches help.
-- **Multiple drafts.** If a topic has multiple docs, find the one that was finalized or most recently updated. Check dates.
-- **Access-restricted pages.** If you can't access a page, note it as a gap.
+- **文档过时。** 规格常常在实现之前写完，之后不再更新。文档描述的，可能是后来已经改掉的方案。拿实际的 PR 对一下。
+- **文档和现实分开了。** 规格写「我们会做 X」，代码实际做的是 Y。把这个分歧标出来。合成器会把矛盾摆出来。
+- **模板空话。** 有些组织要求填 "Why" 一节，里面常常是空话。要找具体的内容。
+- **没有入链的文档。** 最相关的那份，可能没有任何链接指向它。把关键词搜宽一点有用。
+- **好几份草稿。** 同一个题目有多份文档时，找定稿的，或最近更新的。看日期。
+- **打不开的页面。** 某一页访问不了，就把它记成缺口。
 
-## What to return
+## 要返回什么
 
-For each relevant doc:
-- Title and URL
-- Authors and last-updated date
-- The motivation text (verbatim quote), with page/section location
-- Relevant linked pages (so the synthesizer can cite them)
-- Whether the doc was finalized or draft
+每份相关文档：
+
+- 标题和 URL
+- 作者，以及最后更新日期
+- 动机原文（逐字引用），并写明在哪一页、哪一节
+- 相关的链接页（方便合成器引用）
+- 这份文档是定稿还是草稿

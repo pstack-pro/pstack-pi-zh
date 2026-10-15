@@ -51,6 +51,14 @@ for (const name of fs.readdirSync(skillsDir)) {
 	if ([...d.matchAll(/(?<![\w./:-])\/([a-z][\w-]*)(?![\w/-])/g)].some((m) => names.includes(m[1]))) errors.push(`skills/${name}: unprefixed slash command`);
 }
 
+// 2b. No generated markdown may keep a bare upstream slash command (e.g. "用/tdd" glued to Chinese).
+const walkMd = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => e.name === "node_modules" ? [] : e.isDirectory() ? walkMd(path.join(d, e.name)) : e.name.endsWith(".md") ? [path.join(d, e.name)] : []);
+const bare = new RegExp(`(?<![\\w./:-])/(${names.join("|")})(?![\\w/-])`, "g");
+for (const f of ["skills", "agents"].flatMap((d) => walkMd(path.join(root, d)))) {
+	const t = fs.readFileSync(f, "utf-8").replace(/```[\s\S]*?```/g, "");
+	for (const m of t.matchAll(bare)) errors.push(`${path.relative(root, f)}: bare slash command ${m[0]} (needs this side's prefix)`);
+}
+
 // 3. Body translations (i18n/zh/bodies/<upstream path>), checked against the upstream English.
 const bodiesDir = path.join(root, "i18n/zh/bodies");
 const walk = (d) => fs.existsSync(d) ? fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)]) : [];

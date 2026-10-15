@@ -97,3 +97,103 @@
 - 触发语保留英文，可在引号后加旁注：`'design this'`（帮我做设计）。旁注用全角括号。
 - skill 名、命令、工具名、路径、代码、frontmatter 键，与原文完全一致，数量也一致。
 - 同一概念跟本表走。不要一篇写「子代理」、另一篇写「子 Agent」。
+
+## 4. 正文翻译补充术语
+
+翻译正文时新增的术语（按批次汇总，先到先得，后续统一时改这里）。
+
+| English | 中文 | 备注 |
+| --- | --- | --- |
+| orchestrator | 编排者 | 派出 runner、汇总候选的一方 |
+| runner | runner | 并行出候选的执行者，保留英文 |
+| rationale | rationale | 与类型草图一起交付的设计说明，保留英文 |
+| shape | 形态 | 设计或代码的整体结构 |
+| checkpoint | 确认点 | 可选的人工确认停点 |
+| interface depth | 接口深度 | 公开接口背后藏住的能力，相对接口本身的大小 |
+| code judo | 代码柔道 | 行为不变、把实现大幅变简单的改法 |
+| red flag | 危险信号 | 设计该改或该拒的理由。不译成「红旗」 |
+| nit | nit | 审查严重度枚举，与 critical、warning 一样保留英文 |
+| adversarial | 对抗性 | 评审立场 |
+| forge | 代码托管平台 | GitHub 或 Origin。后文可简称「托管平台」 |
+| owner | 负责人 | 把一个 PR 从构建带到合并的 agent |
+| brief | 简报 | 派给 worker 的任务说明 |
+| standing orders | 常设指令 | 每次派出和恢复都原样附上 |
+| coordinator | 协调者 | orchestrate 的常驻会话 |
+| sub-coordinator | 子协调者 | 一条工作线一个，只在协调者排空不过来时设 |
+| drain | 排空 | 成批处理完成通知，不在当场深审 |
+| track | 工作线 | orchestrate 里的一条工作流 |
+| stacker | stack 管理者 | 唯一可以改 stack 拓扑的角色 |
+| verifier | 验证者 | 与 worker 分开的验证 agent |
+| pilot | 试点 | 扇出前先跑通的一个单元 |
+| ledger | 账本 | 验证记录。文件名 `ledger.tsv` 不译 |
+| countersign | 会签 | 根代理对放宽关卡的再次确认 |
+| receipt | 回执 | 验证交回的证据 |
+| tick | 巡检 | `/loop` 的一轮审计 |
+| program | 项目 | 交给常驻协调者的整项工作 |
+| root | 根代理 | 顶层协调 agent |
+| babysit | babysit | playbook 名与动作，保留。标题可作「看护」 |
+| trunk | trunk | 主干，保留 |
+| merge-ready | merge-ready | 可合并状态，保留 |
+| code-ready | code-ready | 代码就绪的 head，保留 |
+| investigator | 调查员 | why 里按证据类别派出的子代理 |
+| synthesizer | 合成器 | why 里汇总调查员发现的子代理 |
+| code anchor | 代码锚点 | 文件、符号、提交、PR、工单组成的种子上下文 |
+| epistemics | 认识论 | 置信度分层和措辞纪律。文件名 `epistemics.md` 不译 |
+| postmortem | 事后复盘 |  |
+| ticket | 工单 | issue tracker 里的单据。工具名和 ID 样例保持英文 |
+| feature flag | 功能开关 |  |
+| null result | 空结果 | 搜过但没有发现。要记下来，不要当成没搜 |
+| coverage map | 覆盖图 | 哪些证据类别查过、哪些是缺口 |
+| confidence tier | 置信度层级 | 直接 / 有支撑 / 推断 / 推测 / 未知。`synthesizer-prompt.md` 里反引号中的 `[Direct]`、`[Supported]` 保持英文，输出模板的标签沿用这两个英文词 |
+| hedge | 留有余地 | 推断和推测的措辞，不把解释说成记录 |
+| circumstantial evidence | 旁证 |  |
+| defensive | 防御性 | 空值检查、重试、超时、限流、功能开关、出口守卫、OOM 等 |
+| forcing function | 推动力 | 产品或业务上逼出这段代码的力量 |
+| route / routing | 路由 | 把一条发现归到某个 skill 的具体改法 |
+| durable learning | 可复用的经验 | 代码变了也还成立，以后的代理用得上 |
+| lens | 视角 | Judgment、Tooling、Divergent 三种审查角度 |
+| Custom Mode | Custom Mode | Cursor 功能名，保留 |
+| decision log | 决策日志 | 一次运行里可回看的决定记录 |
+| Backlog | Backlog | 与 Accepted、Rejected 同为输出分类，保留英文 |
+| Accepted / Rejected | Accepted / Rejected | 输出分类名，保留英文 |
+| digest | 摘要 | 找不到对话记录文件时传的压缩版。占位符不译 |
+| prompt injection | 提示词注入 |  |
+| observability | 可观测性 | 可观测性里的 trace 保留英文 |
+| chat thread | 讨论串 |  |
+| reasoning budget | 推理预算 | 给每个角色的思考额度 |
+| reviewer | 审查者 | reflect 里并行的三个子代理 |
+| discriminated union | 可区分联合 | TS 术语。用字面量判别字段区分变体 |
+| branded type | 品牌类型 | 交叉类型加上 `__brand`，避免原始类型混用 |
+| discriminant | 判别字段 | 可区分联合的标签，如 `kind`、`type`、`tag` |
+| type guard | 类型守卫 | 与 guard → 守卫一致。命名 `isX` / `hasX` |
+| narrowing | 收窄 | 类型收窄 |
+| total | 全函数 | 对全部合法输入都有定义，不靠断言补洞 |
+| cast (`as`) | 类型断言 | 潜在的运行时崩溃。校验之后才允许 |
+| dry-run | dry-run | 保留。是否真没碰外部系统，靠观察，不看名字 |
+| telemetry | 遥测 | 结构化诊断日志 |
+| stable handle | 稳定定位 | UI 自动化里的 ARIA 标签、data 属性、提示字符串、路由。不用「抓手」 |
+| one-way door | 单向门 | 做了就难以撤回的决定 |
+| slice | 切片 | swarm 里分给一个 worker 的一块 |
+| race | 竞速 | 多个 worker 做同一份简报。规则名 first pass、rank all、best-of 保留英文 |
+| arm | 臂 | 竞速里的一支 |
+| dropout | 掉队 | worker 没交回结果 |
+| gap | 缺口 | swarm 里没有合格结果的位置，不算通过。评测里的差距译「差距」 |
+| keep | keep | Comment Sicko 的保留处置，不译 |
+| kill | kill | Comment Sicko 的删除处置，不译 |
+| suppression | 抑制 | lint 或 TypeScript 的屏蔽注释 |
+| reader load | 读者负担 | 读者为看懂代码要做的工作 |
+| sum type | 和类型 | 变体的和，如可区分联合、带载荷的 enum、sealed class |
+| brand | brand | 语义不同的原始类型分开。保留英文 |
+| seam | 接缝 | 能切开、又不共享可变状态的边界 |
+| reconciliation | 对齐 | 把残留状态收束到目标。答案是「要看留下了什么状态」就缺这一步 |
+| limiter | 限制因素 | 卡住测量数字的资源或代码路径 |
+| spread | 散布 | 多次运行结果的离散程度 |
+| shell | 外壳 | 包住纯业务逻辑的薄层 |
+| actor | 参与方 | 并发里会写同一份可变状态的一方 |
+| total function | 全函数 | 定义域里每个输入都有结果 |
+| pass-through | 透传 | 不改变抽象、原样转发的层 |
+| scaffold | 脚手架 | 先搭起来的骨架 |
+| baseline | 基线 | 改动前的测量或已知良好状态 |
+| source of truth | 唯一事实来源 | 靠手同步的多份清单收成一份 |
+| workaround | 权宜做法 | 绕开根因的临时写法 |
+| judge | 评判者 | 看着委派出去的工作、不让人钻关卡 |

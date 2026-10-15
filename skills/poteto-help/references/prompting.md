@@ -1,51 +1,51 @@
-# Word the prompt
+# 把提示词写清楚
 
-A prompt states the intent and the check for done. The playbook supplies the steps, so a few plain sentences beat a spec.
+提示词写清意图，以及怎样算做完。步骤由 playbook 提供，所以几句白话比一份规格更管用。
 
-## Put in
+## 写进去
 
-- The goal. Say what is wrong or what the user wants.
-- The done check. It can pass or fail. "Make it better" and a duration are not checks.
-- The proof to show. Ask for the real command output, a video of the flow, the stored value, or a before and after number.
-- What the user already knows. A symptom, a repro step, a log, or a link saves the agent a search.
-- The real constraints. "repro first", "don't change any code yet", "zero behavior change", and "let me review before proceeding" each change what the agent does.
+- 目标。说清哪里不对，或者用户想要什么。
+- 做完的检查。它要么过，要么不过。"Make it better"（弄好一点）和一段时长都不是检查。
+- 要出示的证据。去要真实的命令输出、流程的录像、存下来的值，或改前改后的数字。
+- 用户已经知道的。一个症状、一步复现、一份日志或一个链接，都能让代理少搜一次。
+- 真正的约束。"repro first"（先复现）、"don't change any code yet"（先别改代码）、"zero behavior change"（行为一点不变）和 "let me review before proceeding"（先让我看再继续），每条都会改变代理做什么。
 
-## Leave out
+## 不要写
 
-- The how. Say what to achieve, and leave the agent room to find a better way.
-- A list of skills or steps. A hand-written order drops or reorders steps the playbook keeps. Name a skill only to override one choice.
-- The user's theory of the cause, until the agent restates the problem. A stated guess narrows the search.
+- 怎么做。说清要达成什么，留给代理空间去找更好的办法。
+- 一串 skill 或步骤。手写的顺序会漏掉或打乱 playbook 保留的步骤。只有要推翻某一个选择时，才点名 skill。
+- 用户对原因的猜测先别写，等代理先把问题重述一遍。猜测一写进去，搜索范围就会收窄。
 
-## Load the context first
+## 先补上上下文
 
-- For a noisy report, ask the agent to restate the underlying issue in its own words and in plain English before it does anything else. A misreading shows up before any code exists.
-- In a fresh chat, `/skill:recall` earlier work on the topic. Old chats hold context that the new agent lacks.
-- Before a change to unfamiliar code, ask `/skill:how` for the mechanics and `/skill:why` for the reasons. An agent with no traced model fixes the symptom at the first plausible spot.
-- Ask `/skill:teach` to make the case for a choice, as in "convince me it fixes the cause and not the symptom". A case is easier to check than a summary.
+- 报告很吵时，先让代理用自己的话、用明白的英文，把底下真正的问题重述一遍，再做别的。读偏了，代码还没出现就会露出来。
+- 新开的聊天里，用 `/skill:recall` 找回这个话题上先前的工作。旧聊天里有新代理没有的上下文。
+- 改不熟的代码之前，用 `/skill:how` 问机制，用 `/skill:why` 问原因。代理要是还没理清代码是怎么跑的，就会在第一个看似合理的地方修症状。
+- 让 `/skill:teach` 为某个选择做论证，比如 "convince me it fixes the cause and not the symptom"（说服我这修的是根因，不是症状）。论证比摘要好核对。
 
-## Design before the plan
+## 先设计，再写计划
 
-- Never take the first design. Ask for prototypes of a few options, with screenshots or videos for UI, and pick from the evidence.
-- Let prototypes answer the open questions. Don't review an abstract plan adversarially, because reviewers invent risks that never happen.
-- For a shared package or API, ask for the README or a tutorial first, then work back to the code. The doc becomes the target the agent checks itself against.
-- Ask for the plan only after the design is settled. Each step of the plan ends in a check.
+- 不要收下第一个设计。先要几个方案的原型，界面就配截图或录像，再凭证据来选。
+- 开放问题交给原型来回答。不要对着一份抽象计划做对抗式审查，审查者会编出根本不会发生的风险。
+- 共享的包或 API，先要 README 或一份 tutorial，再回到代码。这份文档会变成代理用来核对自己的目标。
+- 设计定了再要计划。计划的每一步都以一次检查收尾。
 
-## Follow up short
+## 后续可以很短
 
-- "do it", "continue", and "keep going until done" are whole prompts once the chat holds the task.
-- Start with "new task" when the subject changes. Otherwise the mode treats the message as the next step.
+- 对话里已经有了任务时，"do it"（做吧）、"continue"（继续）和 "keep going until done"（做到完为止）本身就是整条提示词。
+- 换话题时，用 "new task"（新任务）开头。不然 mode 会把这条消息当成下一步。
 
-## Before stepping away
+## 走开之前
 
-- Say "im going to bed" or "im stepping away" so the agent stops asking.
-- Write done as checks every iteration can run, and give `/loop` that predicate.
-- Ask for a fresh worktree off a named base.
-- Pre-answer what the agent would stop for, such as "don't ask me before committing".
-- Ask for a decision log to audit later.
-- Give an exit: "if you're truly stuck after a few hours, stop and write up why".
+- 说 "im going to bed"（我去睡了）或 "im stepping away"（我先离开），代理就不再追问。
+- 把做完写成每一轮都能跑的检查，并把这个检查交给 `/loop`。
+- 要求从一个点名的 base 切出一份新的 worktree。
+- 预先答好代理会停下来问的事，比如 "don't ask me before committing"（提交前别问我）。
+- 要求留一份决策日志，方便以后再审。
+- 留一条退路："if you're truly stuck after a few hours, stop and write up why"（真卡住几个小时，就停下来写下为什么）。
 
-## Steer in one line
+## 一行拉回来
 
-- Restate the goal: "i said the goal is to repro. i did not ask for a fix yet."
-- Name the principle: "apply prove it works. show me the real output, not the build log."
-- A principle name works because the agent already read the rule. Its reply names the decision the rule changed.
+- 重申目标："i said the goal is to repro. i did not ask for a fix yet."（我要的是复现，还没让你修）。
+- 点名原则："apply prove it works. show me the real output, not the build log."（用 prove it works，给我看真实输出，不是构建日志）。
+- 原则名管用，是因为代理已经读过这条 rule。它的回复会点出这条 rule 改了哪个决定。

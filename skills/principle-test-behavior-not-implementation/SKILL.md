@@ -4,17 +4,17 @@ description: "编写、修改或保留测试时适用。断言使用者能观察
 disable-model-invocation: true
 ---
 
-# Test Behavior, Not Implementation
+# 测行为，不测实现
 
-A test is a claim about what the code does for its users: a caller, an end user, or another service. Behavior is what those users can observe through the interface they use. That includes return values, errors, state they can read back, and effects on systems outside the code, such as a request sent, a row written, or a message emitted. Implementation is what they cannot observe: private helpers, internal call order, intermediate data, and which internal collaborator did the work.
+测试声称的是：代码为它的使用者做了什么。使用者可以是调用方、最终用户，或其他服务。行为是这些使用者透过他们所用的接口能观察到的。这包括返回值、错误、他们能读回来的状态，以及对代码之外的系统造成的效果，比如发出一个请求、写入一行、发出一条消息。实现是他们观察不到的：私有辅助函数、内部调用顺序、中间数据，以及是哪个内部协作者干的活。
 
-Judge each test against two imagined edits:
+用两个想象中的改动来判断每条测试：
 
-- **Break the behavior.** Make the code return a wrong value, skip an effect, or do the effect twice. If the test still passes, it proves nothing. The usual causes are an assertion looser than the contract, an expected value computed by the code under test, a restated constant or prompt string that never runs the code that reads it, and an assertion on data that the test built itself.
-- **Change the internals.** Keep every observable result the same and restructure the code underneath. If the test now fails, it is pinned to the implementation. It will need a rewrite on every refactor and still catches no bug.
+- **弄坏行为。** 让代码返回错误的值、漏做一次效果，或把效果做两遍。测试还是通过，它就什么也没证明。常见原因有：断言比契约松；期望值是被测代码自己算出来的；复述了常量或提示词字符串，却没跑读取它的那段代码；断言的是测试自己造的数据。
+- **改内部。** 可观察到的结果全部保持不变，只重组底下的代码。测试这时失败，就是钉在实现上。每次重构都得改写它，却仍然抓不住 bug。
 
-Keep a test that catches the first edit and survives the second. Rewrite or delete the rest. To write a test that does both, drive the code through its users' interface with a concrete input. Derive the expected value from the requirement, not from a run of the code. Assert what the contract promises, no less and no more.
+留下能抓住第一种改动、又经得住第二种的测试。其余的改写或删掉。要写出两种都满足的测试，就用一个具体输入，从使用者的接口去驱动代码。期望值从需求推导，不从跑一遍代码推导。断言契约所承诺的，不多也不少。
 
-The contract decides, not the shape of the assertion. When "an empty cart never charges" is the promise, an assertion that the payment client got no call is behavior. Pair it with a case where the charge happens, so that the test shows it can see a call. The payload that a mocked external service receives is behavior, because that service observes it. A call to an internal helper is implementation, because no user can see it. An empty list is the exact answer when no record matches, and a hollow check when the test only needs some result. An exact error message pins wording that no caller reads. The error type that callers branch on is the contract.
+做决定的是契约，不是断言长什么样。承诺是「空购物车不会扣款」时，断言支付客户端没被调用，这就是行为。再配一个确实扣款的用例，证明这条测试看得见那次调用。被 mock 的外部服务收到的载荷是行为，因为那个服务观察得到。对内部辅助函数的调用是实现，因为没有使用者看得见。没有记录匹配时，空列表就是确切答案。测试只需要「有个结果」时，断言空列表就是一次空的检查。确切的错误文案，钉住的是没有调用方会去读的措辞。调用方用来分支的错误类型，才是契约。
 
-A test can pin an invariant instead of a call, such as a key that must exist in two tables or a compile-time type check. The invariant is the behavior.
+测试也可以钉一个不变量，而不是一次调用，例如一个键必须同时存在于两张表，或一次编译期的类型检查。不变量就是行为。

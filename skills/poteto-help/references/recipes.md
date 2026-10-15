@@ -1,8 +1,8 @@
-# Prompts worth copying
+# 值得照抄的提示词
 
-Swap in the real paths, skills, and done checks. Informal wording works.
+把路径、skill 和做完的检查换成真的。写得随意也管用。
 
-## Understand
+## 弄清
 
 - `/skill:poteto-mode read <thread>. restate the underlying issue in your own words, in plain english.`
 - `/skill:in-your-own-words <long or messy ask>`
@@ -13,16 +13,16 @@ Swap in the real paths, skills, and done checks. Informal wording works.
 - `/skill:teach me why you implemented it this way and not <other way>. what did you trade off?`
 - `/skill:poteto-mode take over this branch. read the decision log, find what's done, and continue. don't redo finished work.`
 
-## Build
+## 动手做
 
-- Bug: `/skill:poteto-mode <symptom>. repro first, then fix and verify.`
-- Bug in an app: `/skill:poteto-mode repro this with /verify-<app>. if it repros on main, fix it and show me a video as proof.`
-- Bug with a cheap test: `/skill:poteto-mode repro <bug> first. if there's a cheap test path, /skill:tdd it. then fix and rerun.`
-- Feature: `/skill:poteto-mode add <behavior>. <current output> stays byte-identical. verify both.`
-- Refactor: `/skill:poteto-mode move <code> into one module, zero behavior change. record the current output first and prove it's unchanged after.`
-- Perf: `/skill:poteto-mode <operation> takes <time> on <fixture>. trace it, fix the measured cause, show me before and after.`
+- Bug：`/skill:poteto-mode <symptom>. repro first, then fix and verify.`
+- 应用里的 bug：`/skill:poteto-mode repro this with /verify-<app>. if it repros on main, fix it and show me a video as proof.`
+- 有低成本测试的 bug：`/skill:poteto-mode repro <bug> first. if there's a cheap test path, /skill:tdd it. then fix and rerun.`
+- 功能：`/skill:poteto-mode add <behavior>. <current output> stays byte-identical. verify both.`
+- 重构：`/skill:poteto-mode move <code> into one module, zero behavior change. record the current output first and prove it's unchanged after.`
+- 性能：`/skill:poteto-mode <operation> takes <time> on <fixture>. trace it, fix the measured cause, show me before and after.`
 
-## Design and plan
+## 设计和计划
 
 - `/skill:poteto-mode prototype a few options for <feature>. take screenshots or videos for me to compare.`
 - `/skill:poteto-mode we need <feature>. /skill:architect it first, and answer open questions with prototypes. let me review before proceeding.`
@@ -31,19 +31,19 @@ Swap in the real paths, skills, and done checks. Informal wording works.
 - `/skill:poteto-mode turn this design into a plan. small verifiable PRs, each with its own verification steps.`
 - `/skill:poteto-mode plan the migration of <library> to <target>. small verifiable PRs. the result must match the original exactly, bugs included.`
 
-## Review and ship
+## 审查并交付
 
-- `/skill:interrogate the whole branch, but skeptically. don't change anything yet. no nitpicks unless it's a real bug or regression.` Read the dismissals too.
+- `/skill:interrogate the whole branch, but skeptically. don't change anything yet. no nitpicks unless it's a real bug or regression.` 被驳回的那些也要读。
 - `/skill:swarm check every package under <dir> against its check script. one worker per package. one report.`
 - `/skill:poteto-mode open the pr. small ordered commits, evidence in the description.`
-- `/skill:poteto-mode babysit this pr. get it green.` For status only: `/skill:poteto-mode check on pr <number>. anything outstanding?`
+- `/skill:poteto-mode babysit this pr. get it green.` 只问现状时：`/skill:poteto-mode check on pr <number>. anything outstanding?`
 - `/skill:poteto-mode land the stack.`
 
-## Away and back
+## 离开再回来
 
 - `/skill:poteto-mode im going to bed. <goal> in a fresh worktree off <base>. done means <checks>. keep a decision log. don't ask me before committing. /loop until done. if you're truly stuck after a few hours, stop and write up why.`
-- `/skill:show-me-your-work catch me up on what you did last night.` Read its Attention section first.
+- `/skill:show-me-your-work catch me up on what you did last night.` 先读它的 Attention 一节。
 - `/skill:poteto-mode full autopilot on this queue. each item is independent.`
 - `/skill:poteto-mode autopilot these changes but stack them, don't ship. i'll land the stack.`
-- `/skill:reflect capture what we learned so the next run doesn't repeat it.` Approve only edits that change a future decision.
-- `/skill:bro` restates the last reply in plain words.
+- `/skill:reflect capture what we learned so the next run doesn't repeat it.` 只批准那些会改变以后某个决定的修改。
+- `/skill:bro` 用大白话把上一条回复再说一遍。

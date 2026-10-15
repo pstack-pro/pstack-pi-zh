@@ -1,129 +1,129 @@
-# Synthesizer Prompt Template
+# 合成器提示词模板
 
-Fill in the placeholders.
+填上占位符。
 
 ---
 
-You are answering a "why" question about a piece of code by synthesizing findings from investigators who searched different historical sources (source control, issue / ticket tracker, long-form documents, real-time team chat, infrastructure observability, error / exception tracking, product analytics warehouse, and code comments). Produce a confidence-weighted, evidence-cited narrative that says honestly what the evidence supports, and just as honestly what it doesn't.
+你在回答关于一段代码的 "why" 问题（为什么会这样）。材料来自多名调查员，他们分别搜过不同的历史来源（源码控制、工单 / ticket 跟踪、长文文档、实时团队聊天、基础设施可观测性、错误 / 异常跟踪、产品分析数仓，以及代码注释）。写出按置信度加权、带证据引用的叙述。证据支持什么，就诚实说；不支持什么，也同样诚实说。
 
-## The Question
+## 问题
 
 > {QUESTION}
 
-## The Code Anchor
+## 代码锚点
 
-**Target files:** {FILES_WITH_LINE_RANGES}
+**目标文件：** {FILES_WITH_LINE_RANGES}
 
-**Key symbols:** {SYMBOLS}
+**关键符号：** {SYMBOLS}
 
-## Investigator Findings
+## 调查员的发现
 
 {ALL_INVESTIGATOR_FINDINGS}
 
-## Sources That Weren't Searched
+## 没搜的来源
 
 {SKIPPED_SOURCES_WITH_REASONS}
 
-## Epistemics Framework
+## 认识论框架
 
-You MUST follow `references/epistemics.md`. Read it in full before writing. The key rules:
+你**必须**遵循 `references/epistemics.md`。动笔之前通读全文。关键规则：
 
-1. Every claim must sit in one tier: **Direct**, **Supported**, **Inferred**, **Speculative**, **Unknown**. The tier sets its section and its phrasing.
-2. Every Direct/Supported claim must have a citation (PR #, ticket ID, doc URL, chat permalink, commit hash, or file:line).
-3. Inferred and Speculative claims must use hedged language ("appears to", "likely", "suggests", "one possibility is").
-4. Never cite code as evidence for its own intent.
-5. Document gaps. Don't fill them with plausible-sounding guesses.
-6. Treat a hypothesis embedded in the user's question as a candidate, not a conclusion. Check it independently.
+1. 每条主张必须落在一个层级里：**直接**、**有支撑**、**推断**、**推测**、**未知**。层级决定它进哪一节，以及怎么措辞。
+2. 每条直接或有支撑的主张都必须有引用（PR 编号、工单 ID、文档 URL、聊天 permalink、commit hash，或 file:line）。
+3. 推断和推测必须用留有余地的措辞（「看起来」「很可能」「表明」「一种可能是」）。
+4. **绝不**把代码当成它自身意图的证据。
+5. 把缺口记下来。不要用听起来说得通的猜测去填。
+6. 用户问题里嵌着的假设，当作一个候选，不当作结论。独立去核。
 
-## Instructions
+## 怎么做
 
-1. **Read all investigator findings** and weigh the evidence yourself. Investigators gathered raw evidence, not conclusions.
-2. **Merge overlaps.** When several investigators cite the same PR, ticket, or doc, give it one authoritative reference.
-3. **Surface contradictions.** When two items disagree, show both. Don't pick one.
-4. **Calibrate each claim.** Find its evidence and tier. Direct: cite it and state it plainly. Inferred: hedge it and show the inference. Speculative: mark it. No evidence: put it in the gaps.
-5. **Verify citations by spot-checking.** If you're uncertain a cited item exists or says what the investigator claims, check it by reading the codebase or calling MCP tools. Don't propagate errors. Do not write files, commit, or modify external state.
-6. **Don't overreach.** The user will act on this. Leave an open question open rather than fill it with a confident guess.
+1. **通读所有调查员的发现**，自己来权衡证据。调查员收集的是原始证据，不是结论。
+2. **合并重叠。** 几名调查员引用同一份 PR、工单或文档时，合成一条权威引用。
+3. **把矛盾摆出来。** 两条对不上时，两条都写。不要选一边。
+4. **逐条校准。** 找出证据和层级。直接：引用它，平实陈述。推断：留有余地，并写出推断。推测：标明是推测。没有证据：放进缺口。
+5. **抽查引用。** 如果不确定某条引用是否存在，或是否像调查员说的那样，就去读代码库，或调用 MCP 工具核对。不要把错误传下去。不要写文件、不要提交、不要改外部状态。
+6. **不要说过头。** 用户会照着这份输出行动。开放的问题就留着，不要用听起来有把握的猜测填上。
 
-## Output Format
+## 输出格式
 
-Write for the user, in this exact structure:
-
----
-
-### The Question
-
-Restate the user's question in one or two sentences.
-
-### The Code in Question
-
-File paths, line ranges, key symbols. Two or three lines to orient a cold reader.
-
-### What We Found
-
-Claims with textual evidence, each quoted or paraphrased and cited precisely:
-
-- **[Direct]** {Claim}. Source: [PR #123](url) / ticket ID / file:line. {Brief quote or paraphrase.}
-- **[Supported]** {Claim}. Evidence: {list of items and what each contributes}.
-
-`[Direct]` is single-source, explicit evidence. `[Supported]` is multiple indirect items converging on a conclusion.
-
-### What We Can Reasonably Infer
-
-Claims stated nowhere but well-supported by indirect evidence. Each bullet must make the inference chain visible ("Given A and B, it's likely that C") and must use hedged language ("appears to", "likely", "suggests", "is consistent with"):
-
-- **[Inferred]** {Hedged claim}. Reasoning: {the specific evidence and the inference step}.
-
-Skip this section if there's nothing to infer.
-
-### Competing Hypotheses
-
-If the evidence fits multiple stories, present each. Don't force a winner the record doesn't support. For each hypothesis:
-
-- **Hypothesis:** {one-sentence statement}
-- **Evidence for:** {specific items}
-- **Evidence against or missing:** {what would need to be true but isn't, or what counter-signals exist}
-
-Skip this section if there's a single clear answer.
-
-### What We Don't Know
-
-Specific gaps: "We searched the issue tracker for [query1], [query2], [query3] and found no issue discussing the rate-limit threshold", not "We don't know why." Include:
-
-- Questions that went unanswered
-- Searches that returned nothing
-- Sources that were unavailable, and why (such as a missing real-time team chat MCP)
-- People who would likely know but whom you can't ask
-
-### Sources Consulted
-
-What was actually searched, so the user can judge coverage and redirect:
-
-- **Source control history**: {file paths}, {number of commits reviewed}, PRs #{numbers}, and code comments searched. Or "Not searched. This should not happen because git and `gh` are always expected."
-- **Issue / ticket tracker**: {ticket IDs and keyword searches}. Or "Not searched. No matching MCP available in this environment."
-- **Long-form documents**: {page titles and search queries}. Or "Not searched. No matching MCP available in this environment."
-- **Real-time team chat**: {channels searched, date ranges, queries}. Or "Not searched. No matching MCP available in this environment."
-- **Infrastructure observability**: {dashboards, monitors, metrics, logs, traces, or incidents searched}. Or "Not searched. No matching MCP available in this environment."
-- **Error / exception tracking**: {issues, events, or releases searched}. Or "Not searched. No matching MCP available in this environment."
-- **Product analytics warehouse**: {fully-qualified tables queried, the time windows, and the numeric summaries (counts, percentiles, first/last-seen timestamps) that bore on the question}. Or "Not searched. No matching MCP available in this environment."
-
-### Confidence Summary
-
-One or two sentences on overall confidence, e.g.:
-
-> "The core rationale (A) is well-supported by direct PR and ticket evidence. The specific threshold value (100) is inferred from the surrounding context but not explicitly documented. The question of whether this was driven by a customer request could not be answered. No relevant issue tracker or long-form doc content surfaced, and real-time team chat search was unavailable."
+写给用户，结构必须如下：
 
 ---
 
-## Quality Check Before Returning
+### 问题
 
-Revise if any item fails:
+用一两句重述用户的问题。
 
-1. Does every claim in "What We Found" have a citation? If not, add one or move it to "Inferred" or "Hypotheses."
-2. Is the phrasing tier-appropriate? (Direct claims can use "because". Inferred claims cannot.)
-3. Did you surface every contradiction you noticed, or quietly pick one?
-4. Does "What We Don't Know" name specific gaps? If it's empty or missing, be suspicious. Historical investigations almost always have gaps.
-5. Did you check any hypothesis embedded in the question against the evidence rather than rubber-stamp it?
-6. Did you cite code as evidence for its own intent? Remove it. Code is mechanics, not motivation.
-7. Is the tone calibrated? A confident-sounding answer on weak evidence is the exact failure this skill exists to prevent.
+### 相关代码
 
-The value of this output is its honesty, not its authority. A reader who takes it to the original author, an engineering lead, or a product manager should know what's known, what's inferred, and what's missing, so they can ask the right follow-up questions. Optimize for being useful, not for looking decisive.
+文件路径、行范围、关键符号。两三行，让第一次看到的人能定位。
+
+### 已经查到的
+
+有文本证据的主张。每条都引用或准确转述，并精确标出处：
+
+- **[Direct]** {Claim}。来源：[PR #123](url) / 工单 ID / file:line。{Brief quote or paraphrase.}
+- **[Supported]** {Claim}。证据：{list of items and what each contributes}。
+
+`[Direct]` 是单一来源的明确证据。`[Supported]` 是多条间接材料收敛到同一个结论。
+
+### 可以合理推断的
+
+没有任何地方写明、但间接证据撑得住的主张。每条都要让推断链看得见（「鉴于 A 和 B，C 很可能成立」），并且用留有余地的措辞（「看起来」「很可能」「表明」「与……一致」）：
+
+- **[Inferred]** {Hedged claim}。推理：{the specific evidence and the inference step}。
+
+没有可推断的内容就跳过这一节。
+
+### 竞争假设
+
+证据对得上不止一个故事时，每个都写出来。记录撑不起单一结论时，不要硬选一个赢家。对每个假设：
+
+- **假设：** {one-sentence statement}
+- **支持的证据：** {specific items}
+- **反对或缺失：** {what would need to be true but isn't, or what counter-signals exist}
+
+答案清晰、只有一个时，跳过这一节。
+
+### 还不知道的
+
+具体的缺口。要写成「我们在工单跟踪里搜了 [query1]、[query2]、[query3]，没找到讨论这个限流阈值的工单」，不要写成「我们不知道原因」。包括：
+
+- 没答上的问题
+- 没有结果的搜索
+- 用不了的来源，以及原因（例如没有实时团队聊天的 MCP）
+- 很可能知道答案、但你问不到的人
+
+### 已查阅来源
+
+实际搜过什么，让用户能判断覆盖，也能把你指去别处：
+
+- **源码控制历史**：{file paths}，{number of commits reviewed}，PR #{numbers}，以及搜过的代码注释。否则写「未搜索。不该发生，因为 git 和 `gh` 应当始终可用。」
+- **工单 / ticket 跟踪**：{ticket IDs and keyword searches}。否则写「未搜索。本环境没有匹配的 MCP。」
+- **长文文档**：{page titles and search queries}。否则写「未搜索。本环境没有匹配的 MCP。」
+- **实时团队聊天**：{channels searched, date ranges, queries}。否则写「未搜索。本环境没有匹配的 MCP。」
+- **基础设施可观测性**：{dashboards, monitors, metrics, logs, traces, or incidents searched}。否则写「未搜索。本环境没有匹配的 MCP。」
+- **错误 / 异常跟踪**：{issues, events, or releases searched}。否则写「未搜索。本环境没有匹配的 MCP。」
+- **产品分析数仓**：{fully-qualified tables queried, the time windows, and the numeric summaries (counts, percentiles, first/last-seen timestamps) that bore on the question}。否则写「未搜索。本环境没有匹配的 MCP。」
+
+### 置信度摘要
+
+用一两句写整体置信度，例如：
+
+> 「核心理由（A）有 PR 和工单的直接证据，支撑扎实。具体阈值（100）是从周围上下文推断的，没有明文记录。是不是客户请求推动的，没法回答。工单和长文文档都没翻出相关内容，实时团队聊天也搜不了。」
+
+---
+
+## 返回前的质量检查
+
+有任何一条不通过，就改：
+
+1. 「已经查到的」里每条主张都有引用吗？没有的话，补上，或挪到「可以合理推断的」或「竞争假设」。
+2. 措辞和层级相称吗？（直接主张可以用「因为」。推断主张不行。）
+3. 你注意到的每条矛盾都摆出来了吗，还是悄悄选了一边？
+4. 「还不知道的」有没有写出具体缺口？空着或整节没有，就要起疑。历史调查几乎总有缺口。
+5. 问题里嵌着的假设，你是拿证据核过，还是盖章放行？
+6. 有没有把代码当成它自身意图的证据？删掉。代码是机制，不是动机。
+7. 口气和证据相称吗？证据很弱，口气却很有把握，正是这个 skill 要挡住的失败。
+
+这份输出的价值在诚实，不在权威口气。读者拿着它去找原作者、工程负责人或产品经理时，应该分得清什么是已知的、什么是推断的、什么还缺，这样才能问出该问的下一句。往有用上写，不要往显得果断上写。

@@ -1,0 +1,23 @@
+---
+name: principle-build-the-lever
+description: "Apply to any non-trivial work, not just bulk work: edits, migrations, analyses, checks. Build the tool that does it or proves it (codemod, script, generator, or a skill your subagents follow) instead of working by hand. The tool is the artifact a reviewer can rerun."
+disable-model-invocation: true
+---
+# 做杠杆
+
+工作不简单时，做那个能完成它的工具，不要手工做。
+
+codemod、生成器或脚本每次都以同样的方式做事，重跑不额外花钱。这个工具是一份产物，审查者可以读，也可以重跑，用来核对工作。手工改动只能靠重做来再验证。确定性的脚本把「相信我」变成「跑这个」。
+
+默认就做杠杆。只有任务很简单、就那么两三处一眼能看完的明显修改时，才跳过。
+
+- 先手工做第一个单元，学会做法，再做工具。在这个单元上重跑，和你手工的版本做 diff，以此来证明它。让杠杆可以安全地重跑。
+- 修改用 codemod 或脚本，重复的文件用生成器，分析用 dump-to-sqlite 查询，验证用可以重跑的检查。
+- 确定性的杠杆胜过扇出。工具能一遍处理每一个单元，就自己跑。不要扇出给受托方，让他们手工去套脚本能做的事。
+- 把工作扇出给子代理时，把杠杆写成它们都读的一份 skill：做法、验证契约、别碰的围栏，放在同一份产物里。放在受托方的写入范围之外，这样它们不能悄悄改契约。
+- 用了这条原则，就应该产出一个文件。你引用了它，diff 里却没有 codemod、脚本、生成器，或给受托方的 skill，就是没有用它。
+- 工作会活过这次会话，就把杠杆提交上去。
+
+门槛是简不简单，不是重不重复。一次性的工作，只要杠杆是让它能被检查的关键，仍然值得做。按 [Laziness Protocol](../principle-laziness-protocol/SKILL.md)，做能完成或证明这件事的最小脚本，不要做框架。
+
+这和 [Encode Lessons in Structure](../principle-encode-lessons-in-structure/SKILL.md) 不同。那一条把反复出现的指示变成持久的护栏。这一条要的是眼前这份工作的吞吐和可审查性。要把验证本身写成脚本，见 [Prove It Works](../principle-prove-it-works/SKILL.md)。

@@ -6,27 +6,27 @@ disable-model-invocation: true
 
 # Correct
 
-The operator keeps correcting agents in this repo for the same mistakes. Change the repo so the next agent can't make them.
+操作者一直在这个仓库里，为同样的错误纠正代理。改这个仓库，让下一个代理没法再犯。
 
-Assume every contributor is an agent that sees only the files it opened, copies the nearest example, and takes the shortest path that compiles. Design the repo so a change that looks right from one file is right for the whole repo.
+假定每个贡献者都是代理。它只看见自己打开的文件，抄最近的例子，走能编译通过的最短路径。把仓库设计成这样：从单个文件看起来对的改动，对整个仓库也是对的。
 
-## Find the mistake classes
+## 找出错误类别
 
-First, read recent commits, reverts, review comments, agent instruction files, and comments that explain workarounds. Group the mistakes into classes. A class counts once it has happened twice.
+先读最近的提交、回退、评审评论、给代理的说明文件，以及解释权宜做法的注释。把错误分成几类。同一类发生过两次，才算一类。
 
-## Fix each class at the highest level that works
+## 在够用的最高一层修掉每一类
 
-1. **Eliminate it with architecture.** Give each piece of state one owner and each task one supported way. Hide internals so the wrong import fails. Replace hand-synced lists with one source of truth. Delete old ways and dead code an agent would copy.
-2. **Enforce it with types so the bad state can't be written.** If bad code still compiles, add a lint or CI check whose error names the file, type, or function to use instead. If the pattern is already common, fail only when a change adds more.
-3. **Test the behavior.** Fix or delete any test that still passes when the behavior it checks breaks, or that fails when only the internals change.
-4. **Write docs or agent rules last, only for judgment calls.** Nothing fails when an agent skips them.
+1. **用架构消掉它。** 每一份状态只留一个所有者，每一项任务只留一种支持的做法。藏住内部，让错误的导入失败。把靠手同步的清单换成唯一事实来源。删掉旧做法，以及代理会去抄的死代码。
+2. **用类型挡住，让坏状态写不进去。** 坏代码还能编译，就加一条 lint 或 CI 检查，报错里点名该改用的文件、类型或函数。这种写法已经很常见时，只在这次改动又多加一处时才失败。
+3. **测行为。** 某个测试在它要查的行为已经坏了时仍然通过，或者只有内部变了就失败，就修好或删掉它。
+4. **最后才写文档或给代理的规则，而且只写需要判断的情况。** 代理跳过它们，什么也不会失败。
 
-## Fix and prove
+## 修好，并证明
 
-Then fix the most frequent classes now, one commit each. Prove each new check fails on a real past mistake. Run the same command locally and in CI. Exceptions go on the offending line with a reason, an expiry date, and a human's approval.
+然后现在就修最常见的几类，每类一次提交。每条新检查都要用一次真实犯过的错，证明它会失败。同一条命令在本地和 CI 里都跑。例外写在出错的那一行，带上原因、到期日，以及一个人的批准。
 
-## Keep the rule table
+## 留一张规则对照表
 
-Last, keep a table in the agent instruction file that pairs each rule with what enforces it. When the operator corrects you, fix the mistake and add the rule. If the rule was already there and nothing enforces it, that's a repeat, so fix it at the highest level in the same change. Drop a rule once its mistake can't happen.
+最后，在给代理的说明文件里留一张表，把每条规则和卡住它的机制配在一起。操作者纠正你时，修好这个错，并补上规则。规则已经在表里、却没有东西去卡住它，这就是重复发生，所以在同一次改动里，在够用的最高一层修掉。某类错误已经不可能发生，就删掉对应的规则。
 
-**Reply:** each class with its evidence, the level you picked, and why a higher level didn't work.
+**回复：** 每一类、它的证据、你选的那一层，以及为什么更高一层行不通。

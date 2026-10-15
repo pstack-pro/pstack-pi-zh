@@ -6,41 +6,41 @@ disable-model-invocation: true
 
 # Swarm
 
-Fan out N parallel cloud workers. They may cover separate slices, race the same brief, or mix both. The parent waits, aggregates, and returns one report.
+扇出 N 个并行的 cloud worker。它们可以各自覆盖不同的切片，也可以用同一份简报竞速，或者两种都有。父代理等待、汇总，交回一份报告。
 
-## Start
+## 开始
 
-Open a todolist with one entry per phase before launching anything.
+启动任何东西之前，先开一个待办清单，每个阶段一条。
 
-1. Frame
-2. Fan out
-3. Aggregate
-4. Report
+1. 定框
+2. 扇出
+3. 汇总
+4. 报告
 
-## Phase A: Frame
+## 阶段 A：定框
 
-1. State the done predicate and the artifact or report the swarm must return.
-2. Choose the shape. Partition into slices, race N workers on identical briefs, or mix both. For a race or mixed shape, declare `first pass`, `rank all`, or `best-of` before spawning.
-3. Set N from the user or derive it from the shape. N is total workers, not the cloud concurrency limit.
-4. Pick the worker model from the `swarm workers` line in `.pi/pstack-models.md`. If the rule or that line is missing, use `grok-4.7-xhigh-fast`. For `auto` or `inherit-parent`, omit `model` so the workers run on the parent model. If the Task tool rejects a slug, use the default and say so. If it rejects the default, use the closest valid slug of the same family from its error message. For a model race, name each arm's model up front. Pick each subagent's reasoning level and fast or standard speed for the job, per the Subagents section of the **poteto-mode** skill.
-5. Give each worker its own writable output when it writes. When workers verify or measure commits, each brief names the exact SHAs. A measurement brief also names the method (sample count, what one sample is, order). The worker records both in its result.
+1. 写明完成判定条件，以及 swarm 必须交回的产物或报告。
+2. 选形态。切成切片，让 N 个 worker 用同一份简报竞速，或者两种都有。竞速或混合形态，在派出之前声明 `first pass`、`rank all` 或 `best-of`。
+3. N 由用户给定，或从形态推导。N 是 worker 总数，不是 cloud 的并发上限。
+4. worker 的模型取 `.pi/pstack-models.md` 里 `swarm workers` 这一行。没有这条 rule，或没有这一行，就用 `grok-4.7-xhigh-fast`。`auto` 或 `inherit-parent` 就省略 `model`，让 worker 跑在父模型上。Task 工具拒绝某个 slug，就用默认值，并说明这件事。默认值也被拒，就用报错信息里同一族最接近的有效 slug。模型竞速时，事先点名每一臂的模型。按这项工作给每个子代理选推理档，以及 fast 还是标准速度，见 **poteto-mode** skill 的「子代理」一节。
+5. worker 要写东西时，各自有可写的输出。worker 验证或测量 commit 时，每份简报都点名确切的 SHA。测量用的简报还要点名方法（样本数、一个样本是什么、顺序）。worker 在结果里把这两样都记下来。
 
-## Phase B: Fan out
+## 阶段 B：扇出
 
-Spawn all N workers in one message with `subagent_type: generalPurpose`, `environment: "cloud"`, `run_in_background: true`, and the step 4 model, left unset for `auto` or `inherit-parent`. Use `environment: "local"` only when the worker needs access to something on the user's computer.
+在一条消息里派出全部 N 个 worker，带上 `subagent_type: generalPurpose`、`environment: "cloud"`、`run_in_background: true`，以及第 4 步的模型。`auto` 或 `inherit-parent` 时把模型留空。只有 worker 需要访问用户电脑上的东西时，才用 `environment: "local"`。
 
-When a worker must start from a non-default pushed branch, pass `cloud_base_branch`.
+worker 必须从一条非默认的、已经推送的分支开始时，传 `cloud_base_branch`。
 
-Every brief stands alone. Include the goal, scope, exact slice or race arm, how to verify, and what to report. Reports use `PASS`, `ISSUES`, or `BLOCKED` with evidence. A worker that can prove a defect reports `ISSUES` and lists every issue it can prove, not only the first.
+每份简报都要能独立读懂。写上目标、范围、确切的切片或竞速臂、怎么验证、报告什么。报告用 `PASS`、`ISSUES` 或 `BLOCKED`，并带上证据。worker 能证明一个缺陷，就报 `ISSUES`，并列出它能证明的每一个问题，不只是第一个。
 
-If a worker drops out, proceed with N-1 and note it.
+有 worker 掉队，就按 N-1 继续，并记下来。
 
-## Phase C: Aggregate
+## 阶段 C：汇总
 
-Read the terminal results. Drop a result that does not record the SHAs and method its brief names, and respawn that worker once. After a second miss, record a gap. A gap does not count as a pass. For coverage, every required slice needs a result. For a race, apply the selection rule declared up front. Use first pass, rank all, or best-of. Do not paste raw worker dumps.
+读每个 worker 交回的最终结果。结果没有记下简报点名的 SHA 和方法，就丢掉，并把那个 worker 重新派出一次。第二次还是缺，就记一个缺口。缺口不算通过。做覆盖时，每一个必需的切片都要有结果。竞速时，用事先声明的选择规则：first pass、rank all 或 best-of。不要粘贴 worker 的原始输出。
 
-Keep a compact result table, one-line evidenced issues, and explicit gaps or dropouts.
+留一张紧凑的结果表、带证据的问题各一行，以及明确的缺口或掉队。
 
-## Phase D: Report
+## 阶段 D：报告
 
-Return one consolidated in-chat report with the table, issue one-liners, gaps or dropouts, and the race rule when used.
+在对话里交回一份合并后的报告：那张表、问题的一行摘要、缺口或掉队，用了竞速规则的话也写上。
