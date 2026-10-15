@@ -11,35 +11,7 @@ description: "只为当前项目配置 pstack 各角色的模型和推理预算�
 
 ## 预设
 
-按顺序找：所列模型都检测到、且通过冒烟测试的第一个预设，当作提案。只是起点，第 3 步 (d) 还能改。用户已经点名模型或规则时，以用户为准。
-
-### mimo-deepseek
-
-需要 `xiaomi/mimo-v2.6-pro`、`xiaomi/mimo-v2.6-flash`、`deepseek/deepseek-flash`、`deepseek/deepseek-v4-pro`。判断交给更便宜的强模型，写代码用 DeepSeek V4.1 Flash，贵的 Pro 只给最难的任务，评审组混用两家。
-
-```
-feature, refactoring: deepseek/deepseek-flash
-bug-fix: deepseek/deepseek-flash
-perf-issue: deepseek/deepseek-flash
-hillclimb: deepseek/deepseek-flash
-judgment and prose: xiaomi/mimo-v2.6-pro
-hardest tasks: deepseek/deepseek-v4-pro
-how explorer: deepseek/deepseek-flash
-how explainer: xiaomi/mimo-v2.6-pro
-why investigators: deepseek/deepseek-flash
-why synthesizer: xiaomi/mimo-v2.6-pro
-reflect tooling: deepseek/deepseek-flash
-reflect judgment, divergent, synthesizer: xiaomi/mimo-v2.6-pro
-arena runners: xiaomi/mimo-v2.6-pro, deepseek/deepseek-flash, xiaomi/mimo-v2.6-flash
-arena cross-judge pool: xiaomi/mimo-v2.6-pro, deepseek/deepseek-flash, xiaomi/mimo-v2.6-flash
-swarm workers: deepseek/deepseek-flash
-architect runners: xiaomi/mimo-v2.6-pro, deepseek/deepseek-flash, xiaomi/mimo-v2.6-flash
-interrogate reviewers: xiaomi/mimo-v2.6-pro, deepseek/deepseek-flash, xiaomi/mimo-v2.6-flash
-```
-
-若预设只到一部分（例如 `deepseek-v4-pro` 失败），保留预设，只把缺的模型对应的角色按下方成本规则重映射，并说明哪些角色改了。
-
-没有任何匹配的预设时，按第 3 步 (b) 从零映射。
+本移植**不内置**命名预设（与上游一致）。默认按第 3 步 (b) 的成本规则，从已检测模型里映射三个槽位。用户请求里已经点名模型或规则时，以用户为准。若以后要加自家预设，在本文件「预设」节按小节写入即可。
 
 ## 成本规则
 
@@ -66,9 +38,8 @@ interrogate reviewers: xiaomi/mimo-v2.6-pro, deepseek/deepseek-flash, xiaomi/mim
 
 题干：
 
-- 还没设过：`给 pstack 子代理选推理预算（还没设过，建议按 {preset}）`
-- 已有预算：`给 pstack 子代理选推理预算（当前是 {budget}，建议按 {preset}）`
-- 没有匹配预设时，把「建议按 {preset}」改成「还没有推荐预设」
+- 还没设过：`给 pstack 子代理选推理预算（还没设过）`
+- 已有预算：`给 pstack 子代理选推理预算（当前是 {budget}）`
 
 选项（写入文件时只取 `—` 前的英文值）：
 
