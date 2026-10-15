@@ -116,3 +116,5 @@ pstack 原作者 Lauren Tan（[cursor/plugins](https://github.com/cursor/plugins
 移植作者 Hacken Tao，MIT 许可。
 
 `i18n/zh/glossary.md` 的部分条目改编自 [fenfenxu/pstack-zh](https://github.com/fenfenxu/pstack-zh)（MIT）。
+
+> 说明：`make-bot-ui` 为 Grok Bot 场景设计，在 Claude Code 或 pi 里一般用不到。为与上游保持一致，仍保留。
