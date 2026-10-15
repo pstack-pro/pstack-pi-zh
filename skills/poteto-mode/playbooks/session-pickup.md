@@ -1,11 +1,11 @@
-### Session pickup
+### 接手会话
 
-**You own the resume point. Read the prior trail, don't redo it.**
+**接续点由你负责。读之前留下的决策记录（trail），不要重做一遍。**
 
-1. Locate the prior trail. A local transcript under the active workspace's `agent-transcripts/` directory (the system prompt names the path. Do not glob across `~/.pi/agent/sessions/*/`, that crosses workspace boundaries and reads private chats from unrelated projects), a cloud-agent URL, or a pushed branch. Read the metadata overview and last messages first, then scan back for the decision points. Parse a long transcript in a subagent and keep the reduced timeline in the main thread (the **principle-guard-the-context-window** skill). Pick each subagent's reasoning level and fast or standard speed for the job, per the Subagents section.
-2. Reconstruct operational state. The branch and worktree, what already landed (`git log`, `git diff` against the base), the open todos, the decisions made. The prior trail is authoritative input. Resist the bias to re-derive it.
-3. Diff done vs pending. Compare what shipped against what was planned, name the resume point, do not re-run the prior repro or redo completed work. A "let me verify from scratch" pass means you're treating the trail as untrustworthy when it's authoritative.
-4. Route the remaining work to the matching playbook and pick the verdict: continue the execution, ship a finished recommendation, ratify or override a prior conclusion, or postmortem a failed run. The pickup playbook ends here. The routed playbook owns the rest.
-5. Verify the inherited claims against the original goal on the real artifact (the **principle-prove-it-works** skill). A passing prior self-report is not the proof.
+1. 找到之前的 trail。它可能是当前工作区 `agent-transcripts/` 目录下的本地对话记录（系统提示词里写了路径。不要用 glob 横扫 `~/.pi/agent/sessions/*/`，那样会越过工作区的边界，读到无关项目里的私人对话），可能是一个 cloud-agent URL，也可能是一个已经推送的分支。先读元数据概览和最后几条消息，再往前翻，找出做决定的节点。长的对话记录交给子代理解析，主线程里保留缩减后的时间线（**principle-guard-the-context-window** skill）。按这项工作给每个子代理选推理强度，以及用 fast 还是标准速度，见 Subagents 一节。
+2. 还原当时的工作状态：分支和 worktree，已经落地的内容（`git log`，以及相对 base 的 `git diff`），还没完成的待办，已经做出的决定。之前的 trail 是权威依据。别忍不住重新推一遍。
+3. 对比已完成和待完成的部分。拿已经交付的内容和原计划对照，说出接续点。不要重跑之前的复现，也不要重做已经完成的工作。来一句 "let me verify from scratch"（我从头验一遍），就是把 trail 当成了不可信的，而它是权威依据。
+4. 把剩下的工作交给对应的 playbook，并选定 verdict（判定结论）：继续执行，交付一份已经完成的建议，认可或推翻之前的结论，或者给失败的那次运行做复盘。这个 playbook 到这里结束。后面的事归转过去的那个 playbook。
+5. 在真实产物上，对照原始目标验证接手过来的各项说法（**principle-prove-it-works** skill）。之前的自我报告说通过了，不算证明。
 
-**Reply:** where the prior agent stopped, what you inherited vs redid (ideally nothing redone), the resume point, and the outcome.
+**回复：** 之前的 agent 停在哪里、哪些是你接过来的、哪些是你重做的（最好什么都没重做）、接续点，以及结果。

@@ -14,4 +14,12 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Fetch pinned upstream pstack
+        run: |
+          commit=$(node -p 'require("./UPSTREAM.json").commit')
+          git clone --quiet https://github.com/cursor/plugins.git "$RUNNER_TEMP/plugins"
+          git -C "$RUNNER_TEMP/plugins" checkout --quiet "$commit"
+
       - run: node scripts/validate-zh.mjs
+        env:
+          PSTACK_SRC: ${{ runner.temp }}/plugins/pstack

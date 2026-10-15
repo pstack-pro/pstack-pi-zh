@@ -1,15 +1,15 @@
-### Bug fix
+### 修 bug
 
-**You own this task. Plan, review, verify.** Delegate investigation and the fix to subagents, stay in the lead. Pick each subagent's reasoning level and fast or standard speed for the job, per the Subagents section.
+**这个任务归你负责。你来规划、评审、验证。** 调查和修复交给子代理，你自己保持主导。按这项工作给每个子代理选推理强度，以及用 fast 还是标准速度，见 Subagents 一节。
 
-Be scientific. Every shipped line traces to runtime evidence. Belt-and-suspenders that "might help" is a hypothesis, not a fix. It does not ship. When evidence refutes a hypothesis, revert what it motivated. The smallest change the evidence justifies ships, nothing more.
+按科学方法来。交付的每一行，都要能追溯到运行时证据。「也许有用」的双保险只是假设，不是修复，不交付。证据推翻了某个假设，就撤掉它带出来的改动。只交付证据撑得起的最小改动。
 
-1. Reproduce it yourself on the matching surface via the control skill (Non-negotiables), even when a debug or instrumentation protocol says to ask the user to reproduce. Ask the user only with a stated, specific reason the control surface cannot reach the target, and only after driving it as far as it goes. If it won't reproduce directly, synthesize the trigger, tighten conditions, or instrument until it fires.
-2. Binary-search the cause. Form the candidate hypotheses, then rule them out until one survives. Seed them with `how` over the affected subsystem and the **why** skill for regression history. Each pass, take the split that cuts the most remaining problem space, get runtime evidence, eliminate. When program state is unclear, add instrumentation or logging and read it as the code runs. Don't guess. Drive a long or stubborn hunt with Cursor's `/loop` command. Confirm the surviving *mechanism* with runtime evidence before the step-3 architect/interrogate fan-out.
-3. Plan the fix. If it crosses a function boundary, `architect` first. Delegate implementation to a subagent using your configured bug-fix model (default `grok-4.7-xhigh-fast`) with a specific scope.
-4. Verify on the same surface. The original repro now passes. "Inconclusive" or wrong-surface is not a pass. Flag it. Unit tests show branch behavior, not bug absence.
-5. Stage the commits so the failing repro lands before the fix in git history. See the **tdd** skill for the failing-test-first cadence when the bug has a cheap local test path. Skip it when the test would be expensive, integration-heavy, or unclear.
-   This is the canonical **sequence-verifiable-units** principle skill, the failing test first and the fix on top.
-6. Run **Opening a PR**.
+1. 用对应的 control skill（见 Non-negotiables）在对应的界面上亲自复现，即使某个调试或插桩流程说要请用户来复现。只有能写明具体理由，说明这个界面够不到目标，并且已经把 control skill 推到尽头，才去问用户。直接复现不出来，就人为构造触发条件、收紧条件，或者插桩，直到问题出现为止。
+2. 用二分法找原因。先列出候选假设，再逐个排除，直到只剩一个。对受影响的子系统跑 `how`，并用 **why** skill 查回归历史，从中得出最初的候选假设。每一轮，选能切掉最多剩余问题空间的那一刀，拿到运行时证据，排除掉。程序状态看不清时，加插桩或日志，在代码运行时读出来。不要猜。排查耗时很长或者久攻不下时，用 Cursor 的 `/loop` 命令推进。进入第 3 步的 architect/interrogate 扇出之前，先用运行时证据确认留下来的那个*机制*。
+3. 规划修复。修复跨越函数边界时，先跑 `architect`。实现交给一个子代理，用你配置的 bug-fix 模型（默认 `grok-4.7-xhigh-fast`），并给它明确的范围。
+4. 在同一个界面上验证。原来的复现现在要能通过。结果是 "Inconclusive"（无法判定），或者在错的界面上验证，都不算通过。标出来。单元测试只能说明分支的行为，说明不了 bug 不存在。
+5. 安排好提交的顺序，让 git 历史里失败的复现排在修复前面。bug 有便宜的本地测试路径时，失败测试先行的节奏见 **tdd** skill。测试会很贵、很依赖集成环境，或者不清楚该怎么测时，跳过它。
+   这是 **sequence-verifiable-units** 原则 skill 最典型的用法：失败的测试在前，修复叠在上面。
+6. 运行 **Opening a PR**。
 
-**Reply:** what was broken, root cause, fix, how you verified. Paste failing-then-passing repro output verbatim.
+**回复：** 哪里坏了、根因、修复、怎么验证的。原样贴出复现的输出，先是失败，再是通过。

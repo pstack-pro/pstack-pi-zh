@@ -66,3 +66,44 @@ export function diffTokens(a, b) {
 	for (const k of new Set([...ca.keys(), ...cb.keys()])) if ((ca.get(k) ?? 0) !== (cb.get(k) ?? 0)) out.push(`${k} (en ${ca.get(k) ?? 0}, zh ${cb.get(k) ?? 0})`);
 	return out;
 }
+
+// ---- Body translations: i18n/zh/bodies/<upstream path> with hashes in i18n/zh/bodies.json ----
+
+// Literals that skills/poteto-mode/scripts/check-plan.mjs parses out of plan files; the plan
+// template in multi-phase-plan.md must keep them in English.
+export const PARSED_LITERALS = [
+	"Tests alone are not sufficient verification. A PR is verified only when its unit, live, and perf boxes are all checked.",
+	"Depends on.", "Files.", "Build.", "You see.", "Verify, unit.", "Verify, live.", "Verify, perf.", "Review gate.", "Merge.",
+	"Arm the program", "Spawn owners", "PR mechanics", "Verdict and merge", "Boot recipe",
+	"git show origin/main:", "/loop 1h", "status message",
+	"One box is one unit of work", "names the evidence", "Check a box only when its evidence exists",
+	"Metric.", "Probe.", "Baseline.", "Rule.",
+];
+
+export const frontmatterOf = (t) => t.match(/^---\n[\s\S]*?\n---\n/)?.[0] ?? "";
+
+// Structure + protected tokens for a whole markdown file.
+export function bodyTokens(text, skillNames) {
+	const t = protectedTokens(text, skillNames);
+	const noCode = text.replace(/```[\s\S]*?```/g, "");
+	for (const m of noCode.matchAll(/^(#{1,6}) /gm)) t.push(`heading:${m[1]}`);
+	for (const lit of PARSED_LITERALS) {
+		const n = text.split(lit).length - 1;
+		for (let i = 0; i < n; i++) t.push(`literal:${lit}`);
+	}
+	return t.sort();
+}
+
+export function listUpstreamMarkdown(src) {
+	const out = [];
+	const walk = (rel) => {
+		for (const e of fs.readdirSync(path.join(src, rel), { withFileTypes: true })) {
+			const r = path.join(rel, e.name);
+			if (e.name === "node_modules") continue;
+			if (e.isDirectory()) walk(r);
+			else if (e.name.endsWith(".md")) out.push(r);
+		}
+	};
+	for (const d of ["skills", "agents"]) walk(d);
+	return out.sort();
+}

@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 // Asserts the Chinese layer did not change anything a machine reads.
 // Checks: i18n/zh/descriptions.json (EN vs ZH), generated skills/*/SKILL.md, and any full-file
-// translations in i18n/zh/files/<path> against upstream <path> (reserved; none shipped yet).
+// translations in i18n/zh/bodies/<path> against the upstream checkout (PSTACK_SRC or the sync temp clone).
 // Usage: node scripts/validate-zh.mjs [--allow-stale]
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { fileURLToPath } from "node:url";
-import { diffTokens, loadDescriptions, protectedTokens, readDescription, sha256 } from "./zh-lib.mjs";
+import { checkBodies, defaultSrc } from "./check-body.mjs";
+import { diffTokens, listUpstreamMarkdown, loadDescriptions, protectedTokens, readDescription, sha256 } from "./zh-lib.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const allowStale = process.argv.includes("--allow-stale");
@@ -50,25 +51,23 @@ for (const name of fs.readdirSync(skillsDir)) {
 	if ([...d.matchAll(/(?<![\w./:-])\/([a-z][\w-]*)(?![\w/-])/g)].some((m) => names.includes(m[1]))) errors.push(`skills/${name}: unprefixed slash command`);
 }
 
-// 3. Full-file translations (none yet in this preview).
-const filesDir = path.join(root, "i18n/zh/files");
-const hashesFile = path.join(root, "i18n/zh/source-hashes.json");
-const hashes = fs.existsSync(hashesFile) ? JSON.parse(fs.readFileSync(hashesFile, "utf-8")) : {};
-const fmKeys = (t) => (t.match(/^---\n([\s\S]*?)\n---\n/)?.[1] ?? "").split("\n").map((l) => l.match(/^([\w-]+):/)?.[1]).filter(Boolean);
+// 3. Body translations (i18n/zh/bodies/<upstream path>), checked against the upstream English.
+const bodiesDir = path.join(root, "i18n/zh/bodies");
 const walk = (d) => fs.existsSync(d) ? fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)]) : [];
-for (const zhFile of walk(filesDir)) {
-	const rel = path.relative(filesDir, zhFile);
-	// rel mirrors the upstream pstack layout (e.g. skills/how/SKILL.md); pass the checkout as PSTACK_SRC.
-	if (!process.env.PSTACK_SRC) { warnings.push(`${rel}: set PSTACK_SRC to check this translation`); continue; }
-	const enFile = path.join(process.env.PSTACK_SRC, rel);
-	if (!fs.existsSync(enFile)) { errors.push(`i18n/zh/files/${rel}: no upstream file`); continue; }
-	const en = fs.readFileSync(enFile, "utf-8"), zh = fs.readFileSync(zhFile, "utf-8");
-	if (hashes[rel] !== sha256(en)) (allowStale ? warnings : errors).push(`${rel}: stale or unhashed translation`);
-	if (fmKeys(en).join() !== fmKeys(zh).join()) errors.push(`${rel}: frontmatter keys differ`);
-	for (const x of diffTokens(protectedTokens(en, names), protectedTokens(zh, names))) errors.push(`${rel}: token mismatch ${x}`);
+const bodyFiles = walk(bodiesDir).map((f) => path.relative(bodiesDir, f)).sort();
+const src = defaultSrc();
+let upstreamMd = [];
+if (!fs.existsSync(path.join(src, "skills"))) {
+	if (bodyFiles.length) errors.push(`body translations need the upstream checkout at ${src} (run scripts/sync.mjs or set PSTACK_SRC)`);
+} else {
+	const r = checkBodies({ root, src, files: bodyFiles, allowStale });
+	errors.push(...r.errors); warnings.push(...r.warnings);
+	upstreamMd = listUpstreamMarkdown(src);
+	const missing = upstreamMd.filter((f) => !bodyFiles.includes(f));
+	if (missing.length) warnings.push(`${missing.length} upstream markdown files still English: ${missing.join(", ")}`);
 }
 
 for (const w of warnings) console.log(`warn  ${w}`);
 for (const e of errors) console.log(`FAIL  ${e}`);
-console.log(`${errors.length ? "FAIL" : "PASS"}: ${names.length} descriptions, ${fs.readdirSync(skillsDir).length} skills, ${walk(filesDir).length} full translations, ${errors.length} errors, ${warnings.length} warnings`);
+console.log(`${errors.length ? "FAIL" : "PASS"}: ${names.length} descriptions, ${fs.readdirSync(skillsDir).length} skills, ${bodyFiles.length}/${upstreamMd.length} body files translated, ${errors.length} errors, ${warnings.length} warnings`);
 process.exit(errors.length ? 1 : 0);

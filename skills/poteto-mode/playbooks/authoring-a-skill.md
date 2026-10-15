@@ -1,12 +1,12 @@
-### Authoring or modifying a skill
+### 编写或修改 skill
 
-**You own the skill's voice.**
+**skill 的口吻由你负责。**
 
-1. Use the **create-skill** skill (Cursor's built-in for authoring SKILL.md files).
-2. Validate the skill: frontmatter has `name` and `description`, referenced files exist, cross-skill links resolve.
-3. Test cases if structural. Skip if subjective.
-4. Run **Opening a PR**.
+1. 用 **create-skill** skill（Cursor 内置，用来写 SKILL.md）。
+2. 校验这个 skill：frontmatter 里有 `name` 和 `description`，引用的文件都存在，跨 skill 的链接都能解析到。
+3. 结构性的内容就写测试用例。主观的内容就不写。
+4. 执行 **Opening a PR**。
 
-When in doubt, delete. Keep only prose that changes a decision. Tell it to do the thing and skip the reason. Explain only when the rule is confusing without one. Match tone to scope. Point at structural sources (types, READMEs, config) per the **encode-lessons-in-structure** principle skill. Delegate to other skills by path. Don't restate. A workflow you keep hitting but isn't captured → propose a new skill.
+拿不准时就删。只留会改变决定的文字。直接叫它做事，不讲理由。只有规则不解释就会让人困惑时，才解释。口吻和范围相称。按 **encode-lessons-in-structure** 原则 skill，指向结构性的来源（类型、README、配置）。要用其他 skill 时按路径指过去，不要复述。反复遇到、却还没有写成 skill 的工作流程 → 提议一个新 skill。
 
-**Reply:** summary of the skill, key design decisions, validation notes.
+**回复：** skill 的概要、关键设计决定、校验记录。

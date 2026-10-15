@@ -1,14 +1,14 @@
-### Trace forensics
+### trace 取证
 
-**You own the diagnosis from the artifact.**
+**诊断从已有产物得出，由你负责。**
 
-Distinct from **Runtime forensics**, which instruments the live process. Here the capture already exists. The artifact is a fixed dataset, read it, don't re-run it. Keep tooling generic: a DevTools or trace parser for cpuprofile and `.json.gz`, a text editor for a spindump, your heap tooling for a heapsnapshot.
+和 **Runtime forensics** 不同。那个给正在运行的进程插桩。这里抓取已经完成。产物是一份固定的数据集，读它，不要重跑。工具保持通用：cpuprofile 和 `.json.gz` 用 DevTools 或 trace 解析器，spindump 用文本编辑器，heapsnapshot 用你手头的堆分析工具。
 
-1. Identify the format and load it with the right tool. Parse large artifacts in a subagent (the **principle-guard-the-context-window** skill) and keep the reduced finding in the main thread. Pick each subagent's reasoning level and fast or standard speed for the job, per the Subagents section.
-2. Transform the raw artifact into a form you can query. Dump the trace or heap snapshot into sqlite, one row per sample, frame, or node. Reach the queryable shape before you read.
-3. Narrow to the cause. Query for the frames that hold the most time and walk the call tree to the hot path. For a leak, follow the retainer chain from the leaked object to a GC root. For a spindump, find the thread stuck on-CPU or blocked and its wait reason.
-4. Attribute to source. Map the hot frame to file, symbol, and line via the artifact's own symbols. A frame with no source mapping is not yet a diagnosis. Resolve the symbols, or say plainly the artifact does not carry them.
-5. If you have a paired capture, diff the before and after artifacts to confirm. Otherwise, mark the finding as the strongest hypothesis the artifact supports, not a confirmed cause.
-6. Hand back a cited diagnosis, no fix unless asked. Route to Bug fix or Perf issue once the cause is known. Throughput checkpoint stays one line: `throughput checkpoint: n/a, read-only forensics`.
+1. 认出格式，用合适的工具加载。大产物放在子代理里解析（**principle-guard-the-context-window** skill），主线程里只留缩减后的结论。按这项工作给每个子代理选推理强度，以及用 fast 还是标准速度，见 Subagents 一节。
+2. 把原始产物转换成能查询的形式。把 trace 或堆快照导进 sqlite，每个采样、栈帧或节点一行。先变成能查的样子，再开始读。
+3. 缩小到原因。查出占时间最多的栈帧，顺着调用树走到热路径。查内存泄漏时，从泄漏对象沿着 retainer 链追到 GC root。看 spindump 时，找到占着 CPU 或堵住的线程，以及它在等什么。
+4. 落到源码上。用产物自带的符号，把热点栈帧对应到文件、符号和行号。对不上源码的栈帧，还算不上诊断。把符号解析出来，或者直接说明这份产物里没有符号。
+5. 如果有成对的抓取，对比前后两份产物来确认。否则，把结论标成这份产物能支持的最强假设，不是已确认的原因。
+6. 交回一份带出处的诊断，没人要求就不给修法。原因清楚之后，转给 Bug fix 或 Perf issue。吞吐检查点只写一行：`throughput checkpoint: n/a, read-only forensics`。
 
-**Reply:** the artifact and format, the reduced finding, the source location, the artifact paths, and whether a paired capture confirmed it.
+**回复：** 产物和它的格式、缩减后的结论、源码位置、产物路径，以及有没有成对抓取确认过。

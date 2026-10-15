@@ -9,6 +9,7 @@ import * as os from "node:os";
 import * as path from "node:path";
 import { fileURLToPath } from "node:url";
 import { applyZh } from "./apply-zh.mjs";
+import { overlayZh } from "./overlay-zh.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const UPSTREAM = "https://github.com/cursor/plugins.git";
@@ -23,11 +24,13 @@ function upstreamCheckout() {
 	return path.join(dir, "pstack");
 }
 
-const src = path.resolve(process.argv[2] ?? process.env.PSTACK_SRC ?? upstreamCheckout());
-if (!fs.existsSync(path.join(src, "skills", "poteto-mode", "SKILL.md"))) {
-	console.error(`not a pstack checkout: ${src}`);
+const upstreamSrc = path.resolve(process.argv[2] ?? process.env.PSTACK_SRC ?? upstreamCheckout());
+if (!fs.existsSync(path.join(upstreamSrc, "skills", "poteto-mode", "SKILL.md"))) {
+	console.error(`not a pstack checkout: ${upstreamSrc}`);
 	process.exit(1);
 }
+// Chinese bodies (i18n/zh/bodies/) laid over a temp copy of upstream; everything below transforms them.
+const src = overlayZh(upstreamSrc, root);
 
 // Ordered: specific paths before the generic prefixes they contain.
 const REPLACEMENTS = [
@@ -112,7 +115,7 @@ const overrides = path.join(root, "overrides");
 if (fs.existsSync(overrides)) fs.cpSync(overrides, root, { recursive: true });
 
 // Chinese layer: shared translations in i18n/zh/, rewritten with this side's command prefix.
-applyZh({ root, src, prefix: COMMAND_PREFIX, transform });
+applyZh({ root, src: upstreamSrc, prefix: COMMAND_PREFIX, transform });
 
 const leftovers = (() => {
 	try {
@@ -123,12 +126,12 @@ const leftovers = (() => {
 })();
 const rev = (() => {
 	try {
-		return execFileSync("git", ["-C", src, "rev-parse", "--short", "HEAD"], { encoding: "utf-8" }).trim();
+		return execFileSync("git", ["-C", upstreamSrc, "rev-parse", "--short", "HEAD"], { encoding: "utf-8" }).trim();
 	} catch {
 		return "unknown";
 	}
 })();
 const version = JSON.parse(fs.readFileSync(path.join(src, ".cursor-plugin", "plugin.json"), "utf-8")).version;
 fs.writeFileSync(path.join(root, "UPSTREAM.json"), `${JSON.stringify({ pstack: version, commit: rev }, null, "\t")}\n`);
-console.log(`synced pstack ${version} (${rev}) from ${src}`);
+console.log(`synced pstack ${version} (${rev}) from ${upstreamSrc}`);
 if (leftovers) console.log(`files still mentioning .cursor/:\n${leftovers}`);

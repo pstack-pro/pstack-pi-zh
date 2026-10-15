@@ -2,7 +2,7 @@
 
 pstack 中文版（预览）
 
-把 [pstack](https://github.com/cursor/plugins/tree/main/pstack)（poteto 的严谨 agent 工作流）适配到 [pi](https://pi.dev) coding agent 的 pi package。这是中文预览版，版本 0.15.25-zh.1（见 `package.json`），版本号形如 `<上游版本>-zh.N`。跟踪上游 pstack 0.15.25（[cursor/plugins@e5136d8](https://github.com/cursor/plugins/commit/e5136d8)），上游版本记在 `UPSTREAM.json`。
+把 [pstack](https://github.com/cursor/plugins/tree/main/pstack)（poteto 的严谨 agent 工作流）适配到 [pi](https://pi.dev) coding agent 的 pi package。这是中文预览版，版本 0.15.25-zh.2（见 `package.json`），版本号形如 `<上游版本>-zh.N`。跟踪上游 pstack 0.15.25（[cursor/plugins@e5136d8](https://github.com/cursor/plugins/commit/e5136d8)），上游版本记在 `UPSTREAM.json`。
 
 pstack 的 skill 是照着 Cursor 的工具写的。这个 package 没有逐个改写 skill，而是在 pi 里提供**同名、同参数**的工具，让 skill 正文基本保持原样：
 
@@ -17,7 +17,9 @@ pstack 的 skill 是照着 Cursor 的工具写的。这个 package 没有逐个�
 
 ## 这一版翻译了什么
 
-54 个 skill 的 description 改成纯中文，句子里直接嵌入 slash 命令和英文触发短语（如 `'arena this'`），所以用中文或英文提问都能匹配；不再附整段英文原文，每次会话少加载一半 token。`test/routing-eval/` 里有模拟路由评测（不等同于真实的 Claude Code / pi 路由）。skill 正文仍是英文，之后再逐篇翻译。
+54 个 skill 的 description 改成纯中文，句子里直接嵌入 slash 命令和英文触发短语（如 `'arena this'`），所以用中文或英文提问都能匹配；不再附整段英文原文，每次会话少加载一半 token。`test/routing-eval/` 里有模拟路由评测（不等同于真实的 Claude Code / pi 路由）。
+
+skill 正文、playbook、references 和 agents 也已译成中文（来自上游的 Markdown 文件全部译完）。这是预览质量的机器辅助翻译，难免有生硬或不准的地方；代码块、命令、工具名、路径、链接和脚本要解析的字符串都保持英文，并有脚本逐项核对。移植时新增或改写的文件（`overrides/` 里的 `setup-pstack`、`readonly` agent，以及本仓库自己的适配说明）仍是英文。**如果觉得中文版不好用，请安装英文版：[claude-pstack](https://github.com/taokeqin/claude-pstack) 或 [pi-pstack](https://github.com/taokeqin/pi-pstack)。**
 
 ## 前置条件
 
@@ -80,6 +82,7 @@ pi install -l <任意目录>
 
 - `descriptions.json`：每个 skill 一条，有英文原文、中文和 `source_sha256`。原文一变，哈希对不上，这条就算过期。
 - `glossary.md`：术语表。改译法时改这里。
+- `bodies/<上游路径>`：正文译文，按上游 pstack 的目录结构存放；`bodies.json` 记录每个文件翻译时英文原文的哈希，上游一改就标为过期。`scripts/sync.mjs` 先把译文叠到上游副本上，再做和英文版相同的改写（命令前缀、路径、工具名）。
 
 `scripts/sync.mjs` 从上游生成 `skills/` 和 `agents/` 之后调用 `scripts/apply-zh.mjs`，把中文 description 写进 skill，并把其中的 slash 命令改成这一边的前缀 `/skill:`。移植时改过描述的 skill 写在 `i18n/zh-port.json`，覆盖共同译文里的同名条目。这边目前覆盖的是 `setup-pstack`。
 

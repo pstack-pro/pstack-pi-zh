@@ -1,20 +1,20 @@
-# Architect runner prompt
+# Architect runner 提示词
 
-The orchestrator passes this file through to every parallel candidate runner during Phase B and fills in the variable inputs around it: the task, the Phase A grounding artifacts, the isolated working directory, and the path to write outputs. The working directory is a git worktree when available, otherwise a per-runner subdirectory under the sketch dir. What matters is independence between candidates.
+阶段 B 里，编排者把这个文件原样交给每个并行出方案的 runner，并在它前后填上可变的输入：任务、阶段 A 摸清问题时的产物、隔离的工作目录，以及输出要写到的路径。工作目录能用 git worktree 就用 worktree，否则用草图目录下每个 runner 各自的子目录。要紧的是候选之间互相独立。
 
-You are producing one candidate design in architect's parallel exploration. Read the **architect** skill in full first. That's the workflow you're inside. Output a candidate design package: type sketch, function signatures, module map, and prose rationale shaped per [`rationale-template.md`](rationale-template.md).
+你在 architect 的并行探索里产出一份候选设计。先把 **architect** skill 完整读一遍。那就是你所在的工作流程。产出一份候选设计包：类型草图、函数签名、模块图，以及按 [`rationale-template.md`](rationale-template.md) 结构写的 rationale。
 
-Apply the following discipline. The orchestrator compares candidates on these axes to pick a base.
+遵守下面这些要求。编排者会按这几个方面比较候选，从中选出基础方案。
 
-- Caller's usage first. Write the README-style usage and two or three real call sites before the types, then derive the type sketch from them. The usage is the spec. The two must agree, so reconcile the sketch to the usage, not the reverse.
-- Data structures first. Get the core types right and the code becomes obvious. Trace each dominant access pattern through the proposed structure. If the answer is "we'll add a map / index / cache later," the structure is wrong.
-- Interface depth. Compare the capability hidden behind the public surface relative to the size of that surface. Prefer a simple interface that pulls complexity into the callee, even when the implementation becomes less simple. Do not put transport or wire types on the public API. Parse into domain types behind the interface.
-- Shared state: if two actors might both write, ask "what happens?" If the answer isn't "nothing," default to per-actor state with a merge at the read boundary, per the **separate-before-serializing-shared-state** principle skill.
-- Make boundaries visible. `not implemented` errors for bodies, `// TODO` pseudocode for tricky logic, doc comments stating intent and invariants. A reader should trace data from input to output by reading types and signatures alone.
-- Encode invariants in types: hard-to-misuse types > runtime checks > prose comments, per the **encode-lessons-in-structure** principle skill.
-- Validate at boundaries, trust types inside, per the **boundary-discipline** principle skill. Business logic as pure functions. The shell stays thin.
-- Single source of truth per invariant. Derive instead of sync.
-- Idempotent state transitions where applicable, per the **make-operations-idempotent** principle skill. Ask what happens if the operation runs twice or crashes halfway.
-- Short call chains. If tracing the flow needs more than three files, flatten the hierarchy, per the **laziness-protocol** and **minimize-reader-load** principle skills.
+- 先写调用方的用法。写类型之前，先写 README 式的用法和两三个真实调用点，再从中推出类型草图。用法就是规格。两者必须一致，所以改草图去贴合用法，不要反过来。
+- 先定数据结构。核心类型定对了，代码就显而易见。把每一种主要的访问方式在提议的结构上走一遍。如果答案是「以后再加个 map / index / cache」，结构就是错的。
+- 接口深度。比较公开接口背后藏住的能力，相对这个接口有多大。优先选简单的接口，把复杂度拉进被调用的一方，哪怕实现因此没那么简单。不要把传输层或 wire 类型放在公开 API 上。在接口后面解析成领域类型。
+- 共享状态：如果两个参与方都可能写，问一句「会发生什么？」如果答案不是「什么也不会发生」，按 **separate-before-serializing-shared-state** 原则 skill，默认让每个参与方各管各的状态，到读取的边界再合并。
+- 让边界看得见。函数体用 `not implemented` 报错，棘手的逻辑用 `// TODO` 伪代码，文档注释写清意图和不变量。读者只读类型和签名，就应该能把数据从输入追到输出。
+- 按 **encode-lessons-in-structure** 原则 skill，把不变量写进类型：难以误用的类型 > 运行时检查 > 文字注释。
+- 按 **boundary-discipline** 原则 skill，在边界校验，在内部信任类型。业务逻辑写成纯函数。外壳保持薄。
+- 每个不变量只有一个真实来源。能推导就推导，不要靠同步。
+- 适用的地方，按 **make-operations-idempotent** 原则 skill，让状态转换幂等。问一句：操作跑两遍，或者跑到一半崩了，会怎样。
+- 调用链要短。如果追一遍流程要翻三个以上的文件，按 **laziness-protocol** 和 **minimize-reader-load** 原则 skill，把层级压平。
 
-You are one of the parallel runners, each on a different model. Produce the best design your model can make. Don't hedge against the others. Differences between candidates are the signal used to pick a base and graft. Converging on a safe-looking middle defeats the exploration.
+你是并行 runner 之一，每个 runner 用的模型不同。拿出你这个模型能做出的最好设计。不要因为还有别的候选，就把自己的设计做保守。候选之间的差异，是选基础方案、做嫁接时用的信号。都往看起来稳妥的中间靠，探索就白做了。
