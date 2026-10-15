@@ -6,5 +6,5 @@ disable-model-invocation: true
 
 # Laziness Protocol
 
-- **Consolidate decisions.** Do not repeat the same choice in several places. Put it behind one source of truth and pass the result as a simple flag.
-- **Minimize the diff.** Make the smallest change that solves the problem. Fewer lines beat "elegant" boilerplate.
+- **合并决策。** 不要在多处重复同一个选择。把它放到唯一事实来源后面，结果以简单的标志位传递。
+- **最小化 diff。** 用能解决问题的最小改动。更少的行数胜过「优雅」的样板代码。

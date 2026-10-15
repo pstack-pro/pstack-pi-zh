@@ -4,8 +4,8 @@ description: "第二次写下同一指令，或纠正反复出现时，把规则
 disable-model-invocation: true
 ---
 
-# Encode Lessons in Structure
+# 把经验写进结构
 
-If the lesson needs judgment and cannot be encoded, make the instruction more prominent and add an example of the failure mode.
+如果这条经验需要判断、没法编码，就把指令放得更显眼，并补一个失败模式的例子。
 
-**Corollary:** If the fix is structural, only use the structural fix. The instruction is the symptom.
+**推论：** 如果修法是结构性的，就只用结构性修法。指令只是症状。

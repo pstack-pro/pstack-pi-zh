@@ -4,19 +4,19 @@ description: "做完后、宣布完成前，对照真实产物（跑功能、读
 disable-model-invocation: true
 ---
 
-# Prove It Works
+# 证明它确实能用
 
-Verify every task output by checking the real thing directly. Do not infer from proxies, self-reports, or "it compiles."
+每个任务产出都要直接检查真实对象来验证。不要从替代物、自我报告或「能编译过」推断。
 
-**Why:** Unverified work has unknown correctness. Indirect verification (file mtimes, output freshness, agent self-reports, cached screenshots) feels cheaper than direct observation. Acting on a wrong inference costs far more than checking the source.
+**为什么：** 未经验证的工作，正确性未知。间接验证（文件 mtime、输出新鲜度、agent 自我报告、缓存截图）看起来比直接观察省事。按错误推断行事，代价远高于去看一眼源头。
 
-Check the real thing, not a proxy:
-- Check process liveness directly, not indirectly through derived state
-- Read the actual value, not a cached or derived representation
-- When verification fails, suspect the observation method before suspecting the system
+查真实对象，不查替代物：
+- 直接查进程是否存活，不要绕道派生状态间接判断
+- 读实际的值，不读缓存或派生的表示
+- 验证失败时，先怀疑观测方法，再怀疑系统
 
-## Script the check when you can
+## 能写脚本就写脚本
 
-The strongest proof is a deterministic script that re-runs the same comparison, not a one-time eyeball. Write the script, run it, and keep its output as an artifact a reviewer can re-run instead of trusting your word.
+最强的证明是一个可重复运行同一比较的确定性脚本，而不是一次性肉眼看一看。写脚本、跑脚本，把输出留成产物，审查者可以自行重跑，而不必信你的一面之词。
 
-Keep the artifact visible for the human. Commit it only for large or complex work where the trail has to be auditable later, like a big port or migration (the **show-me-your-work** skill).
+把产物留在人类看得见的地方。只有大型或复杂的工作，事后需要审查记录时才提交，比如大规模移植或迁移（**show-me-your-work** skill）。

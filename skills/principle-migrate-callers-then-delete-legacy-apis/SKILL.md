@@ -4,19 +4,19 @@ description: "新内部 API 还有旧调用方时，同一波迁走调用方并�
 disable-model-invocation: true
 ---
 
-# Migrate Callers Then Delete Legacy APIs
+# 先迁移调用方，再删除遗留 API
 
-When we decide a new API is the right design, migrate callers and remove the old API in the same refactor wave instead of preserving compatibility layers.
+当我们确定新 API 是正确设计后，就在同一轮重构里迁移调用方并删除旧 API，而不是保留兼容层。
 
-**Rule:**
-- Do not keep legacy API paths only because internal callers still exist
-- Inventory callers, migrate them, and delete the old API immediately
-- Treat temporary adapters as exceptional and time-boxed, not default architecture
-- Update tests to assert the new contract, and delete tests that only protect pre-refactor implementation details
+**规则：**
+- 不要仅因为内部还有调用方就保留遗留 API 路径
+- 清点调用方，迁移它们，然后立即删除旧 API
+- 把临时适配器当作限定时限的例外，而不是默认架构
+- 更新测试以断言新契约，删除那些只保护重构前实现细节的测试
 
-**When this applies:**
-- No external users depend on backward compatibility
-- The project can absorb coordinated breaking changes
-- The new API is part of a simplification or refactor initiative
+**适用场景：**
+- 没有外部用户依赖向后兼容
+- 项目能承受协调一致的破坏性变更
+- 新 API 属于简化或重构计划的一部分
 
-Keeping both old and new APIs creates dual-path complexity, slows cleanup, and makes the codebase feel append-only.
+同时保留新旧 API 会造成双路径复杂度，拖慢清理，让代码库显得只增不减。

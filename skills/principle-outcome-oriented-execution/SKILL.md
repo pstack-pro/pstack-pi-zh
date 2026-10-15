@@ -4,18 +4,18 @@ description: "做阶段边界明确的重写或迁移时，直接收敛到目标
 disable-model-invocation: true
 ---
 
-# Outcome-Oriented Execution
+# 结果导向的执行
 
-Optimize for the intended, verifiable end state rather than preserving smooth intermediate states.
+为预期的、可验证的终态做优化，而不是维持平滑的中间状态。
 
-**Why:** Keeping every intermediate step fully stable often creates temporary compatibility code that becomes long-lived debt. Converge on the target architecture and prove correctness at explicit verification boundaries.
+**为什么：** 让每个中间步骤都保持完全稳定，往往会造出临时的兼容代码，最终变成长期负债。要向目标架构收敛，并在明确的验证边界上证明正确性。
 
-**Core rule:**
-- Prioritize end-state integrity over transitional stability
-- Intermediate breakage is acceptable when it is planned, scoped, and reversible
+**核心规则：**
+- 终态的完整性优先于过渡期的稳定性
+- 当中间阶段的破坏是有计划的、范围明确的、可回退的，就可以接受
 
-**Guardrails:**
-- Use this for planned rewrites and migrations with explicit phase boundaries
-- Declare where temporary breakage is acceptable
-- Keep high-signal checks for actively touched areas while migrating
-- Require full static and runtime verification at plan completion
+**护栏：**
+- 用于有明确阶段边界的计划性重写和迁移
+- 声明哪些地方可以接受临时破坏
+- 迁移期间，对正在改动的区域保留高信号检查
+- 计划完成时，要求通过完整的静态与运行时验证

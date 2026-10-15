@@ -1,0 +1,17 @@
+---
+name: principle-sequence-verifiable-units
+description: "Apply to multi-step work (sweeps, migrations, runs of similar edits) and to how you stack commits and PRs. Break work into small units that each end in a verifiable state, check each before the next, and order delivery so the sequence proves itself to a reviewer."
+disable-model-invocation: true
+---
+
+# 把工作排成可验证的单元
+
+把工作排成一串小单元，每个单元都终结在一个可检查的状态；当前这个还没变绿，就不要推进。
+
+**为什么：** 在出问题的那个单元当场发现的断裂，定位起来很便宜。等到一批做完才发现，断裂已经被埋住，而且你已经在一个坏掉的基础上继续往上搭了。把同样这些小单元排成审查者能重放的交付过程，就把 "trust me" 变成 "watch it go red, then green"。
+
+**执行。** 在扫描、迁移，或任何一串相似的改动里，每开始下一个之前先验证当前这个改动。每个单元都是一对前后对照：已知良好的状态、一次改动、跑检查、然后继续。先 rebase 到干净的 trunk，这样每次检查都是对着真实的基线测。当杠杆负责做这些改动时，逐单元的检查几乎不花成本。照样要跑。
+
+**交付。** 按能证明这段工作的顺序堆叠 commit 和 PR。典型形态是先放失败的测试，再把修复叠上去。其他叙事顺序包括：先做减法再重塑、基线采集排在处理之前、脚手架空在 feature 之前。每个 commit 各自能落地，整串读起来就像一段论证。
+
+这是 **prove-it-works** 原则 skill 和 **build-the-lever** 原则 skill 在排序上的补充：前者让每次检查都真实，后者让逐单元的检查变得便宜。

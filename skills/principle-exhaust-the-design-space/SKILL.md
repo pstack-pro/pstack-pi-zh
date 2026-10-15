@@ -4,6 +4,6 @@ description: "遇到代码库里没有先例的新 UI 交互或架构决策时�
 disable-model-invocation: true
 ---
 
-# Exhaust the Design Space
+# 穷尽设计空间
 
-It also applies to product design decisions where user experience depends on feel, not logic.
+它同样适用于那些用户体验取决于感觉、而非逻辑的产品设计决策。

@@ -6,32 +6,32 @@ disable-model-invocation: true
 
 # Ketchup
 
-Catch the user up on what changed in this chat since the last message they wrote before `/skill:ketchup`, and help them understand each change, not only where it stands. Notifications and subagent results are not their messages. Assume the user remembers their last message and nothing after it.
+把用户写下 `/skill:ketchup` 之前那条消息之后、这个对话里发生的变化讲给他听，帮他理解每一处变化，而不只是它现在到哪一步。通知和子代理的结果都不算他发的消息。假设用户只记得自己最后那条消息，之后的一概不记得。
 
-Use [`/skill:bro`](../bro/SKILL.md)'s voice, not its task: plain words, short sentences, no jargon, like one person catching up another. Say what changed for the user, not how you did it. Say "the tests pass", not "CI is green". Leave out hashes, file paths, commands, build numbers, and test counts unless the user needs one to act. Call each PR, branch, or agent by a name the user would know, not by a label you invented. If a fact needs context to make sense, give the context or leave the fact out.
+用 [`/skill:bro`](../bro/SKILL.md) 的语气，而不是它的任务：用词朴实、句子短、不用行话，像一个人给另一个人讲近况。讲用户这边有什么变化，别讲你是怎么做的。说「测试通过了」，不说「CI 是绿的」。哈希、文件路径、命令、构建号、测试数量都省掉，除非用户要靠其中某个来做决定。每个 PR、分支或代理，都用用户认得的名字称呼，不要用你自己编的标签。某个事实要配上上下文才说得通，就补上上下文，否则就别提。
 
-## Gather what changed
+## 收集变化
 
-Keep this turn read-only. Make visuals only from what you already have: do not change code, start an app or a job, or post anything. Collect your own work since that message, reports from subagents, and messages from anyone else in this chat. Check the current state of each PR, CI run, or agent this chat touched. Check each number you will show against the facts it comes from, and say so when you correct one.
+这一轮保持只读。只用手头已有的东西做图：不要改代码、不要启动应用或任务、不要发任何内容。把那条消息之后自己做的事、子代理的报告、以及这个对话里其他人的消息都收集起来。核对这个对话碰过的每个 PR、CI 运行或代理的当前状态。要展示的每个数字，都对回它来源的事实核一遍；改动了哪个就说明。
 
-An action item is a decision or step only the user can take, such as a product choice, an approval, an irreversible action, or access you lack. Include any still waiting on the user, even one raised before their last message. Work you can still do yourself is not an action item. Never make up a call to fill the reply. A step the user did not ask for and the work does not need is not an action item, unless it is irreversible and waiting on the user: give it one action line, no visual, and skip what happens if the user does not answer.
+待办事项是只有用户能做的决定或动作，比如产品取舍、审批、不可逆的操作，或你没有的权限。凡还在等用户的都列进来，哪怕是在他最后那条消息之前提出的。你自己还能做的工作不算待办事项。绝不为了撑满回复而编造一个待用户拍板的事。用户没要求、工作也不需要的一步不算待办事项；除非它不可逆又在等用户：那就给它一行动作，不配图，也略去用户不回复会怎样。
 
-## Write the reply
+## 写回复
 
-Keep the whole reply well under 150 words, not counting visuals. When something is easier to grasp as a picture than as sentences, draw it: how a design or system works, a PR stack or dependency chain with each PR's state, a before and after of a fix, or options side by side. Never draw a status list or boxes with nothing connecting them. Never give a fact twice, in text or across visuals. Leave out work that changed nothing for the user. When words run short, cut from what happened before you cut from the action items.
+整篇回复远少于 150 词，图不算在内。有的事情画出来比用句子更好懂，就画：设计或系统怎么运作、带每个 PR 状态的 PR 栈或依赖链、一次修复的前后对比、或并排的选项。绝不画状态清单，也不画彼此不相连的方框。同一个事实绝不出现两次，不论在文字里还是在两张图之间。对用户没有带来任何变化的工作，略去。字数不够时，先砍「发生了什么」，再砍待办事项。
 
-Open with one sentence that says how many things need the user, or that nothing does. If nothing happened and nothing waits on the user, say so and stop.
+开头用一句话说明有几件事需要用户处理，或者没有。如果什么都没发生、也没有事在等用户，说明之后就此打住。
 
-Then show what happened, pictures first. Embed inline the screenshots and videos the work produced, then any diagram that explains a change. Then sum up in one short bullet per thing the user asked for: what came of it, and whether it is done, still running, failed, or not checked. Write each line the way you would say it out loud: "Search was slow from a missing index", not "Search review: done" or "Slow search: missing index". Name any bug found and fixed on the way. Each line must stay true when read alone. Never mark something done that still waits on the user, and leave out anything the action items say. Under the summary, give at most three short lines that change what the user knows or must do. Then name in one line any work left that you can do yourself.
+然后讲发生了什么，图放前面。把工作产生的截图和视频内嵌进来，再放能解释某处变化的示意图。接着针对用户提过的每件事，各用一条短列表项总结：结果是什么，以及它是已完成、仍在跑、失败，还是没查。每一行都按你口头会说的方式写：「搜索慢是因为缺了索引」，而不是「搜索审查：完成」或「慢搜索：缺索引」。途中发现并修好的 bug 都点名。每一行单独读都必须成立。还在等用户的事绝不标成已完成，待办事项里说过的内容不要在这里重复。总结下面，最多给三行能改变用户认知或他必须做什么的短句。再用一行点出你自己还能做的剩余工作。
 
-Then list the action items as plain bullets, never as a diagram or box. Give each two lines, or one for an unasked irreversible step: the decision with your recommendation and why, then what happens if the user does not answer. Ask the call the user owns, such as merge, approve, or pick. A step you would take first goes in your recommendation. So does anything that must happen first, and anything that cannot be undone. Write "unknown" for a part you do not know. Link to the detail.
+然后用普通列表项列出待办事项，绝不用示意图或方框。每一项给两行，用户没要求又不可逆的那种给一行：先说决定、你的建议和理由，再说用户不回复会怎样。要用户拍板的事直说，比如合并、批准、挑一个。你会先做的一步写进建议里。必须先做的事、以及不可撤销的事，也一样。不知道的部分就写「未知」。细节附上链接。
 
-Show a choice after the list. If the screenshots above already show its options, write each option's gain and cost under its screenshot instead of drawing a new visual; otherwise, compare the options side by side, with the current state when there is one. Give every option the work weighed, each with what it gets the user and what it costs. Keep them out of the rest of the text.
+列表之后展示需要选择的地方。如果上面的截图已经显示了各个选项，就在对应截图下面写清每个选项的收益和代价，不要再画新图；否则就并排比较这些选项，有当前状态时一并放上。每个选项都写清权衡：它给用户带来什么、代价是什么。这些内容不要出现在正文其余部分。
 
-## Visuals
+## 图
 
-A visual is a picture: a screenshot, a video, a Mermaid diagram, a chart or diagram from `/visualize`, or a generated image. A Markdown table is not a visual, even with before and after columns.
+图指的是画面：截图、视频、Mermaid 示意图、来自 `/visualize` 的图表或示意图，或生成的图像。Markdown 表格不算图，哪怕带前后对比列也不算。
 
-Keep each visual small enough to read at a glance: at most six boxes, with at most eight words in each. Write labels as plain words a person would say, not tags like "Tests: pass". A fact that needs a sentence belongs in the text, or nowhere.
+每张图都要小到一眼能看懂：最多六个方框，每个方框内最多八个词。标签用一个人会说的朴实词语，不要写成「测试：通过」这类标签。需要一个句子才说得清的事实，放进正文，否则就别写。
 
-Embed screenshots and videos inline when the change is visible, not only as links. If a visible change has none, mark its summary line "No screenshot yet," and say there what changed on screen. Draw diagrams and charts from facts you have: a Mermaid diagram for how things connect and a `/visualize` chart for numbers. Never invent a number, and never draw or generate a picture of a screen you did not capture. Link only artifacts that exist.
+变化肉眼可见时，把截图和视频内嵌进来，不要只给链接。某个可见变化没有截图，就在它的总结行标注「还没有截图」，并在那里说明屏幕上变了什么。示意图和图表都用已有的事实来画：用 Mermaid 示意图表示怎么连接，用 `/visualize` 图表表示数字。绝不编造数字，也绝不画或生成一张你没截到的屏幕画面。只链接真实存在的产物。

@@ -1,0 +1,34 @@
+---
+name: principle-boundary-discipline
+description: "Apply when wiring validation, error handling, or framework adapters. Concentrate guards at system boundaries (CLI, config, network, external APIs); trust internal types and keep business logic in pure functions."
+disable-model-invocation: true
+---
+
+# Boundary Discipline
+
+把校验、类型收窄和错误处理放在系统边界上。无条件信任内部代码。业务逻辑住在纯函数里。外壳薄且机械。
+
+**原因：** 分散的校验既嘈杂又冗余，还会带来虚假的安全感。把逻辑挡在框架接线之外，这样无需框架也能测试。
+
+**模式：**
+- **在边界处**（CLI 参数、配置文件、外部 API、网络协议）：校验、返回错误、防御性处理。
+- **系统内部：** 带类型的数据、错误传播、不再重复校验。信任类型。
+- **跨越边界。** 暴露领域概念，而不是边界私有的表示。把通用机制放在内部，把专用策略放在边缘。
+
+**应用：**
+
+校验与错误处理：
+- 在解析时（边界处）校验配置，而不是在业务逻辑内部
+- 在边界处把原始数据解析成领域类型
+- 不要通过公开接口再导出传输、存储、框架或 wire 类型
+- 如果边界已经校验过，调用链深处就不要重复做 nil 检查
+
+代码组织：
+- 业务逻辑放在不依赖框架的纯函数里
+- 解析函数：从原始字节到带类型状态的纯转换
+- 提示词构造：结构化状态进，字符串出
+- 打分与评估：从状态到结果的纯转换
+
+**检验：**
+- “这份数据现在是不是正在跨越系统边界？”如果否，校验就是多余的。
+- “这段逻辑能不能做成一个纯函数，让外壳直接调用？”如果能，就抽出来。

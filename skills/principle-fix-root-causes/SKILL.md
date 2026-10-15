@@ -4,18 +4,18 @@ description: "调试时把每个症状追到第一次出错处再修。只有处
 disable-model-invocation: true
 ---
 
-# Fix Root Causes
+# 修复根因
 
-When debugging, fix the fault, not the place where it surfaced. The symptom is where a wrong state became visible. The root cause is the first place the system did something it should not do, or failed to handle a state it should handle.
+调试时，要修的是故障本身，而不是它浮现的地方。症状是错误状态暴露出来的位置。根因是系统第一次做了不该做的事、或没能处理本该处理的状态的地方。
 
-**Why:** A symptom fix hides the evidence and leaves the fault free to surface somewhere else. Each one makes the system harder to reason about, because the code now carries a workaround for a bug that nobody named.
+**原因：** 只修症状会掩盖证据，让故障在别处继续浮现。每修一次，系统就更难推理，因为代码里现在带着一个没人点名的 bug 的权宜做法。
 
-**Pattern:**
-- Reproduce first.
-- Ask "why" at each step until the answer is a wrong decision in the code, not a consequence of an earlier one.
-- When stuck, instrument. Read the actual error and the actual state. Do not guess.
-- Ask whether the state that triggered the symptom is legitimate. If the system may be in that state, the code that broke on it is the root cause, and handling the state there is the fix. If the state should never exist, a check where it broke hides the bug. Find what produced the state. Guards, retries, swallowed errors, clamped values, and discarded state are the usual ways to hide a bug.
-- When something fails only after a restart, suspect persisted state first: config files, caches, lock files, serialized state.
-- Check for the pattern, not just the instance. Find every place with the same fault and fix them all.
-- If a workaround needs a paragraph-long comment to justify it, the code is wrong. Fix the code, not the comment.
-- If the deciding fact took a deep dig to find, propose the cheap, always-on signal that would have shown it at first look.
+**模式：**
+- 先复现。
+- 每一步都追问「为什么」，直到答案指向代码里某个错误决定，而不是前一个决定的后果。
+- 卡住时，加埋点。读真实的错误和真实的状态。不要猜。
+- 追问触发症状的状态是否合法。如果系统可能处在那个状态，那么在该状态下崩溃的代码就是根因，在那里处理该状态就是修复。如果那个状态本就不该存在，那么在崩溃处加检查只会掩盖 bug。找出产生该状态的东西。守卫、重试、吞掉错误、钳制取值、丢弃状态，都是掩盖 bug 的常见做法。
+- 某个东西只在重启后才失败时，先怀疑持久化状态：配置文件、缓存、锁文件、序列化状态。
+- 检查同类模式，而不只是这一个实例。找出所有同样的故障，一并修复。
+- 如果一个权宜做法需要一整段注释才能说清，那问题在代码。修代码，不是修注释。
+- 如果关键事实得深挖才能找到，就提议加一个廉价、常开的信号，让它在第一眼就能现形。

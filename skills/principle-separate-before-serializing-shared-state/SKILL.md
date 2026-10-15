@@ -4,13 +4,13 @@ description: "并发参与方可能写同一文件、分支、键或状态时，
 disable-model-invocation: true
 ---
 
-# Separate Before Serializing Shared State
+# 先分离，再串行化共享状态
 
-When concurrent actors might share mutable state, first ask whether they need the same mutable object. If not, eliminate the sharing. When sharing is real, enforce serialization structurally: lockfiles, sequential phases, exclusive ownership. Instructions and conventions are not concurrency control.
+当并发的参与方可能共享可变状态时，先问一句：它们是否真的需要同一个可变对象？如果不需要，就消除共享。当共享确实存在，就在结构上强制串行化：锁文件、顺序阶段、独占所有权。指令和约定不是并发控制。
 
-**Why:** Concurrent writes to shared state create race conditions that are intermittent, hard to reproduce, and expensive to debug.
+**为什么：** 并发写共享状态会产生竞态，这类问题时有时无、难以复现，调试成本很高。
 
-**Pattern:**
-1. **Identify shared mutable state** (files both read and write, branches both push to, APIs both define and consume).
-2. **Default: eliminate the shared write target.** Ask: do these actors need one canonical object, or are they publishing independent facts? Give each actor its own owned file, key, branch, or state directory, and merge only at the read/reporting boundary. Two workers writing their own `lastX` field into one `state.json` is still shared mutation. `indexer-state.json` + `metrics-state.json` is not.
-3. **Only when one shared write target is a real invariant, serialize access structurally** (lockfiles, sequential phases, single-writer actor, or atomic compare-and-swap). Treat "we need a lock" as a design smell to check, not as the default answer.
+**模式：**
+1. **找出共享的可变状态**（双方都读写同一文件、都推送同一分支、都定义和消费同一 API）。
+2. **默认做法：消除共享的写入目标。** 问：这些参与方需要一个权威对象，还是各自发布独立的事实？给每个参与方分配各自独占的文件、键、分支或状态目录，只在读取／汇总的边界做合并。两个 worker 各自把 `lastX` 字段写进同一个 `state.json`，仍然是共享可变状态。`indexer-state.json` + `metrics-state.json` 就不是。
+3. **只有当「一个共享写入目标」是真正的不变量时，才在结构上串行化访问**（锁文件、顺序阶段、单写入方参与方，或原子 compare-and-swap）。把「我们需要一把锁」当作要检查的设计异味，而不是默认答案。

@@ -1,0 +1,21 @@
+---
+name: principle-outcome-oriented-execution
+description: "Apply during planned rewrites and migrations with explicit phase boundaries. Converge on the target architecture; don't preserve smooth intermediate states with throwaway compatibility code."
+disable-model-invocation: true
+---
+
+# 结果导向的执行
+
+为预期的、可验证的终态做优化，而不是维持平滑的中间状态。
+
+**为什么：** 让每个中间步骤都保持完全稳定，往往会造出临时的兼容代码，最终变成长期负债。要向目标架构收敛，并在明确的验证边界上证明正确性。
+
+**核心规则：**
+- 终态的完整性优先于过渡期的稳定性
+- 当中间阶段的破坏是有计划的、范围明确的、可回退的，就可以接受
+
+**护栏：**
+- 用于有明确阶段边界的计划性重写和迁移
+- 声明哪些地方可以接受临时破坏
+- 迁移期间，对正在改动的区域保留高信号检查
+- 计划完成时，要求通过完整的静态与运行时验证

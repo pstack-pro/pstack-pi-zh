@@ -4,12 +4,12 @@ description: "可逆工作上想问 'should I do X?' 时适用。"
 disable-model-invocation: true
 ---
 
-# Never Block on the Human
+# 绝不因等人而阻塞
 
-The human supervises asynchronously. Agents must stay unblocked. Make reasonable decisions, proceed, and let the human course-correct after the fact. Since code changes are reversible and reviewable, a wrong decision usually costs less than blocking.
+人类以异步方式监督。代理 **必须** 保持不被阻塞。做出合理的决定，继续推进，让人事后纠偏。既然代码改动可回滚、可审查，错误决定的代价通常低于阻塞。
 
-- Proceed, then present. Do the work, show the result. Don't ask "should I do X?" Do X, explain why.
-- Make the system self-healing. When you notice a problem, log it and fix it in the next round.
-- Irreversible actions (force-push, delete production data, send external messages) still require confirmation.
-- Reversible actions (write code, edit notes, split tasks) should proceed without blocking.
-- Product direction comes from the human. Execution should not block.
+- 先做，再呈现。把活干完，展示结果。不要问「should I do X?」，直接做 X，并解释原因。
+- 让系统自愈。发现问题就记下来，下一轮修掉。
+- 不可逆操作（force-push、删除生产数据、对外发消息）仍需确认。
+- 可逆操作（写代码、编辑笔记、拆分任务）应直接推进，不阻塞。
+- 产品方向由人决定。执行不应阻塞。

@@ -4,18 +4,18 @@ description: "写逻辑前先定核心类型和数据结构，排好脚手架与
 disable-model-invocation: true
 ---
 
-# Foundational Thinking
+# 根基思维
 
-**Structural decisions** protect option value. **Code-level decisions** protect simplicity.
+**结构性决策**保住选择空间。**代码级决策**守住简单。
 
-**Data structures first.** Get the data shape right before writing logic. Define core types early, trace every access pattern, and choose structures that match the dominant paths.
+**数据结构优先。** 写逻辑之前，先把数据形态定对。尽早定义核心类型，梳理每一种访问模式，挑出与主导路径相符的结构。
 
-At code level, DRY the structure, not every line. Types and data models should converge. Three similar statements still beat a premature abstraction. Prefer explicit over clever. Test behavior and edge cases, not line counts.
+在代码层面，DRY 的是结构，不是每一行。类型与数据模型应当收敛。三行相似的语句仍胜过过早的抽象。宁要明确，不要取巧。测行为与边界情况，不测行数。
 
-**Concurrency corollary.** Before sharing state between actors, ask "what happens if another actor modifies this concurrently?" If not "nothing", isolate.
+**并发推论。** 让参与方共享状态之前，先问「如果另一个参与方并发改了它，会怎样？」答案若不是「什么都不会发生」，就隔离。
 
-**Scaffold first.** If something helps every later phase, do it first. Ask "does every subsequent phase benefit from this existing?" CI, linting, test infrastructure, and shared types are scaffold. Sequence for option value: setup before features, tests before fixes. Keep commits small and single-purpose.
+**脚手架优先。** 如果某样东西对之后每个阶段都有帮助，就先做。问一句「之后每个阶段是否都因为它已存在而受益？」CI、lint、测试基础设施、共享类型都属于脚手架。按选择空间排序：先搭建再上功能，先写测试再修问题。提交保持小而单一用途。
 
-Each increment should land a coherent abstraction or deepen one that exists. Do not spread a new capability across callers as special-case coordination.
+每一步增量都应落地一个自洽的抽象，或加深已有的抽象。不要以特例协调的方式，把新能力散落到各个调用方。
 
-Subtraction comes before scaffolding. Remove dead code first, then lay foundations.
+减法先于脚手架。先删死代码，再打地基。

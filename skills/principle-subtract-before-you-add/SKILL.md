@@ -4,15 +4,15 @@ description: "新增、重构或重写前，先删死代码、多余校验器和
 disable-model-invocation: true
 ---
 
-# Subtract Before You Add
+# 先减后加
 
-When evolving a system, remove complexity first, then build. Default to subtraction.
+演进系统时，先去掉复杂度，再动手构建。默认做减法。
 
-Make simplification a continual investment. Leave the design slightly simpler and more capable behind the same or smaller surface than you found it.
+把简化当成持续投入。离开时，让设计比接手时更简单、能力更强，而对外接口不变甚至更小。
 
-- Sequence removal before construction
-- Cut before you polish (get to the minimum before investing in quality)
-- Design for observed usage, not speculative edge cases
-- No speculative validators, parsers, or guards beyond what the spec demands
-- Simplify prompts (remove redundant instructions, excessive templates)
-- When a reference has no novel content, delete it rather than leaving a stub
+- 先删减，后构建
+- 先删减，后打磨（先做到最小，再投入精力提升质量）
+- 按实际观察到的用法设计，不为臆想的边界情况设计
+- 除规格要求之外，不要加臆想的校验器、解析器或守卫
+- 简化提示词（删掉冗余指令和过度模板）
+- 引用的内容没有新东西时，直接删掉，不要留占位

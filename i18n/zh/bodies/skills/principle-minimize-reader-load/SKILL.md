@@ -1,0 +1,18 @@
+---
+name: principle-minimize-reader-load
+description: "Apply when reviewing or shaping code that's hard to trace. Count layers between question and answer, and hidden state in the reader's head; collapse one-caller wrappers and shrink mutable scope."
+disable-model-invocation: true
+---
+
+# 最小化读者负担
+
+可维护性，就是读者为看懂代码必须付出的工作量。盯住两个轴：**要追踪的层数**（问题与答案之间的间接层）和**要记住的状态**（读者必须在脑子里留存的隐藏或可变上下文）。代码行数、圈复杂度、"clean architecture" 都只是近似指标。真正要紧的是读者负担。这两个轴彼此独立。一个带 50 个全局变量的扁平文件，推理起来可能和 6 层适配器栈一样难。两者都要守。这是 [守护上下文窗口](../principle-guard-the-context-window/SKILL.md) 在人类身上的对应物。读者的工作记忆同样是有限的。
+
+- **合并得不偿失的层**：只有一个调用方的包装器、没有第二种实现的适配器、从未派上用场的臆测性间接层。把它们内联掉。
+- **让相邻的层改变抽象。** 一层若只是重复同样的方法和参数，只会增加读者负担，不带来任何压缩。合并透传层。
+- **要求接口压缩。** 宽泛的接口藏不住多少复杂度，读者得同时学接口表面和实现。优先选能藏住有意义决策的边界。
+- **缩小状态作用域：** 优先纯函数（返回而非变更），局部变量优先于字段，字段优先于模块状态，模块状态优先于全局变量。用推导代替同步。
+- **在边界处给不变量命名，** 而不是在每个使用方都写一遍，这样读者学一次就够。
+- 在增加一层或一份状态之前，先问：它在别处减少的读者负担，能不能至少抵得上它自己带来的负担？
+
+**检验标准：** 一个新读者能在 30 秒内回答出 "where does X come from?" 和 "what can change X?" 吗？如果不能，就砍层或砍状态。

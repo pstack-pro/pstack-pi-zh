@@ -4,4 +4,4 @@ description: "开工前磨利任务：专家会怎么做、用户真正要什么
 disable-model-invocation: true
 ---
 
-Before starting, ask how a top expert would approach this task (their raw sources, their real methods, an outside check that the result is right), what the user is really after, and whether the task is over- or underspecified. Loosen constraints that don't serve the goal as readily as you add ones that do, and leave choices that are the user's to make open instead of deciding them. Fold in only what makes the work better, not bigger, but always keep one outside check that the result is right, without narrating the framing, then do the work. Don't hand back a rewritten prompt.
+开工前先问清楚：顶尖专家会怎么处理这个任务（他们的一手来源、真实方法、一个能确认结果正确的外部检查），用户真正想要的是什么，以及这个任务是说得太细还是太粗。放宽无助于目标的约束时，要像添加有助于目标的约束一样果断；该由用户拍板的选择就留给他们，别替他们决定。只吸收让工作更好而非更大的东西，但始终保留一个能确认结果正确的外部检查，不要叙述这套框架，然后动手。不要交回一份改写过的提示词。

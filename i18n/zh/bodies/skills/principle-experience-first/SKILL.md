@@ -1,0 +1,19 @@
+---
+name: principle-experience-first
+description: "Apply when product, UX, or feature-scope tradeoffs come up. Choose user delight over implementation convenience; ship fewer polished features over more rough ones."
+disable-model-invocation: true
+---
+
+# 体验优先
+
+当实现上的便利与用户的愉悦冲突时，选愉悦。
+
+- 每一个功能、控件和选项都必须有理由
+- 少发布，发布得更好（打磨到位的三个功能，胜过粗糙的十个）
+- 先做原型再拍板（设计决策在一次性 HTML 里比在生产代码里便宜）
+- 把细节做对（过渡、对齐、间距、反馈、错误状态）
+- 收紧核心循环（每个功能都应服务于核心工作流，否则就让路）
+
+用户就是使用这项工作成果的人。对 UI 来说，是最终用户；对库或内部 API 来说，是引入它的同事。之后接手维护这段代码的工程师也是用户。同样地权衡他们的体验，并从他们的视角解释影响。
+
+根基应服务于体验。根基性思考决定工作的*顺序*，本原则决定*目标*。

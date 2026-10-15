@@ -6,16 +6,16 @@ disable-model-invocation: true
 
 # Attack the Premise
 
-When two or more fixes that share one premise have failed the same gate, suspect the premise, not the fixes.
+当两个或更多共享同一前提的修复都卡在同一个关卡时，该怀疑的是前提，不是那些修复。
 
-**Why:** Each failed fix is evidence against the belief it assumed. A third fix on the same premise spends effort where the evidence already says the cause is not.
+**理由：** 每一次失败的修复，都是对它假定那个信念的反证。在同一个前提上做第三次修复，等于把力气花在证据已经说明不是原因的地方。
 
-**Pattern:**
-- **Write the premise down.** The premise is the one sentence that every failed fix assumed.
-- **Test the premise before the next fix.** Find an observation that would come out differently if the premise were false, and make it. Look at how the failures are distributed, not only at how large they are. Make the check rerunnable per [Build the Lever](../principle-build-the-lever/SKILL.md).
-- **Follow the evidence.** If it contradicts the premise, the cause is elsewhere. Look for what the failures have in common that the premise did not predict. If it confirms the premise, ask the next "why" per [Fix Root Causes](../principle-fix-root-causes/SKILL.md). The earlier fixes may have treated a consequence instead of the cause.
-- **Remove the condition instead of compensating for it**, per the [Laziness Protocol](../principle-laziness-protocol/SKILL.md). If the evidence shows that one part always lands on the losing side, change what puts it there. A mechanism that cleans up after it leaves the cause in place and adds work on every run.
+**做法：**
+- **把前提写下来。** 前提就是每一次失败的修复都假定的那一句话。
+- **在做下一次修复前，先验证前提。** 找一个如果前提不成立就会得出不同结果的观察，然后去观察。看这些失败是怎么分布的，而不只是看它们有多大。按 [Build the Lever](../principle-build-the-lever/SKILL.md) 把这项检查做成可重跑的。
+- **跟着证据走。** 如果证据与前提矛盾，原因就在别处。去找这些失败有什么共同点，是前提没预料到的。如果证据印证了前提，就按 [Fix Root Causes](../principle-fix-root-causes/SKILL.md) 继续追问下一个「为什么」。之前那些修复可能处理的只是后果，而不是原因。
+- **消除那个条件，而不是补偿它**，见 [Laziness Protocol](../principle-laziness-protocol/SKILL.md)。如果证据显示某个部分总是落在落败的一侧，就改掉让它落到那里的东西。事后再清理的机制，既没动原因，又让每次运行都多干活。
 
-**Stop:** Do not start the next fix before the premise is written down and tested.
+**停：** 在前提写下来并经检验之前，不要开始下一次修复。
 
-This principle is distinct from [Redesign from First Principles](../principle-redesign-from-first-principles/SKILL.md), which rebuilds a design around a new requirement. It questions a fact the current design assumes.
+这条原则与 [Redesign from First Principles](../principle-redesign-from-first-principles/SKILL.md) 不同，后者是围绕一个新需求重构设计；它质疑的是当前设计假定的某个事实。

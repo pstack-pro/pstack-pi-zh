@@ -4,47 +4,47 @@ description: "上线前查出改动在 diff 外还会弄坏什么，用真实代
 disable-model-invocation: true
 ---
 
-# Blast radius
+# 影响范围
 
-Find what a change breaks somewhere else, before it ships. Use for "blast radius of X", "what could this break", or reviewing a small diff you don't trust yet.
+找出改动在别处会弄坏什么，趁它还没上线。用于 "blast radius of X"、"what could this break"，或审查一个你还不信的小 diff。
 
-Companion to `how` and `why`. `how` tells you what the code does. `why` tells you why it's shaped that way. Blast radius tells you what it breaks somewhere else.
+与 `how` 和 `why` 配套。`how` 讲代码做了什么，`why` 讲它为什么长成那样，影响范围讲它在别处会弄坏什么。
 
-Listing the callers is not the job. The agent can grep those in a second. The job is the breakage grep won't show you.
+列出调用方不是这份工作。代理一秒就能 grep 出来。这份工作要找的是 grep 看不出的破坏。
 
-## Don't trust your own writeup
+## 不要相信你自己写的报告
 
-A blast-radius writeup that sounds right is worthless. It reads as convincing whether or not it's true. So don't hand back the writeup. Find the one or two facts the whole thing depends on and prove them by running code.
+一份听起来对的影响范围报告一文不值。无论真假，读起来都很有说服力。所以不要只把报告交回去。找出整件事所依赖的一两个事实，然后跑代码把它们证明出来。
 
-### How sure are you
+### 你有多确定
 
-For each fact the change's safety depends on, get it as far down this list as is cheap, and say where it stopped.
+对改动安全所依赖的每一个事实，只要代价不高，就尽量往这个列表下面推，并说明停在了哪一步。
 
-1. You said so. Worthless on its own.
-2. You pointed at the line. A real `file:line`, or the library's own source.
-3. You showed the bad case can't happen. You walked the failure step by step and it doesn't reach.
-4. You ran it. A script or test that calls the real code and fails loud if you're wrong.
-5. You reproduced it in the running app.
+1. 你只是这么说了。单凭这条毫无价值。
+2. 你指到了那一行。真实的 `file:line`，或库自己的源码。
+3. 你证明了坏情况不会发生。你一步步走完失败路径，发现它到不了。
+4. 你跑过了。一个脚本或测试，调用真实代码，你错了就大声报错。
+5. 你在运行中的应用里复现了它。
 
-Step 4 is usually one small script that imports the same library the app ships and calls the exact function you're worried about.
+第 4 步通常就是一个小脚本：导入应用打包的同一个库，调用你担心的那个函数。
 
-## Steps
+## 步骤
 
-1. Read the change. The diff, the symbols it adds, changes, and deletes, and what it now does differently, including the part the diff doesn't spell out. Use `why` step 2 to pull the PR and commits.
-2. Find the one fact it's safe because of. Most changes that look risky are safe because of a single fact, like "this call only drops already-dead cache entries and does nothing else". Find that fact. If it holds, most risky cases are cleared at once. Spend your time here, not on a long list of maybes.
-3. Look where grep stops. Read the source of the library you call, and check its pinned version and any local patch. Work out when things run: microtasks, unmount and teardown, Solid versus React. Follow what a symbol search misses: the JSON an API returns, a DB column, a wire format, another language reading the same bytes, a feature flag, code three hops downstream.
-4. Be honest about each risk. Give it a real chance of happening and a real cost if it does. Keep the risks you confirmed. List the ones you checked and cleared separately. Same rules as `why`. Cite a real `file:line`, a search that finds nothing is still an answer, and never make up a caller or an API.
-5. Prove the one fact. Write a script or test that runs the real code, run it, and paste what happened.
-6. For a big or wide change, run it as an `arena`. Ask more than one model the same question and merge the answers. Different models catch different real bugs.
+1. 读懂改动。diff，它新增、修改、删除的符号，以及它现在有哪些行为不同了，包括 diff 没明说的那部分。用 `why` 的第 2 步把 PR 和提交拉出来。
+2. 找出它之所以安全的那个事实。多数看起来有风险的改动，是因为单一事实才安全的，比如「这个调用只丢弃已经失效的缓存条目，别的什么都不做」。找到那个事实。只要它成立，大部分有风险的情况一下子就被排除。时间花在这里，别花在一长串说不准的事上。
+3. 看 grep 停在哪。读你调用的库的源码，核对它锁定的版本和任何本地补丁。搞清楚东西在什么时候运行：microtask、卸载与 teardown、Solid 还是 React。追踪符号搜索漏掉的：API 返回的 JSON、数据库的某一列、wire format、读同一批字节的另一种语言、一个功能开关、往下三层之外的代码。
+4. 对每个风险说实话。给出它真正发生的可能性和发生后的真实代价。保留你已确认的风险。把你查过并排除的另列一份。规则和 `why` 一样。引用真实的 `file:line`，搜不到也是一个答案，绝不要编造调用方或 API。
+5. 证明那个事实。写一个脚本或测试跑真实代码，运行它，把结果贴出来。
+6. 对于大或广的改动，用 `arena` 来跑。向不止一个模型问同一个问题，再把答案合并。不同的模型能抓到不同的真实 bug。
 
-## What to hand back
+## 要交回什么
 
-- **What it does.** What changed, including the part that isn't obvious.
-- **The one fact it's safe because of.** State it, say which step you got it to, and show the proof. If you couldn't prove it, write unproven.
-- **Risks.** Each names how it breaks, the `file:line`, how likely and how bad, and how to check. Paste the proof for the ones that matter.
-- **Cleared.** What you checked and why it's fine.
-- **Before you merge.** The cheapest test or repro that catches the real bug, including the script you wrote.
+- **它做了什么。** 改了什么，包括不明显的部分。
+- **它之所以安全的那个事实。** 陈述它，说明你推到了哪一步，并给出证明。如果证明不了，就写 unproven。
+- **风险。** 每条写明它怎么坏、`file:line`、可能性多大、多严重，以及怎么查。把要紧的那些的证明贴出来。
+- **已排除。** 你查了什么、为什么没问题。
+- **合并之前。** 能抓到真实 bug 的最省事的测试或复现，包括你写的那个脚本。
 
-Write it through `unslop`, cite real code, and strip anything private before it goes anywhere public.
+用 `unslop` 来写，引用真实代码，在发到任何公开的地方之前剥掉任何私密内容。
 
-**Reply:** the writeup above, with the one safety fact either proven or marked unproven.
+**回复：** 上面那份报告，其中那个安全事实要么已被证明，要么标为 unproven。

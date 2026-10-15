@@ -4,16 +4,16 @@ description: "产品、UX 或功能范围取舍时，用户高兴优先于实现
 disable-model-invocation: true
 ---
 
-# Experience First
+# 体验优先
 
-When implementation convenience conflicts with user delight, choose delight.
+当实现上的便利与用户的愉悦冲突时，选愉悦。
 
-- Every feature, control, and option must be justified
-- Ship less, ship better (polished experience with three features beats rough one with ten)
-- Prototype before committing (design decisions are cheaper in throwaway HTML than production code)
-- Get the details right (transitions, alignment, spacing, feedback, error states)
-- Tighten the core loop (every feature should serve the central workflow or get out of the way)
+- 每一个功能、控件和选项都必须有理由
+- 少发布，发布得更好（打磨到位的三个功能，胜过粗糙的十个）
+- 先做原型再拍板（设计决策在一次性 HTML 里比在生产代码里便宜）
+- 把细节做对（过渡、对齐、间距、反馈、错误状态）
+- 收紧核心循环（每个功能都应服务于核心工作流，否则就让路）
 
-The user is whoever consumes the work. For a UI that is the end user. For a library or an internal API it is the colleague who imports it. The engineer who maintains the code next is a user too. Weigh their experience the same way, and explain impact from their perspective.
+用户就是使用这项工作成果的人。对 UI 来说，是最终用户；对库或内部 API 来说，是引入它的同事。之后接手维护这段代码的工程师也是用户。同样地权衡他们的体验，并从他们的视角解释影响。
 
-Foundations should serve the experience. Foundational thinking governs the *sequence* of work. This principle governs the *target*.
+根基应服务于体验。根基性思考决定工作的*顺序*，本原则决定*目标*。

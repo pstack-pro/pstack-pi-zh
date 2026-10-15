@@ -4,14 +4,14 @@ description: "相信、汇报或按自己测到的数字行动前适用：提速
 disable-model-invocation: true
 ---
 
-# Explain the Number
+# 解释这个数字
 
-- **Ask "why not double?"** Name the resource or code path that bounds the result, such as a core, a lock, the disk, the network, or the load generator itself. Get it from a profile or from system counters taken during a run, then map it to source. A guess from reading the code is not a limiter. If you cannot say why the number is not twice as good, you do not know what you measured.
-- **List what else the number could be measuring, and rule out each one with evidence.** The usual suspects are errors, skipped or cached work, code that never ran, an untuned side (one left on default settings), noise, and a piece too small to matter end to end.
-- **Keep the evidence with the number.** Put the run count, the spread, and the limiter in the notes or a linked artifact.
+- **问「为什么不是两倍？」** 说出限制这个结果的资源或代码路径，例如某个核心、一把锁、磁盘、网络，或施压程序本身。它得来自一次运行里采集的剖析（profile）或系统计数器，再对应到源码。光靠读代码猜出来的，不算限制因素。如果你说不出这个数字为什么没能翻倍，你就不知道自己测的是什么。
+- **列出这个数字还可能测到别的什么，再逐一用证据排除。** 常见的嫌疑有：错误、被跳过或命中缓存的工作、根本没跑到的代码、没调优的一侧（还留在默认设置）、噪声，以及小到对端到端无关紧要的一块。
+- **把证据和数字放在一起。** 把运行次数、散布和限制因素写进笔记，或放进一份关联的产物。
 
-For a performance number, run the full procedure with the [benchmark-checklist](../benchmark-checklist/SKILL.md) skill. For an eval result, ask the same of the trials: did every run do the task, does the gap hold across trials and models, and does the scenario matter.
+性能数字要用 [benchmark-checklist](../benchmark-checklist/SKILL.md) skill 完整跑一遍流程。评测结果则对每次试验问同样的问题：每次运行是否真的做了任务，差距在多次试验和不同模型之间是否成立，这个场景是否重要。
 
-You skipped this when the evidence behind a number has no run count, no spread, or no named limiter, or when the time saved is larger than the time the changed piece took.
+如果数字背后的证据没有运行次数、没有散布、也没有点名的限制因素，或者省下的时间比被改动那一部分原本花的时间还多，就说明你跳过了这一步。
 
-Distinct from [Prove It Works](../principle-prove-it-works/SKILL.md), which checks that an output is real.
+这与 [Prove It Works](../principle-prove-it-works/SKILL.md) 不同，后者检查的是输出是否为真。
