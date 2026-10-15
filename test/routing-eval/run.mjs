@@ -17,7 +17,10 @@ const arg = (k, d) => { const i = process.argv.indexOf(`--${k}`); return i > 0 ?
 const versions = arg("desc", "both") === "both" ? ["en", "zh"] : [arg("desc")];
 const BATCH = Number(arg("batch", 30)), JOBS = Number(arg("jobs", 3));
 const only = arg("only")?.split(",");
-const prompts = JSON.parse(fs.readFileSync(path.join(here, "prompts.json"), "utf-8")).filter((p) => !only || only.includes(p.id));
+// prompts.json = basic set (3 per skill); prompts-hard.json = confusable near-neighbors + "none" cases.
+const prompts = fs.readdirSync(here).filter((f) => /^prompts.*\.json$/.test(f)).sort()
+	.flatMap((f) => JSON.parse(fs.readFileSync(path.join(here, f), "utf-8")).map((p) => ({ set: "basic", ...p })))
+	.filter((p) => !only || only.includes(p.id));
 const prefix = fs.readFileSync(path.join(root, "scripts/sync.mjs"), "utf-8").match(/COMMAND_PREFIX = "([^"]+)"/)[1];
 
 function skillList(version) {
@@ -59,14 +62,14 @@ for (const v of versions) {
 	const outs = await pool(batches.map((b) => () => route(v, b)), JOBS);
 	const picked = Object.fromEntries(outs.flatMap((o) => o.answers.map((a) => [a.id, a.skill.replace(/^\/?(?:pstack:|skill:)?/, "")])));
 	results.cost += outs.reduce((s, o) => s + o.cost, 0);
-	results.runs[v] = prompts.map((p) => ({ id: p.id, lang: p.lang, hinted: p.hinted, expected: p.skill, got: picked[p.id] ?? "(no answer)" }));
+	results.runs[v] = prompts.map((p) => ({ id: p.id, set: p.set, lang: p.lang, hinted: p.hinted, expected: p.skill, got: picked[p.id] ?? "(no answer)" }));
 }
 
 console.log(`router: Grok Build headless, command prefix ${prefix}, ${prompts.length} prompts`);
-console.log("| descriptions | zh prompts | zh unhinted | en prompts |\n|---|---|---|---|");
-for (const [v, rows] of Object.entries(results.runs)) {
-	const acc = (f) => { const r = rows.filter(f); return `${r.filter((x) => x.got === x.expected).length}/${r.length}`; };
-	console.log(`| ${v} | ${acc((r) => r.lang === "zh")} | ${acc((r) => r.lang === "zh" && !r.hinted)} | ${acc((r) => r.lang === "en")} |`);
+console.log("| descriptions | set | zh prompts | zh unhinted | en prompts |\n|---|---|---|---|---|");
+for (const [v, rows] of Object.entries(results.runs)) for (const set of [...new Set(rows.map((r) => r.set))]) {
+	const acc = (f) => { const r = rows.filter((x) => x.set === set && f(x)); return `${r.filter((x) => x.got === x.expected).length}/${r.length}`; };
+	console.log(`| ${v} | ${set} | ${acc((r) => r.lang === "zh")} | ${acc((r) => r.lang === "zh" && !r.hinted)} | ${acc((r) => r.lang === "en")} |`);
 }
 for (const [v, rows] of Object.entries(results.runs)) for (const r of rows) if (r.got !== r.expected) console.log(`miss [${v}] ${r.id}: expected ${r.expected}, got ${r.got}`);
 console.log(`cost: $${results.cost.toFixed(4)}`);

@@ -1,0 +1,442 @@
+[
+  {
+    "id": "hard-zh01",
+    "skill": "how",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "我打算动订单状态机之前，想先在脑子里把一条请求从进门到落库走一遍，哪个包管哪一层、改状态的代码该待在哪也标清楚。"
+  },
+  {
+    "id": "hard-zh02",
+    "skill": "why",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "重试次数和退避是上次回退后钉死的。我想要当时的取舍，把事故、工单、文档和聊天里能对上的依据找出来。"
+  },
+  {
+    "id": "hard-zh03",
+    "skill": "teach",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "下周要给新同事讲结算子系统，得让人真的听懂。运行的时候怎么走，还有当初为啥做成这样，织成一篇，别拆成两份备忘录。"
+  },
+  {
+    "id": "hard-zh04",
+    "skill": "swarm",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "这块协议的边角我们还没摸清。多派几路同时去探不同的角落，竞态和偏门情况都覆盖到，最后汇成一份报告给我。"
+  },
+  {
+    "id": "hard-zh05",
+    "skill": "arena",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "导入这块只试一稿，形状很容易焊死。同一件事平行做几份完整候选，先定一个底稿，再把别的稿里最漂亮的部分嵌进来。"
+  },
+  {
+    "id": "hard-zh06",
+    "skill": "recall",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "隔了好几天要接着弄退款。帮我从咱们的聊天、现在仓库的样子，再加上以前的用户反馈和已经合进去的修复，收一份很短的现状简报，我好接着干。"
+  },
+  {
+    "id": "hard-zh07",
+    "skill": "ketchup",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "我上一条刚发出去就去开会了。用几句大白话说说从那之后这段对话里变了什么，每个要我拍板的点给一点点上下文就行，我好直接点头或摇头。配个小图也行。"
+  },
+  {
+    "id": "hard-zh08",
+    "skill": "bro",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "你刚才那条全是术语，我没看懂。把那一条用正常人的话再说一遍。"
+  },
+  {
+    "id": "hard-zh09",
+    "skill": "in-your-own-words",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "先别写代码。用你自己的话复述一下：你理解的我的目标，以及你觉得我在解决的问题。"
+  },
+  {
+    "id": "hard-zh10",
+    "skill": "interrogate",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "这次改动我想听不同的声音。找几个模型，各自从一个不一样的角度来挑毛病，把我一个人看不出来的问题点出来。"
+  },
+  {
+    "id": "hard-zh11",
+    "skill": "blast-radius",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "这个 diff 很小，但我不放心。别只盯着 diff 本身，去找它可能在别处弄坏的地方，再跑真实代码，把“它之所以还安全”靠的那一个事实证明给我。"
+  },
+  {
+    "id": "hard-zh12",
+    "skill": "principle-prove-it-works",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "活已经干完了，宣布结束之前先对着真实产物查一遍：把功能跑起来，读它实际给出的值，看一眼 diff。编译过了不算。"
+  },
+  {
+    "id": "hard-zh13",
+    "skill": "architect",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "这活不小。先把类型、函数签名、模块怎么切勾出来，后面往里填实现的时候你一直跟着，别画完就走。"
+  },
+  {
+    "id": "hard-zh14",
+    "skill": "principle-foundational-thinking",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "先别写业务逻辑。把核心类型和数据结构定下来，并发的那几个角色到底共享什么、脚手架和功能谁先做，都想清楚，让后面的代码变成顺理成章的事。"
+  },
+  {
+    "id": "hard-zh15",
+    "skill": "principle-exhaust-the-design-space",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "仓库里没有能抄的交互。这个新的拖拽手势是没先例的界面决定。先做两三个对着干的原型，摆在一起比，再拍板。"
+  },
+  {
+    "id": "hard-zh16",
+    "skill": "correct",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "代理在这仓库里老是犯同一类错。请把每一种变得没法再犯：先动结构，再动类型，然后加一条报错里直接写明该怎么改的检查，再是测试，文档放最后。每条检查都要用一个以前真犯过的错证明它会失败。以后我每纠正你一次，就再来一轮。"
+  },
+  {
+    "id": "hard-zh17",
+    "skill": "principle-encode-lessons-in-structure",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "同一条要求我都写到第二遍了。别再加文字。把这个反复出现的纠正做成检查、元数据标记、运行时判断，或者一段脚本。"
+  },
+  {
+    "id": "hard-zh18",
+    "skill": "reflect",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "把现在这段对话交给三个并行的复查，各自提出收获，再把每一条写成对某个已有技能的一处具体修改。"
+  },
+  {
+    "id": "hard-zh19",
+    "skill": "figure-it-out",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "没有更窄的打法能套。这是一场跨很多步的大迁移，人会走开再回来审。请设计一份事后查得清的做法：该多严就多严，用假设循环往前推，决策记下来。"
+  },
+  {
+    "id": "hard-zh20",
+    "skill": "show-me-your-work",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "这次会丢在那儿无人值守跑很久，回来的人得靠记录才敢信。请留一份可复查的决策轨迹，TSV，一个决策一行：做了什么、为啥、证据、结果。默认放本地，只有要拿去给人审的时候再提交。"
+  },
+  {
+    "id": "hard-zh21",
+    "skill": "sharpen",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "还没开工。先把这任务磨尖：懂行的人会怎么下手，我真正要的是什么，规格该细到哪一层。"
+  },
+  {
+    "id": "hard-zh22",
+    "skill": "create-verification-skill",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "这个项目还没有任何脚本能像用户那样把界面或命令行走一遍，用来证明行为对不对。请在仓库里生成一份干这个的验证技能，语言和框架不限。"
+  },
+  {
+    "id": "hard-zh23",
+    "skill": "maintain-verification-skill",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "仓库里那份验证技能和功能地图跟代码可能对不上了。请做一轮让它保持诚实的检查：每个功能并行读源码，再用一次真实会话把功能都走一遍，最后最多开一个拉取请求，只收已经证实的修正。"
+  },
+  {
+    "id": "hard-zh24",
+    "skill": "benchmark-checklist",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "性能测完了，我想拿加速比去汇报。先审这次测量靠不靠谱：瓶颈在哪、调过哪些旋钮、上下限、误差、能不能重复、跟真实工作相不相关、测到的到底是不是那项工作。审完再决定能不能拿出去说。"
+  },
+  {
+    "id": "hard-zh25",
+    "skill": "principle-explain-the-number",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "评测跑出了一个分数。在我采信、拿去说或者按它行动之前，找出是什么在限制这个数字，并排除它量到的根本不是我以为的那项工作。"
+  },
+  {
+    "id": "hard-zh26",
+    "skill": "tdd",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "这个 bug 就卡在一个纯函数里，本地测又便宜又直白。我要先红后绿：先写一个现在就会失败的测试，确认它是红的，再改实现。"
+  },
+  {
+    "id": "hard-en01",
+    "skill": "principle-test-behavior-not-implementation",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "I'm about to change this test. Assert only what a caller can actually observe, so a pure internal rewrite keeps it green and a broken behavior turns it red."
+  },
+  {
+    "id": "hard-en02",
+    "skill": "unslop",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "This paragraph is full of generated-sounding tells. Cut that voice so it reads like a person wrote it."
+  },
+  {
+    "id": "hard-en03",
+    "skill": "technical-writing",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "This README mixes a tutorial, how-to steps, reference, and explanation in one blob. Split it by those doc kinds, rewrite the sentences in a developer-docs voice, and make every procedure follow instruction-writing rules."
+  },
+  {
+    "id": "hard-en04",
+    "skill": "principle-laziness-protocol",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "Look at the size of this refactor. Bias toward deleting, keep the smallest change that solves it, and don't add an abstraction, another layer, or extra signal plumbing."
+  },
+  {
+    "id": "hard-en05",
+    "skill": "principle-subtract-before-you-add",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "We're about to add a feature onto a messy base. First take out the dead code, the redundant checks, and the leftover stubs, then build the addition on what's left."
+  },
+  {
+    "id": "hard-en06",
+    "skill": "poteto-help",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "I just started with pstack. For the task in front of me, walk me through which skill, playbook, or principle fits, and how that working mode gets turned on."
+  },
+  {
+    "id": "hard-en07",
+    "skill": "setup-pstack",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "Detect the models available in this environment and pin which model pstack uses for each role, plus how much reasoning each role gets. Write it as an always-applied rule that overrides the defaults that ship inside the skills."
+  },
+  {
+    "id": "hard-en08",
+    "skill": "how",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "Before I change the billing worker, walk me through the runtime path a paid event takes, which package owns finalization, and which layer may call the ledger."
+  },
+  {
+    "id": "hard-en09",
+    "skill": "why",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "The circuit-breaker thresholds were set after an outage. I want the cited trail: the tickets, the docs, and the incident conversation that settled those numbers."
+  },
+  {
+    "id": "hard-en10",
+    "skill": "arena",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "One shot at the scheduler will freeze the wrong shape. Produce several complete candidates for that same artifact, pick a base, and pull the strongest pieces of the others into it."
+  },
+  {
+    "id": "hard-en11",
+    "skill": "ketchup",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "I stepped out right after my last note. In a few plain sentences, what changed in this chat since then? For each decision still open, give me just enough to say yes or no. A small visual is welcome."
+  },
+  {
+    "id": "hard-en12",
+    "skill": "architect",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "This is too big to open in code. Sketch the types, the signatures, and the module split, and stay in the loop while the implementation fills that in."
+  },
+  {
+    "id": "hard-en13",
+    "skill": "figure-it-out",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "No narrower playbook fits this multi-part change. Design an auditable one, scale how strict you are to the size of the work, run a hypothesis loop, and keep a log of the decisions. A person will review it after being away."
+  },
+  {
+    "id": "hard-en14",
+    "skill": "interrogate",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "I want several models on this change, each coming at it from its own angle, so the weak spots I would miss alone still get named."
+  },
+  {
+    "id": "none-zh01",
+    "skill": "none",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "把 scripts/ingest.py 里的局部变量 buf 改成 payload，别的逻辑别动。"
+  },
+  {
+    "id": "none-zh02",
+    "skill": "none",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "在仓库根目录执行 npm install，跑完把退出码告诉我。"
+  },
+  {
+    "id": "none-zh03",
+    "skill": "none",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "今天几号？"
+  },
+  {
+    "id": "none-zh04",
+    "skill": "none",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "把 \"out of stock\" 翻译成简体中文，只要那句译文。"
+  },
+  {
+    "id": "none-zh05",
+    "skill": "none",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "写一条 SQL，从 orders 里把上个月 status 为 paid 的 id 和 amount 查出来。"
+  },
+  {
+    "id": "none-zh06",
+    "skill": "none",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "我这 rebase 做到一半，冲突已经改完了。接下来是不是该 git rebase --continue？只告诉我该敲的命令。"
+  },
+  {
+    "id": "none-zh07",
+    "skill": "none",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "把 config.yaml 里的 port 从 8080 改成 9090。"
+  },
+  {
+    "id": "none-zh08",
+    "skill": "none",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "把 logs/app.log 最后 20 行打印出来。"
+  },
+  {
+    "id": "none-zh09",
+    "skill": "none",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "当前 git 分支叫什么？"
+  },
+  {
+    "id": "none-zh10",
+    "skill": "none",
+    "lang": "zh",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "把 data/users.csv 复制到 /tmp/users.csv。"
+  },
+  {
+    "id": "none-en01",
+    "skill": "none",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "Rename the local variable buf to payload in scripts/ingest.py. Don't change the logic."
+  },
+  {
+    "id": "none-en02",
+    "skill": "none",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "Run npm install at the repo root and tell me the exit code."
+  },
+  {
+    "id": "none-en03",
+    "skill": "none",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "What's today's date?"
+  },
+  {
+    "id": "none-en04",
+    "skill": "none",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "Translate \"Proceed to checkout\" into Korean. Only the translation."
+  },
+  {
+    "id": "none-en05",
+    "skill": "none",
+    "lang": "en",
+    "hinted": false,
+    "set": "hard",
+    "prompt": "Write a SQL query that counts rows in events where name = 'signup' and the day is yesterday."
+  }
+]
