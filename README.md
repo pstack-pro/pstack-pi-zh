@@ -1,6 +1,8 @@
-# pi-pstack
+# pi-pstack-zh
 
-把 [pstack](https://github.com/cursor/plugins/tree/main/pstack)（poteto 的严谨 agent 工作流）适配到 [pi](https://pi.dev) coding agent 的 pi package。
+pstack 中文版（预览）
+
+把 [pstack](https://github.com/cursor/plugins/tree/main/pstack)（poteto 的严谨 agent 工作流）适配到 [pi](https://pi.dev) coding agent 的 pi package。这是中文预览版，版本 0.15.25-zh.1（见 `package.json`），版本号形如 `<上游版本>-zh.N`。跟踪上游 pstack 0.15.25（[cursor/plugins@e5136d8](https://github.com/cursor/plugins/commit/e5136d8)），上游版本记在 `UPSTREAM.json`。
 
 pstack 的 skill 是照着 Cursor 的工具写的。这个 package 没有逐个改写 skill，而是在 pi 里提供**同名、同参数**的工具，让 skill 正文基本保持原样：
 
@@ -13,6 +15,10 @@ pstack 的 skill 是照着 Cursor 的工具写的。这个 package 没有逐个�
 
 扩展还会在每次提问前把项目里的 `.pi/pstack-models.md`（按角色配置模型）和一段 pi 适配说明注入 system prompt，作用相当于 Cursor 里那条 always-applied rule。
 
+## 这一版翻译了什么
+
+54 个 skill 的 description 都是双语：前面是中文，后面整段保留原来的英文，触发词还在。这样用中文或英文提问，都有机会匹配到对应的 skill（路由效果还没有系统评测）。skill 正文仍是英文，之后再逐篇翻译。
+
 ## 前置条件
 
 - [pi](https://pi.dev) 1.0 或更高版本（在 1.0.2 上测试过）
@@ -21,23 +27,23 @@ pstack 的 skill 是照着 Cursor 的工具写的。这个 package 没有逐个�
 
 ## 安装 / 试用 / 卸载
 
-在要启用 pstack 的项目根目录执行：
+在要启用 pstack 的项目根目录执行。命令是 `/skill:<name>`。
 
 ```bash
 # 只在当前项目启用（写入 .pi/settings.json；首次运行 pi 时需要信任该项目）
-pi install -l git:github.com/taokeqin/pi-pstack
+pi install -l git:github.com/taokeqin/pi-pstack-zh
 
 # 只试一次，不写任何配置
-pi -e git:github.com/taokeqin/pi-pstack
+pi -e git:github.com/taokeqin/pi-pstack-zh
 
 # 从当前项目卸载
-pi remove -l --approve git:github.com/taokeqin/pi-pstack
+pi remove -l --approve git:github.com/taokeqin/pi-pstack-zh
 ```
 
 想改代码或固定在本地某个版本时，可以 clone 到任意目录，然后用本地路径安装：
 
 ```bash
-git clone https://github.com/taokeqin/pi-pstack.git <任意目录>
+git clone https://github.com/taokeqin/pi-pstack-zh.git <任意目录>
 pi install -l <任意目录>
 ```
 
@@ -60,6 +66,27 @@ pi install -l <任意目录>
 
 模型可以写成 pi 格式（`provider/id:thinking`），也可以写成 Cursor 风格的 slug（`claude-opus-5-5-max`），后者会自动拆出 thinking 档位。
 
+## 已知差异
+
+- `environment: "cloud"` 不支持，一律在本地运行。多个 subagent 并行写代码时，要通过 `cwd` 给它们各自分配 git worktree。
+- Cursor 内置的功能（`create-skill`、`/loop`、Plan Mode、automations、云端 dashboard）在 pi 里都没有。注入的说明会告诉模型直接按 pstack 的 playbook 走。
+- 没有移植 `automations/benny`。`poteto-mode/scripts/worktree-audit.sh` 仍然读取 `~/.cursor/projects`。
+- subagent 最多嵌套 3 层，最多同时运行 6 个。
+- 交互模式（TUI）下，后台任务完成后会通过 follow-up 消息通知主会话，这条路径没有自动化测试；`-p` 模式下等待后台任务的路径有测试覆盖。
+
+## 翻译是怎么维护的
+
+译文的共同来源在 `i18n/zh/`，Claude 版和 pi 版用同一套：
+
+- `descriptions.json`：每个 skill 一条，有英文原文、中文和 `source_sha256`。原文一变，哈希对不上，这条就算过期。
+- `glossary.md`：术语表。改译法时改这里。
+
+`scripts/sync.mjs` 从上游生成 `skills/` 和 `agents/` 之后调用 `scripts/apply-zh.mjs`，把中文 description 写进 skill，并把其中的 slash 命令改成这一边的前缀 `/skill:`。移植时改过描述的 skill 写在 `i18n/zh-port.json`，覆盖共同译文里的同名条目。这边目前覆盖的是 `setup-pstack`。
+
+`node scripts/validate-zh.mjs` 核对译文是否原样保留了标识符、命令、工具名、路径、代码、链接和触发短语。过期条目默认算失败。
+
+每周的 GitHub Action（`.github/workflows/sync-upstream.yml`）会同步上游，再跑 `node scripts/validate-zh.mjs --allow-stale`。过期只记成警告。出现其他错误时工作流失败，不会开 PR。PR 正文附上校验输出，并列出其中包含 `stale` 的行，这些行对应的条目需要重译。推送和 PR 上的 `.github/workflows/validate.yml` 不加 `--allow-stale`，过期会让检查失败。
+
 ## 跟进上游
 
 ```bash
@@ -70,16 +97,19 @@ PSTACK_SRC=<plugins 仓库>/pstack node scripts/sync.mjs
 test/run.sh                                  # 用 mock 模型做端到端测试：不调用真实模型，不碰 ~/.pi/agent
 ```
 
-`sync.mjs` 会重新生成 `skills/` 和 `agents/`：替换 Cursor 路径，把 skill 的 `name` 统一成目录名（pi 用它作为 `/skill:` 命令名），再叠加 `overrides/` 里手写的文件（目前只有 `setup-pstack`）。上游版本记录在 `UPSTREAM.json`。
+`sync.mjs` 会重新生成 `skills/` 和 `agents/`：替换 Cursor 路径，把 skill 的 `name` 统一成目录名（pi 用它作为 `/skill:` 命令名），再叠加 `overrides/` 里手写的文件（目前只有 `setup-pstack`），然后套用中文 description。上游版本记录在 `UPSTREAM.json`。
 
-## 已知差异
+## 相关仓库
 
-- `environment: "cloud"` 不支持，一律在本地运行。多个 subagent 并行写代码时，要通过 `cwd` 给它们各自分配 git worktree。
-- Cursor 内置的功能（`create-skill`、`/loop`、Plan Mode、automations、云端 dashboard）在 pi 里都没有。注入的说明会告诉模型直接按 pstack 的 playbook 走。
-- 没有移植 `automations/benny`。`poteto-mode/scripts/worktree-audit.sh` 仍然读取 `~/.cursor/projects`。
-- subagent 最多嵌套 3 层，最多同时运行 6 个。
-- 交互模式（TUI）下，后台任务完成后会通过 follow-up 消息通知主会话，这条路径没有自动化测试；`-p` 模式下等待后台任务的路径有测试覆盖。
+- 英文版 pi package：<https://github.com/taokeqin/pi-pstack>
+- 英文版 Claude Code 移植：<https://github.com/taokeqin/claude-pstack>
+- Claude Code 中文版：<https://github.com/taokeqin/claude-pstack-zh>
+- 上游 pstack：<https://github.com/cursor/plugins/tree/main/pstack>
 
-## 许可
+## 致谢与许可
 
-pstack 原作者 Lauren Tan，MIT 许可，见 `LICENSE-pstack`。
+pstack 原作者 Lauren Tan（[cursor/plugins](https://github.com/cursor/plugins)），MIT 许可，见 `LICENSE-pstack`。
+
+移植作者 Hacken Tao，MIT 许可。
+
+`i18n/zh/glossary.md` 的部分条目改编自 [fenfenxu/pstack-zh](https://github.com/fenfenxu/pstack-zh)（MIT）。

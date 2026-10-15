@@ -1,8 +1,8 @@
 {
-  "name": "pi-pstack",
-  "version": "0.1.2",
+  "name": "pi-pstack-zh",
+  "version": "0.15.25-zh.1",
   "private": true,
-  "description": "pstack (poteto's rigorous agent workflows) adapted for the pi coding agent",
+  "description": "pstack pi 中文版（预览）。pstack adapted for the pi coding agent, with bilingual Chinese/English skill descriptions.",
   "type": "module",
   "keywords": [
     "pi-package"
@@ -18,7 +18,8 @@
   },
   "scripts": {
     "sync": "node scripts/sync.mjs",
-    "test": "test/run.sh"
+    "test": "test/run.sh",
+    "validate:zh": "node scripts/validate-zh.mjs"
   },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*",

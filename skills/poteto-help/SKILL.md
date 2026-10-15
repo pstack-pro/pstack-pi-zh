@@ -1,6 +1,6 @@
 ---
 name: poteto-help
-description: Guides users through pstack setup, /skill:poteto-mode, and picking the skill, playbook, or principle for a task. Type /skill:poteto-help with a question.
+description: "引导用户完成 pstack 设置、使用 /skill:poteto-mode，以及为一项任务挑选 skill、playbook 或原则。输入 /skill:poteto-help，后面跟上问题。 | EN: Guides users through pstack setup, /skill:poteto-mode, and picking the skill, playbook, or principle for a task. Type /skill:poteto-help with a question."
 disable-model-invocation: true
 ---
 
@@ -63,10 +63,13 @@ The default answer is `/skill:poteto-mode`, which runs most of the others when i
 | The user wants to | Skill |
 |---|---|
 | Do any non-trivial task with rigor | [`/skill:poteto-mode`](../poteto-mode/SKILL.md) |
+| Check that the agent understood their goal and the problem before it starts | [`/skill:in-your-own-words`](../in-your-own-words/SKILL.md) |
+| Aim a task higher before starting: more expert, more outcome-focused, not overspecified | [`/skill:sharpen`](../sharpen/SKILL.md) |
 | Know how code works now, or where new code should live | [`/skill:how`](../how/SKILL.md) |
 | Know why code is shaped this way, or where a number came from | [`/skill:why`](../why/SKILL.md) |
 | Understand a change or subsystem, explained plainly | [`/skill:teach`](../teach/SKILL.md) |
 | Catch up on their own recent work on a topic | [`/skill:recall`](../recall/SKILL.md) |
+| Catch up on what changed in this chat since their last message, in a few plain sentences and small visuals, with enough context to decide each action item | [`/skill:ketchup`](../ketchup/SKILL.md) |
 | Know what a small diff could break outside itself | [`/skill:blast-radius`](../blast-radius/SKILL.md) |
 | Settle types and module shape before code that crosses a function boundary | [`/skill:architect`](../architect/SKILL.md) |
 | Get several attempts at one brief, merged into the best one | [`/skill:arena`](../arena/SKILL.md) |
@@ -98,7 +101,7 @@ Close calls:
 - `/skill:arena` gives every worker the same brief and merges the best parts. `/skill:swarm` splits work into slices or a race and returns one report.
 - `/skill:architect` implements right after it settles the design. Add "with checkpoint" to review the design before it writes code.
 - `/skill:interrogate` reviews the diff. `/skill:blast-radius` looks for breakage outside the diff and proves the one fact that makes the change safe.
-- `/skill:recall` rebuilds context across recent chats. Resuming one specific chat or branch is the Session pickup playbook.
+- `/skill:recall` rebuilds context across recent chats. `/skill:ketchup` covers only this chat since the user's last message. Resuming one specific chat or branch is the Session pickup playbook.
 - `/skill:figure-it-out` designs one rigorous run. The Orchestrate playbook runs a program that spans days and many PRs. The Autonomous run playbook drives one task to a finish condition.
 
 Not in pstack:

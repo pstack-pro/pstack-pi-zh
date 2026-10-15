@@ -1,6 +1,6 @@
 ---
 name: principle-outcome-oriented-execution
-description: "Apply during planned rewrites and migrations with explicit phase boundaries. Converge on the target architecture; don't preserve smooth intermediate states with throwaway compatibility code."
+description: "在有明确阶段边界的计划性重写与迁移中适用。收敛到目标架构；不要靠一次性兼容代码维持平滑的中间态。 | EN: Apply during planned rewrites and migrations with explicit phase boundaries. Converge on the target architecture; don't preserve smooth intermediate states with throwaway compatibility code."
 disable-model-invocation: true
 ---
 

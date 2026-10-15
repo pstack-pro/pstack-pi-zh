@@ -1,0 +1,83 @@
+name: Sync upstream
+
+on:
+  schedule:
+    # 每周一 00:00 UTC
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Sync from upstream pstack
+        run: node scripts/sync.mjs
+
+      - name: Refresh English source text in i18n/zh/descriptions.json
+        run: node scripts/extract-en.mjs "$(node -p 'require("os").tmpdir()')/pstack-upstream/pstack"
+
+      - name: Validate translations
+        run: |
+          set +e
+          node scripts/validate-zh.mjs --allow-stale > "$RUNNER_TEMP/validate-zh.txt" 2>&1
+          code=$?
+          set -e
+          cat "$RUNNER_TEMP/validate-zh.txt"
+          grep -F stale "$RUNNER_TEMP/validate-zh.txt" > "$RUNNER_TEMP/stale.txt" || true
+          exit "$code"
+
+      - name: Read upstream version
+        id: upstream
+        run: |
+          version=$(node --input-type=module -e 'import fs from "node:fs"; process.stdout.write(JSON.parse(fs.readFileSync("UPSTREAM.json","utf8")).pstack)')
+          commit=$(node --input-type=module -e 'import fs from "node:fs"; process.stdout.write(JSON.parse(fs.readFileSync("UPSTREAM.json","utf8")).commit)')
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+          echo "commit=${commit}" >> "$GITHUB_OUTPUT"
+
+      - name: Write pull request body
+        env:
+          UPSTREAM_VERSION: ${{ steps.upstream.outputs.version }}
+          UPSTREAM_COMMIT: ${{ steps.upstream.outputs.commit }}
+        run: |
+          {
+            echo "同步上游 pstack ${UPSTREAM_VERSION}（cursor/plugins@${UPSTREAM_COMMIT}）。"
+            echo
+            echo "本 PR 由每周同步工作流打开。已运行 \`node scripts/sync.mjs\`，下面是 \`node scripts/validate-zh.mjs --allow-stale\` 的输出。"
+            echo
+            echo "## 校验输出"
+            echo
+            echo '````'
+            cat "$RUNNER_TEMP/validate-zh.txt"
+            echo '````'
+            echo
+            echo "## 需要重译的过期译文"
+            echo
+            if [ -s "$RUNNER_TEMP/stale.txt" ]; then
+              echo "下面是校验输出里包含 \`stale\` 的行。这些条目的英文原文已经变了，\`source_sha256\` 对不上，需要按 \`i18n/zh/glossary.md\` 重译。"
+              echo
+              echo '````'
+              cat "$RUNNER_TEMP/stale.txt"
+              echo '````'
+            else
+              echo "校验输出里没有包含 \`stale\` 的行。"
+            fi
+          } > "$RUNNER_TEMP/pr-body.md"
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: upstream-sync
+          delete-branch: true
+          commit-message: "同步上游 pstack ${{ steps.upstream.outputs.version }}"
+          title: "同步上游 pstack ${{ steps.upstream.outputs.version }}"
+          body-path: ${{ runner.temp }}/pr-body.md
