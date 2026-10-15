@@ -1,6 +1,6 @@
 ---
 name: unslop
-description: "去掉任何文字里的 AI 腔。"
+description: "去掉文字里的 AI 腔。"
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: tdd
-description: "仅当用户明确要求 TDD、会失败的测试或回归测试，或 bug 有明显且便宜的本地测试目标时使用。测试路径不清、太贵、偏集成或未要求时跳过。"
+description: "仅当用户明确要 TDD、失败测试或回归测试，或 bug 有又便宜又清楚的本地测试目标时用。路径不清、太贵、偏集成或没要求时跳过。"
 disable-model-invocation: true
 ---
 

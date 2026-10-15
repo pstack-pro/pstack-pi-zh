@@ -1,6 +1,6 @@
 ---
 name: principle-prove-it-works
-description: "做完后、宣布完成前，对照真实产物（跑功能、读实际值、看 diff），别用替代物、自报或 'it compiles.' 充数。"
+description: "做完后、宣布完成前，对照真实产物（跑功能、读实际值、看 diff），别拿替代物、自报或 'it compiles.' 充数。"
 disable-model-invocation: true
 ---
 

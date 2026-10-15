@@ -1,6 +1,6 @@
 ---
 name: principle-experience-first
-description: "产品、UX 或功能范围取舍时，用户高兴优先于实现省事；功能少而精，不多而糙。"
+description: "产品、UX 或功能范围取舍时，用户爽优先于实现省事；功能少而精，不多而糙。"
 disable-model-invocation: true
 ---
 

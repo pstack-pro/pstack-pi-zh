@@ -1,6 +1,6 @@
 ---
 name: principle-fix-root-causes
-description: "调试时把每个症状追到第一次出错处再修。只有处理的状态合法，守卫才算修复。"
+description: "调试时把每个症状追到第一次出错的地方再修。只有处理的状态本身合法，守卫才算修复。"
 disable-model-invocation: true
 ---
 

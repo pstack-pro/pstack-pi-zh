@@ -1,6 +1,6 @@
 ---
 name: benchmark-checklist
-description: "汇报或依据性能测量行动前，先核查：限制因素、调优、上限、错误、能否复现、是否相关，以及工作是否真的发生。跑 benchmark，或汇报自己测到的提速、回退时使用。"
+description: "汇报或依据自己测到的性能数字行动前，先核一遍：瓶颈、调优、上限、错误、能否复现、是否相关，以及测到的是不是真工作。跑 benchmark，或要汇报提速、回退时用。"
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: sharpen
-description: "开工前磨利任务：专家会怎么做、用户真正要什么、规格该多细。用于 /skill:sharpen。"
+description: "开工前把任务磨利：懂行的人会怎么做、用户真正要什么、规格该细到哪。用于 /skill:sharpen。"
 disable-model-invocation: true
 ---
 

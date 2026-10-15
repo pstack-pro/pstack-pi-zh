@@ -1,6 +1,6 @@
 ---
 name: principle-subtract-before-you-add
-description: "新增、重构或重写前，先删死代码、多余校验器和桩引用，再在更简单的基础上做。"
+description: "新增、重构或重写前，先删死代码、多余校验器和桩引用，再在更干净的基础上做。"
 disable-model-invocation: true
 ---
 

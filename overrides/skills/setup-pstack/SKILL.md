@@ -5,13 +5,13 @@ description: Configure which models pstack uses per role and at what reasoning b
 
 # Setup pstack（pi）
 
-在项目根目录写入 `.pi/pstack-models.md`。pstack 扩展每次提问都会读它，并注入 system prompt，所以下一条消息就生效。它只对本项目生效，不影响其他 pi 项目。
+在项目根目录写 `.pi/pstack-models.md`。pstack 扩展每次提问都会读它并注入 system prompt，下一条消息就生效。只影响本项目。
 
-向用户提问时，**必须**用下文给出的中文题干与选项文案；不要自己编英文问题。`AskQuestion` 的选项值（`unlimited` / `large` / `medium` / `small`、模型 id、`inherit-parent`）保持英文，文案可以带中文说明。
+跟用户对话时用下面的中文提问和选项，别自己编英文。选项值保持英文：`unlimited` / `large` / `medium` / `small`、模型 id、`inherit-parent`。
 
 ## 预设
 
-按顺序检查，第一个「所列模型都已检测到且通过冒烟测试」的预设作为提案。预设只是起点，不是锁定：用户可在第 3 步 (d) 改任意角色。用户请求里已经点名模型或规则时，以用户为准，覆盖预设。
+按顺序找：所列模型都检测到、且通过冒烟测试的第一个预设，当作提案。只是起点，第 3 步 (d) 还能改。用户已经点名模型或规则时，以用户为准。
 
 ### mimo-deepseek
 
@@ -43,7 +43,7 @@ interrogate reviewers: xiaomi/mimo-v2.6-pro, deepseek/deepseek-flash, xiaomi/mim
 
 ## 成本规则
 
-价格来自 `PstackModels` 工具，单位是美元 / 百万 token。先按输出价格排序——pstack 子代理会写长报告——再按 cache-read 价格，因为它们会反复读同一批 skill 文件。
+价格来自 `PstackModels`，单位美元 / 百万 token。先比输出价（子代理报告很长），再比 cache-read（同一批 skill 会反复读）。
 
 - 同一档位内，选实力相近里最便宜的。旗舰模型贵好几倍、只强一点点时，不要当默认。
 - 除非用户要求，否则不要选溢价加速款（`-ultraspeed`、`-fast` 加价、`:batch`、priority 档）。
@@ -62,20 +62,21 @@ interrogate reviewers: xiaomi/mimo-v2.6-pro, deepseek/deepseek-flash, xiaomi/mim
 
 ### 3. 预算、映射、确认
 
-**(a) 用 `AskQuestion` 问预算。** 题干必须用下面的中文（按情况填括号里的内容），四个选项的标签必须原样用下面四行。用户请求里已经点名预算时，直接用，不要再问。
+**(a) 用 `AskQuestion` 问预算。** 题干和四个选项必须用下面的原文。用户已经点名预算时直接用，别再问。
 
-题干模板：
+题干：
 
-- 文件里已有预算：`pstack 推理预算：为 pstack 子代理选一个推理预算（当前：{budget}；预设：{preset 或「无」}）`
-- 文件里还没有预算：`pstack 推理预算：为 pstack 子代理选一个推理预算（尚未记录预算；预设：{preset 或「无」}）`
+- 还没设过：`给 pstack 子代理选推理预算（还没设过，建议按 {preset}）`
+- 已有预算：`给 pstack 子代理选推理预算（当前是 {budget}，建议按 {preset}）`
+- 没有匹配预设时，把「建议按 {preset}」改成「还没有推荐预设」
 
-选项（标签原样；记录到文件时只取冒号前的英文值 `unlimited` / `large` / `medium` / `small`）：
+选项（写入文件时只取 `—` 前的英文值）：
 
-- `unlimited — 保持 max（不限）`
-- `large — xhigh 推理`
-- `medium — high 推理`
-- `small — medium 推理`
-- 若工具支持自由输入，可再加一项 `Other — 其他（请说明）`；没有则不要编。
+- `unlimited — 不限制`
+- `large — 偏高`
+- `medium — 适中`
+- `small — 偏低`
+- 工具支持自由输入时，可再加 `Other — 其他`；没有就别加。
 
 **(b) 没有匹配预设时，把角色映射到已检测模型。** 第 5 步默认值用三个槽位。`<claude>` 要一个擅长判断和写作的强模型。`<grok>` 要一个又快又够用的写代码模型。`<gpt>` 要一个与 `<claude>` 不同家族的强模型，好让评审组有第二意见。任意已检测家族都行：`anthropic/claude-*`、`openai/gpt-*`、`xai/grok-*`、`xiaomi/mimo-*`、`deepseek/*` 等。每次挑选都套用成本规则。同家族优先最新版。某个槽位没有合适模型时，标成「需要选择」，优先用 `inherit-parent`，不要凭空捏造。
 
@@ -91,7 +92,7 @@ done; wait
 
 **(c) 套上预算：** 在每个真实模型（含评审组条目）后加 pi 的 thinking 后缀。目标档位：`unlimited` → `max`，`large` → `xhigh`，`medium` → `high`，`small` → `medium`。模型的 thinking 档位（来自 `PstackModels`）包含目标就用目标，否则用目标以下最高的，再否则用目标以上最低的。thinking 为 `none` 的模型不加后缀。别名不加后缀。
 
-**(d) 展示角色并确认。** 用表格列出每个角色、其模型、该模型的输出价格，再加一行成本说明：哪个模型最贵、哪些角色在用它。标出需要选择的角色，并列出第 2 步丢掉的行。用 `AskQuestion` 问是否原样接受，或要改哪些角色；选项为已检测模型加上 `inherit-parent`。题干用：`确认 pstack 模型映射：是否按上表写入 .pi/pstack-models.md？`；选项至少包括 `接受`、`修改部分角色`。评审组角色（arena runners、architect runners、interrogate reviewers）的值是列表，每个条目起一个子代理，所以列表长度就是数量。若只检测到一个家族，直说：评审组仍会跑，但跨模型交叉检查会弱一些。`arena cross-judge pool` 也是列表；arena 会尽量选一个与父模型不同家族的值。`swarm workers` 是每个 worker 的默认模型。
+**(d) 展示角色并确认。** 用表格列出每个角色、其模型、该模型的输出价格，再加一行成本说明：哪个模型最贵、哪些角色在用它。标出需要选择的角色，并列出第 2 步丢掉的行。用 `AskQuestion` 确认。题干：`按这张表写入 .pi/pstack-models.md？`；选项至少包括 `就这样`、`改几个角色`（再列出已检测模型与 `inherit-parent`）。评审组角色（arena runners、architect runners、interrogate reviewers）的值是列表，每个条目起一个子代理，所以列表长度就是数量。若只检测到一个家族，直说：评审组仍会跑，但跨模型交叉检查会弱一些。`arena cross-judge pool` 也是列表；arena 会尽量选一个与父模型不同家族的值。`swarm workers` 是每个 worker 的默认模型。
 
 ### 4. 校验
 
@@ -125,12 +126,12 @@ architect runners: <claude>, <gpt>, <grok>
 interrogate reviewers: <claude>, <gpt>, <grok>
 ```
 
-文件内容里的英文注释与角色标签保持英文（脚本与其他 skill 按这些标签解析）。**绝不**提交该文件，也**绝不**跑会改历史的 git 命令。问一次是否把 `.pi/pstack-models.md` 加进 `.gitignore`（它会写出用户的 provider）。题干：`要把 .pi/pstack-models.md 加进 .gitignore 吗？（文件里会写明你的模型 provider）`；选项：`是`、`否`。没有交互用户时，不动 `.gitignore`，在回复里提一句即可。
+文件内容里的英文注释与角色标签保持英文（脚本与其他 skill 按这些标签解析）。**绝不**提交该文件，也**绝不**跑会改历史的 git 命令。问一次是否把 `.pi/pstack-models.md` 加进 `.gitignore`（它会写出用户的 provider）。题干：`要把 .pi/pstack-models.md 加进 .gitignore 吗？（里面会写到你的模型 provider）`；选项：`加`、`不加`。没法交互时别改 `.gitignore`，回复里提一句就行。
 
 ### 6. 确认
 
-告诉用户文件已写入，从下一条消息起生效。再跑一次本 skill 会更新它。删掉文件则回到 skill 默认值（pi 跑不了那些默认模型时，会退回父模型）。
+告诉用户文件写好了，下一条消息起生效。再跑本 skill 会更新；删掉文件就回到 skill 默认（默认模型跑不了时退回父模型）。
 
 ### 7. 可选：提供验证 skill
 
-检查项目有没有驱动真应用做验证的办法（`verify-*` skill，或现成 harness）。若没有，问一次，题干：`要不要生成一份项目本地的验证 skill？这样代理可以像用户一样操作应用，证明改动真的有效。可用 /skill:create-verification-skill 生成。`；选项：`好，生成`、`不用`。选「好」就跑该 skill；选「不用」就继续，不要再催。
+看看项目有没有能真去点应用做验证的办法（`verify-*` skill，或现成 harness）。没有就问一次：`要不要给这个项目做一份验证 skill？代理可以像用户一样操作应用，证明改动有效。用 /skill:create-verification-skill 生成。`；选项：`做一份`、`先不用`。选前者就跑该 skill，选后者继续，别再催。

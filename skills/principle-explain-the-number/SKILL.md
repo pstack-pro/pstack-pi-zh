@@ -1,6 +1,6 @@
 ---
 name: principle-explain-the-number
-description: "相信、汇报或按自己测到的数字行动前适用：提速、回退、吞吐量、延迟或评测。先找限制因素，再排除测错对象的可能。"
+description: "采信、汇报或按自己测到的数字行动前：提速、回退、吞吐、延迟或评测。先找瓶颈，再排除测错对象的可能。"
 disable-model-invocation: true
 ---
 

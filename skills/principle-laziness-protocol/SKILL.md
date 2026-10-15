@@ -1,6 +1,6 @@
 ---
 name: principle-laziness-protocol
-description: "重构、看 diff 大小，或想加抽象、分层、把信号逐层下传时，优先删除，只取能解决问题的最小改动。"
+description: "重构、控制 diff 大小，或想加抽象、分层、把信号一层层下传时：优先删，只留能解决问题的最小改动。"
 disable-model-invocation: true
 ---
 

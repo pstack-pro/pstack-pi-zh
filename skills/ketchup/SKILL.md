@@ -1,6 +1,6 @@
 ---
 name: ketchup
-description: "用几句白话和少量示意图，补上用户上一条消息之后的对话变化。每件待办只给够拍板的背景。用于 /skill:ketchup。"
+description: "用几句白话和少量示意图，补上你上一条之后对话里发生了什么。每个待拍板的点只给够做决定的背景。用于 /skill:ketchup。"
 disable-model-invocation: true
 ---
 

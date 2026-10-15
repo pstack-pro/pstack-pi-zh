@@ -1,6 +1,6 @@
 ---
 name: principle-model-the-domain
-description: "写有状态逻辑，或分支很多，或同一种形状假设跨多个文件重复时适用。"
+description: "写有状态逻辑，或分支很多、同一种形状假设在多个文件里重复时适用。"
 disable-model-invocation: true
 ---
 

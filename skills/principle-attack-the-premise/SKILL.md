@@ -1,6 +1,6 @@
 ---
 name: principle-attack-the-premise
-description: "两个或多个修复共享一个前提，又在同一关卡失败时，先写下前提并验证，再写依赖它的修复。"
+description: "两个或多个修法共一个前提，又卡在同一道关上时：先写下前提并验证，再写依赖它的修法。"
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: how
-description: "用于 \"how does X work\"、改前的代码走读，以及放置、归属、分层（\"where should this live\"、\"which package owns this\"、\"is this the right layer\"）。讲子系统架构、运行流程和心智模型。动机用 why。"
+description: "用于 \"how does X work\"、改之前的代码走读，以及放哪、谁管、哪一层（\"where should this live\"、\"which package owns this\"、\"is this the right layer\"）。讲清子系统架构、运行流程和心智模型。问动机用 why。"
 disable-model-invocation: true
 ---
 

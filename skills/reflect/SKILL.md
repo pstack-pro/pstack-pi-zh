@@ -1,6 +1,6 @@
 ---
 name: reflect
-description: "对当前对话记录并行派三个评审子代理，提炼经验，每条落到现有 skill 的一处修改上。用户说 reflect 时使用。"
+description: "对当前对话并行开三个评审子代理，提炼经验，每条落到现有 skill 的一处修改。用户说 reflect 时用。"
 disable-model-invocation: true
 ---
 

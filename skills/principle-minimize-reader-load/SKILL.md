@@ -1,6 +1,6 @@
 ---
 name: principle-minimize-reader-load
-description: "审改难追踪的代码时，数清问与答隔了几层、读者要记的隐藏状态，去掉单调用方包装，缩小可变范围。"
+description: "审查或整理难追踪的代码时，数清问与答隔了几层、读者要记的隐藏状态；拆掉只有一个调用方的包装，缩小可变范围。"
 disable-model-invocation: true
 ---
 

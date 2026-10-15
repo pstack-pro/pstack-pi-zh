@@ -1,6 +1,6 @@
 ---
 name: teach
-description: "用白话讲清一段工作，让人真正理解。运行 `how` 和 `why` skill，把发现合成一份说明。用于 'teach me this'、'help me really understand X'、'explain this change or subsystem to me'。"
+description: "用白话讲清一段工作，让人真懂。跑 `how` 和 `why` skill，把发现合成一份说明。用于 'teach me this'、'help me really understand X'、'explain this change or subsystem to me'。"
 disable-model-invocation: true
 ---
 

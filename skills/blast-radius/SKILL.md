@@ -1,6 +1,6 @@
 ---
 name: blast-radius
-description: "上线前查出改动在 diff 外还会弄坏什么，用真实代码证明它安全所依的那条事实，而不是写分析。用于 'blast radius of X'、'what could this break'，或审查不放心的小 diff。"
+description: "上线前找出改动在 diff 之外还可能弄坏什么，用真跑代码证明它之所以安全靠的那条事实，别只写分析。用于 'blast radius of X'、'what could this break'，或审查不放心的小 diff。"
 disable-model-invocation: true
 ---
 

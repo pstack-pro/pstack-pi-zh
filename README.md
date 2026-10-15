@@ -19,7 +19,7 @@ pstack 的 skill 是照着 Cursor 的工具写的。这个 package 没有逐个�
 
 54 个 skill 的 description 改成纯中文，句子里直接嵌入 slash 命令和英文触发短语（如 `'arena this'`），所以用中文或英文提问都能匹配；不再附整段英文原文，每次会话少加载一半 token。`test/routing-eval/` 里有模拟路由评测（不等同于真实的 Claude Code / pi 路由）。
 
-skill 正文、playbook、references 和 agents 已全部译成中文（上游 111 个 Markdown 文件全部译完）。这是预览质量的机器辅助翻译，难免有生硬或不准的地方；代码块、命令、工具名、路径、链接和脚本要解析的字符串都保持英文，并有脚本逐项核对。移植时新增或改写的文件（`overrides/` 里的 `setup-pstack`、`readonly` agent，以及本仓库自己的适配说明）仍是英文。**如果觉得中文版不好用，请安装英文版：[pstack-claude](https://github.com/pstack-pro/pstack-claude) 或 [pstack-pi](https://github.com/pstack-pro/pstack-pi)。**
+skill 正文、playbook、references 和 agents 已全部译成中文（上游 111 个 Markdown 文件全部译完）。预览版：机器辅助翻译，语感还在打磨；代码块、命令、工具名、路径、链接和脚本要解析的字符串都保持英文，并有脚本逐项核对。移植时新增或改写的文件里，`setup-pstack` 已译成中文；`readonly` agent 与仓库自己的适配说明仍是英文。**如果觉得中文版不好用，请安装英文版：[pstack-claude](https://github.com/pstack-pro/pstack-claude) 或 [pstack-pi](https://github.com/pstack-pro/pstack-pi)。**
 
 ## 前置条件
 

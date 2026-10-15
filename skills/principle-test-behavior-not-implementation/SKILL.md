@@ -1,6 +1,6 @@
 ---
 name: principle-test-behavior-not-implementation
-description: "编写、修改或保留测试时适用。断言使用者能观察到的行为：行为一坏测试就失败，只改内部则仍然通过。"
+description: "写、改或保留测试时：断言使用者能观察到的行为——行为坏了测试就红，只改内部仍绿。"
 disable-model-invocation: true
 ---
 
