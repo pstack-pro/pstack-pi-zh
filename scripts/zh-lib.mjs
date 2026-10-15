@@ -1,4 +1,4 @@
-// Shared helpers for the Chinese (zh) layer. Identical in claude-pstack-zh and pi-pstack-zh.
+// Shared helpers for the Chinese (zh) layer. Identical in pstack-claude-zh and pstack-pi-zh.
 import { createHash } from "node:crypto";
 import * as fs from "node:fs";
 import * as path from "node:path";

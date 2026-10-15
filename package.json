@@ -1,5 +1,5 @@
 {
-  "name": "pi-pstack-zh",
+  "name": "pstack-pi-zh",
   "version": "0.15.25-zh.2",
   "private": true,
   "description": "pstack pi 中文版（预览）。pstack adapted for the pi coding agent, with Chinese skill descriptions and bodies.",
@@ -25,5 +25,10 @@
     "@earendil-works/pi-coding-agent": "*",
     "@earendil-works/pi-tui": "*",
     "typebox": "*"
+  },
+  "homepage": "https://github.com/taokeqin/pstack-pi-zh",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taokeqin/pstack-pi-zh.git"
   }
 }
