@@ -27,7 +27,7 @@ function decide(body) {
 		const flags = [
 			`pstack_section=${system.includes("You are running pstack on pi")}`,
 			`poteto_skill=${system.includes("poteto-mode")}`,
-			`agent_prompt=${system.includes("Poteto subagent")}`,
+			`agent_prompt=${(system.includes("Poteto subagent") || system.includes("Poteto 子代理"))}`,
 			`tools=${tools.join("+")}`,
 		].join(" ");
 		const users = msgs.filter((m) => m.role === "user").map(text);
@@ -54,7 +54,7 @@ function decide(body) {
 			return { toolCalls: [task({ model: "mock/mock-b:low", prompt: "CHILD_TASK model" })] };
 		case "TEST_PARALLEL":
 			return {
-				toolCalls: [task({ prompt: "CHILD_TASK alpha" }), task({ prompt: "CHILD_TASK beta" }), task({ subagent_type: "Comment Sicko", prompt: "CHILD_TASK gamma" })],
+				toolCalls: [task({ prompt: "CHILD_TASK alpha" }), task({ prompt: "CHILD_TASK beta" }), task({ subagent_type: "comment-sicko", prompt: "CHILD_TASK gamma" })],
 			};
 		case "TEST_READONLY":
 			return { toolCalls: [task({ readonly: true, prompt: "CHILD_TASK readonly" })] };

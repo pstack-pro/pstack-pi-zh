@@ -27,7 +27,7 @@ const TaskParams = Type.Object({
 	description: Type.String({ description: "Short (3-5 word) label for the task" }),
 	prompt: Type.String({ description: "Full brief for the subagent. It starts with no context from this chat." }),
 	subagent_type: Type.Optional(
-		Type.String({ description: 'Agent to run, e.g. "poteto-agent", "Comment Sicko", "generalPurpose" (default)' }),
+		Type.String({ description: 'Agent to run, e.g. "poteto-agent", "comment-sicko", "generalPurpose" (default)' }),
 	),
 	model: Type.Optional(
 		Type.String({

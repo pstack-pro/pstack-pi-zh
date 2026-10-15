@@ -2,7 +2,7 @@
   "name": "pi-pstack-zh",
   "version": "0.15.25-zh.2",
   "private": true,
-  "description": "pstack pi 中文版（预览）。pstack adapted for the pi coding agent, with bilingual Chinese/English skill descriptions.",
+  "description": "pstack pi 中文版（预览）。pstack adapted for the pi coding agent, with Chinese skill descriptions and bodies.",
   "type": "module",
   "keywords": [
     "pi-package"

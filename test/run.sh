@@ -47,7 +47,7 @@ rm -rf "$WORK/proj/.pi"
 
 check sync-fallback "$(run TEST_SYNC)" "child ok" "agent: poteto-agent" "not available in pi" "agent_prompt=true" "poteto_skill=true" "pstack_section=true"
 check model-select "$(run TEST_MODEL)" "model: mock/mock-b:low" "child ok"
-check parallel "$(run TEST_PARALLEL)" "alpha" "beta" "gamma" "agent: Comment Sicko"
+check parallel "$(run TEST_PARALLEL)" "alpha" "beta" "gamma" "agent: comment-sicko"
 ro="$(run TEST_READONLY)"
 check readonly "$ro" "child ok" "tools=[^ ]*read"
 if grep -qE 'tools=[^ ]*(\+edit|\+write)' <<<"$ro"; then echo "FAIL readonly: edit/write still enabled"; fail=$((fail + 1)); fi

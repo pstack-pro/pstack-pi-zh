@@ -34,6 +34,8 @@ const src = overlayZh(upstreamSrc, root);
 
 // Ordered: specific paths before the generic prefixes they contain.
 const REPLACEMENTS = [
+	// The guide under pstack/docs/ is not shipped; point its links at upstream.
+	[/\]\((?:\.\.\/)+docs\//g, "](https://github.com/cursor/plugins/blob/main/pstack/docs/"],
 	["~/.cursor/rules/pstack-models.mdc", ".pi/pstack-models.md"],
 	["the `pstack-models.mdc` rule", "`.pi/pstack-models.md`"],
 	[/(?<![\w./-])pstack-models\.mdc/g, ".pi/pstack-models.md"],

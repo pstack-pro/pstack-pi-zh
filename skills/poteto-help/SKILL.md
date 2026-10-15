@@ -38,7 +38,7 @@ disable-model-invocation: true
 2. 跑 [`/skill:setup-pstack`](../setup-pstack/SKILL.md)。它会问推理预算，给每个角色指定一个模型，并写出一条 rule。这条 rule 对新聊天生效。
 3. 用 `/skill:poteto-mode` 做一件真任务，带上目标，再带一个能判过或不过的检查。
 
-装完之后，用户不调用 skill，什么都不会变。只有 `/skill:setup-pstack` 会从用户说的话里加载。细节见 [README](../../README.md) 和 [指南第 1 页](../../docs/guide/01-setup.md)。可以按 [`references/prompting.md`](references/prompting.md)，主动提议一起写第一条提示词。
+装完之后，用户不调用 skill，什么都不会变。只有 `/skill:setup-pstack` 会从用户说的话里加载。细节见 [README](../../README.md) 和 [指南第 1 页](https://github.com/cursor/plugins/blob/main/pstack/docs/guide/01-setup.md)。可以按 [`references/prompting.md`](references/prompting.md)，主动提议一起写第一条提示词。
 
 用户担心花费，就说清 token 花在哪，以及怎样少花。pstack 在子代理和评审团上会多花 token。再跑一次 `/skill:setup-pstack`，选更小的预算或更便宜的模型。设成 `auto` 或 `inherit-parent` 的角色，用的是这场聊天的模型。聊天本身跑在 Auto 或更便宜的模型上时，就能省 token。评审团名单越短，跑的子代理越少：每一项一个。把 `/skill:poteto-mode` 留给需要严谨的工作。
 
@@ -46,7 +46,7 @@ pstack 是为 Cursor 做的。它的 skill 用的是 Agent Skills 格式，所�
 
 ## 用 `/skill:poteto-mode` 开工
 
-`/skill:poteto-mode` 给任务配一个 playbook，把 playbook 的步骤抄进 todo 列表，再按步骤的需要去跑其他 skill。跳过的步骤仍留在列表里，写成 `skip: <reason>`。好的提示词写清目标，以及怎样算做完。它不把 skill 逐个列出来，因为手写的顺序往往会漏掉或打乱 playbook 本来会保留的步骤。帮用户写提示词之前，先读 [`references/prompting.md`](references/prompting.md)。例子见 [指南第 2 页](../../docs/guide/02-poteto-mode.md)。
+`/skill:poteto-mode` 给任务配一个 playbook，把 playbook 的步骤抄进 todo 列表，再按步骤的需要去跑其他 skill。跳过的步骤仍留在列表里，写成 `skip: <reason>`。好的提示词写清目标，以及怎样算做完。它不把 skill 逐个列出来，因为手写的顺序往往会漏掉或打乱 playbook 本来会保留的步骤。帮用户写提示词之前，先读 [`references/prompting.md`](references/prompting.md)。例子见 [指南第 2 页](https://github.com/cursor/plugins/blob/main/pstack/docs/guide/02-poteto-mode.md)。
 
 `/skill:poteto-mode` 会不会一直开着，取决于用户怎么启动：
 
@@ -121,11 +121,11 @@ playbook 是 `/skill:poteto-mode` 里面的步骤清单，不是 skill，所以�
 - "full autopilot on this queue"（这个队列全自动跑）跑 Autopilot-full。"stack them, don't ship"（叠起来，先别交付）跑 Autopilot-stack。
 - "run the eval playbook"（跑 eval playbook）跑 Eval。
 
-没有 `/skill:poteto-mode` 时，"babysit this pr" 这样的说法启动的会是 Cursor 自带的、做同一件事的 skill。[`poteto-mode`](../poteto-mode/SKILL.md) 的 Playbooks 一节列出每个 playbook，以及各自什么时候用。[指南第 6 页](../../docs/guide/06-verify-and-ship.md) 讲怎么开 PR、怎么 babysit、怎么 land 一个 PR。
+没有 `/skill:poteto-mode` 时，"babysit this pr" 这样的说法启动的会是 Cursor 自带的、做同一件事的 skill。[`poteto-mode`](../poteto-mode/SKILL.md) 的 Playbooks 一节列出每个 playbook，以及各自什么时候用。[指南第 6 页](https://github.com/cursor/plugins/blob/main/pstack/docs/guide/06-verify-and-ship.md) 讲怎么开 PR、怎么 babysit、怎么 land 一个 PR。
 
 pstack 没有做计划的 skill。Cursor 的 Plan Mode 可以跟它一起用。工作如果跨多个阶段，或是叠成一串 PR，向 `/skill:poteto-mode` 要一份计划，跑的就是 [Multi-phase plan playbook](../poteto-mode/playbooks/multi-phase-plan.md)。那个 playbook 写计划，不实现。设计上的问题，先用 Prototype playbook 或 `/skill:architect`，在代码里定下来。
 
-原则是一条规则一个 skill。`/skill:poteto-mode` 会读它们，并在回复里点出它们。用户很少直接调用某一条，而是用名字来转向，例如 "apply prove it works. show me the real output."（用 prove it works，给我看真实输出）。输入 `/principle-<name>` 仍然可以按需加载某一条。清单见 [指南第 8 页](../../docs/guide/08-principles.md)。
+原则是一条规则一个 skill。`/skill:poteto-mode` 会读它们，并在回复里点出它们。用户很少直接调用某一条，而是用名字来转向，例如 "apply prove it works. show me the real output."（用 prove it works，给我看真实输出）。输入 `/principle-<name>` 仍然可以按需加载某一条。清单见 [指南第 8 页](https://github.com/cursor/plugins/blob/main/pstack/docs/guide/08-principles.md)。
 
 ## 修好一次跑偏的运行
 
@@ -137,10 +137,10 @@ pstack 没有做计划的 skill。Cursor 的 Plan Mode 可以跟它一起用。�
 | 运行比预期更费 | 见「完成设置」里讲花费的那一段。 |
 | 某个 skill 没有自己加载 | 只有 `/skill:setup-pstack` 会从用户说的话里加载。其余的要用户输入，或由 `/skill:poteto-mode` 去跑，而它并不会跑每一个 skill。 |
 | 并行的代理互相覆盖 | 给每个代理一个自己的 worktree，或当成 cloud agent 来跑，让它们各自有一台机器。 |
-| 过夜跑起来了，但什么都没做完 | `/loop` 要的是一个能判过或不过的检查，不是一段时长。见 [指南第 7 页](../../docs/guide/07-overnight.md)。 |
+| 过夜跑起来了，但什么都没做完 | `/loop` 要的是一个能判过或不过的检查，不是一段时长。见 [指南第 7 页](https://github.com/cursor/plugins/blob/main/pstack/docs/guide/07-overnight.md)。 |
 | 回复拿构建变绿当成功 | 去要真实的命令、操作流程、存下来的值，或性能 profile。这就是 prove-it-works 原则。 |
 
-运行跑偏时，[`references/prompting.md`](references/prompting.md) 里有一行就能拉回来的说法。更多的坑，以及值得照抄的提示词，见 [指南第 10 页](../../docs/guide/10-recipes-and-pitfalls.md)。
+运行跑偏时，[`references/prompting.md`](references/prompting.md) 里有一行就能拉回来的说法。更多的坑，以及值得照抄的提示词，见 [指南第 10 页](https://github.com/cursor/plugins/blob/main/pstack/docs/guide/10-recipes-and-pitfalls.md)。
 
 ## 把 pstack 变成我的
 
@@ -149,7 +149,7 @@ pstack 没有做计划的 skill。Cursor 的 Plan Mode 可以跟它一起用。�
 - `/skill:poteto-mode write a skill for <workflow>` 会跑 authoring playbook。eval playbook 对 skill 的改动做盲测。
 - 行为不对的 skill 放在它自己的 PR 里修，不要塞进它出错的那次功能工作里。
 
-每一项见 [指南第 9 页](../../docs/guide/09-make-it-yours.md)。
+每一项见 [指南第 9 页](https://github.com/cursor/plugins/blob/main/pstack/docs/guide/09-make-it-yours.md)。
 
 ## 怎么回复
 
