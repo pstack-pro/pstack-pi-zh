@@ -1,6 +1,6 @@
 ---
 name: recall
-description: "从自己的聊天历史、现场状态与共享记录（用户报告、既往修复、事故）重建近期工作上下文，交回一份紧凑的当前状态简报。用于 'recall my work on X'（回忆我在 X 上的工作）、'catch me up'（给我补进度）、'what have I been working on'（我最近在做什么）、'where did I leave off'（我做到哪了），或在开始或恢复工作前。"
+description: "从你自己的聊天历史、实时状态和共享记录（用户报告、既往修复、事故）重建近期上下文，交回一份紧凑简报。用于 'recall my work on X'、'catch me up'、'what have I been working on'、'where did I leave off'，以及开工或恢复前。"
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: principle-experience-first
-description: "当产品、UX 或功能范围权衡出现时适用。优先让用户高兴，而不是图实现方便；少而精的功能优于多而糙的功能。"
+description: "产品、UX 或功能范围取舍时，用户高兴优先于实现省事；功能少而精，不多而糙。"
 disable-model-invocation: true
 ---
 

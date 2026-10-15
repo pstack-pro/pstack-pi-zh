@@ -1,6 +1,6 @@
 ---
 name: principle-guard-the-context-window
-description: "当上下文快填满时适用：大段输出、长文件、重复读取、扇出规划。把大块工作交给子代理；主线程只留摘要，不留原始载荷。"
+description: "上下文窗口快满（大输出、长文件、重复读、扇出规划）时，大块交给子代理，主线程只留摘要，不留原始内容。"
 disable-model-invocation: true
 ---
 

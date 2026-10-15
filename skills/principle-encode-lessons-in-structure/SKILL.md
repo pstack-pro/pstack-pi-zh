@@ -1,6 +1,6 @@
 ---
 name: principle-encode-lessons-in-structure
-description: "当你发现自己第二次写同一条指令，或注意到反复出现的纠正时适用。把规则落实为 lint、元数据标志、运行时检查或脚本，而不是再写更多文字。"
+description: "第二次写下同一指令，或纠正反复出现时，把规则做成 lint、元数据标记、运行时检查或脚本，别再写文字。"
 disable-model-invocation: true
 ---
 

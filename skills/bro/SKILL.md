@@ -1,6 +1,6 @@
 ---
 name: bro
-description: "用大白话把上一条消息重新说一遍，不用术语。"
+description: "用大白话重述上一条消息，不用术语。"
 disable-model-invocation: true
 ---
 

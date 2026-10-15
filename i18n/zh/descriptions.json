@@ -2,257 +2,257 @@
 	"architect": {
 		"source_sha256": "0099a63aeda44737",
 		"en": "Sketch types, signatures, and module structure before code, then stay in the loop while implementation fills in. Use for /architect, 'architect this', 'design this', or non-trivial work where jumping to code would lock in the wrong shape.",
-		"zh": "写代码之前先勾勒类型、签名和模块结构，实现逐步落地时也全程参与。用于 /architect、'architect this'（帮我做架构）、'design this'（帮我设计），或一上手就写代码容易定错结构的非琐碎工作。"
+		"zh": "写代码前先勾勒类型、签名和模块结构，实现时继续参与。用于 /architect、'architect this'、'design this'，或不简单、上手写代码就会定错结构的工作。"
 	},
 	"arena": {
 		"source_sha256": "cc99cf15f7b08916",
 		"en": "Spawn N parallel candidates at the same task, pick a base, graft the strongest parts of the losers into it. Use for /arena, 'arena this', 'throw it in the arena', or when one attempt at a non-trivial artifact would lock in the wrong shape.",
-		"zh": "让 N 个候选并行做同一任务，选一个作为基础，再把落选方案里最好的部分嫁接进来。用于 /arena、'arena this'（放进竞技场）、'throw it in the arena'（丢进竞技场比一比），或产物不简单、只做一版容易定错结构时。"
+		"zh": "派出 N 个候选并行做同一任务，选好基础，把落选方案的最强部分嫁接进去。用于 /arena、'arena this'、'throw it in the arena'，或不简单的产物只做一版就会定错结构时。"
 	},
 	"automate-me": {
 		"source_sha256": "61fbdd15c60e88d7",
 		"en": "Use for \"automate me\", \"create/update/refresh my -mode skill\", \"turn/capture my preferences or working style into a skill\", or wanting agents to follow how the user works. Drafts or revises a personal -mode skill via create-skill + unslop, optionally pulling fresh evidence from recent transcripts.",
-		"zh": "用于 \"automate me\"（按我的方式自动化）、\"create/update/refresh my -mode skill\"（创建或更新我的 -mode skill）、\"turn/capture my preferences or working style into a skill\"（把偏好或工作方式做成 skill），或希望代理按用户的方式做事。借助 create-skill + unslop 起草或修订个人的 -mode skill，可选从近期对话记录补充新证据。"
+		"zh": "用于 \"automate me\"、\"create/update/refresh my -mode skill\"、\"turn/capture my preferences or working style into a skill\"，或希望代理按用户的方式工作。用 create-skill 和 unslop 起草或修订个人 -mode skill，可从近期对话记录补证据。"
 	},
 	"benchmark-checklist": {
 		"source_sha256": "e73e996724f9bf1c",
 		"en": "Vet a perf measurement (limiter, tuning, limits, errors, repeatability, relevance, and whether the work happened) before you report or act on it. Use when you run a benchmark or report a speedup or regression you measured.",
-		"zh": "在汇报一次性能测量或据此行动之前，先核查它：限制因素、调优、是否越限、有无出错、能否复现、是否相关，以及工作是否真的发生了。跑基准测试，或汇报自己测到的提速或退步时使用。"
+		"zh": "汇报或依据性能测量行动前，先核查：限制因素、调优、上限、错误、能否复现、是否相关，以及工作是否真的发生。跑 benchmark，或汇报自己测到的提速、回退时使用。"
 	},
 	"blast-radius": {
 		"source_sha256": "1ea5d70e949eedaa",
 		"en": "Find what a change could break somewhere else before it ships, beyond the diff, and prove the one fact it's safe because of by running real code instead of writing it up. Use for 'blast radius of X', 'what could this break', or reviewing a small diff you don't trust.",
-		"zh": "改动上线前，找出它在 diff 之外还可能弄坏什么；用真实运行的代码（而不是一篇分析）证明它赖以安全的那条关键事实。用于 'blast radius of X'（X 的影响范围）、'what could this break'（这会弄坏什么），或审查一个你不放心的小 diff。"
+		"zh": "上线前查出改动在 diff 外还会弄坏什么，用真实代码证明它安全所依的那条事实，而不是写分析。用于 'blast radius of X'、'what could this break'，或审查不放心的小 diff。"
 	},
 	"bro": {
 		"source_sha256": "ee9fcc0440aa7706",
 		"en": "Restate the last message in plain human language, with no jargon.",
-		"zh": "用大白话把上一条消息重新说一遍，不用术语。"
+		"zh": "用大白话重述上一条消息，不用术语。"
 	},
 	"correct": {
 		"source_sha256": "1cd54fca295e7228",
 		"en": "Find the mistakes agents keep repeating in this repo and make each one impossible. Try architecture first, then types, then a lint whose error names the fix, then a test, and write docs last. Prove each check fails on a real past mistake. Repeat this each time the operator corrects you. Use for /correct.",
-		"zh": "找出这个仓库里代理反复犯的错，并让每一种都没法再犯。先改架构，再靠类型，再靠报错里直接点名改法的 lint，然后测试，文档放最后。每项检查都要用一次真实的既往错误证明它会失败。操作者每次纠正你，都再做一轮。用于 /correct。"
+		"zh": "找出本仓库代理反复犯的错，让每一种都无法再犯。先改架构，再靠类型，再用报错点明改法的 lint，然后测试，文档最后。每项检查都要在真实犯过的错上失败。操作者每次纠正你，再做一轮。用于 /correct。"
 	},
 	"create-verification-skill": {
 		"source_sha256": "f815a303370789fb",
 		"en": "Generate a project-local verification skill that drives your app the way a user does — any language, framework, or platform. Use for /create-verification-skill, \"make a control skill for this repo\", or when a project has no scripted way to prove UI/CLI/service behavior.",
-		"zh": "生成一份只属于当前项目的验证 skill，像用户一样操作你的应用——不限语言、框架或平台。用于 /create-verification-skill、\"make a control skill for this repo\"（给这个仓库做个 control skill），或项目还没有用脚本证明 UI/CLI/服务行为的办法时。"
+		"zh": "生成本项目的验证 skill，像用户那样操作应用，不限语言、框架或平台。用于 /create-verification-skill、\"make a control skill for this repo\"，或项目还没有脚本能证明 UI、CLI 或服务行为时。"
 	},
 	"figure-it-out": {
 		"source_sha256": "9eed81e1781d10c9",
 		"en": "Design an auditable playbook when no narrower one fits: a large migration, an ambitious multi-part change, or work a human reviews after stepping away. Scales rigor to the task, runs a hypothesis loop, and logs decisions. Use for /figure-it-out or 'figure it out'.",
-		"zh": "没有更专门的 playbook 适用时，设计一份可审计的 playbook：大规模迁移、目标大且牵涉多个部分的改动，或等人离开后再回来审查的工作。按任务调整严谨程度，循环提出并验证假设，并记录决策。用于 /figure-it-out 或 'figure it out'（想办法搞定）。"
+		"zh": "没有更窄的 playbook 时，设计可审计的 playbook：大迁移、多块大改，或人离开后才审的工作。按任务调节严谨度，循环验证假设，记下决策。用于 /figure-it-out 或 'figure it out'。"
 	},
 	"how": {
 		"source_sha256": "8d58f0ade4f5b713",
 		"en": "Use for \"how does X work\", code walkthroughs before changing something, and placement / ownership / layering questions (\"where should this live\", \"which package owns this\", \"is this the right layer\"). Explains subsystem architecture, runtime flow, onboarding mental models. Use why for motivation.",
-		"zh": "用于 \"how does X work\"（X 是怎么工作的）、改东西之前的代码走读，以及放置 / 归属 / 分层问题（\"where should this live\"（这该放哪）、\"which package owns this\"（哪个包管这事）、\"is this the right layer\"（这是不是对的那一层））。讲解子系统架构、运行时流程，以及上手所需的心智模型。想知道动机，用 why。"
+		"zh": "用于 \"how does X work\"、改前的代码走读，以及放置、归属、分层（\"where should this live\"、\"which package owns this\"、\"is this the right layer\"）。讲子系统架构、运行流程和心智模型。动机用 why。"
 	},
 	"in-your-own-words": {
 		"source_sha256": "90d14851864443c7",
 		"en": "Restate in your own words what you think the user's goals are and what problem they're trying to solve. Use for /in-your-own-words.",
-		"zh": "用你自己的话重述你认为用户的目标是什么，以及他们想解决什么问题。用于 /in-your-own-words。"
+		"zh": "用自己的话重述你所理解的用户目标，以及他们要解决的问题。用于 /in-your-own-words。"
 	},
 	"interrogate": {
 		"source_sha256": "c6a0feaf00c5ef75",
 		"en": "Use for \"interrogate\", \"adversarial review\", \"multi-model review\", \"challenge this\", \"stress test this code\", \"find blind spots\", or \"tear this apart\". Multiple LLM reviewers challenge changes from independent angles.",
-		"zh": "用于 \"interrogate\"（盘问）、\"adversarial review\"（对抗评审）、\"multi-model review\"（多模型评审）、\"challenge this\"（挑战这个）、\"stress test this code\"（压测这段代码）、\"find blind spots\"（找盲点）或 \"tear this apart\"（拆开挑刺）。多个 LLM 评审者从彼此独立的角度挑战改动。"
+		"zh": "用于 \"interrogate\"、\"adversarial review\"、\"multi-model review\"、\"challenge this\"、\"stress test this code\"、\"find blind spots\" 或 \"tear this apart\"。多个 LLM 从各自独立的角度挑战改动。"
 	},
 	"ketchup": {
 		"source_sha256": "0020bb049773cbb8",
 		"en": "Catch the user up on what changed in this chat since their last message, in a few plain sentences and small visuals. Give each action item just enough context to make the call. Use for /ketchup.",
-		"zh": "用几句白话和少量示意图，补上用户上一条消息之后这次对话里发生的事。每件待办只附上够拍板的背景。用于 /ketchup。"
+		"zh": "用几句白话和少量示意图，补上用户上一条消息之后的对话变化。每件待办只给够拍板的背景。用于 /ketchup。"
 	},
 	"maintain-verification-skill": {
 		"source_sha256": "96c08f67a477b0e9",
 		"en": "Periodic pass that keeps a project's verification skill and feature map honest: parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections. Use for /maintain-verification-skill or \"audit the verify skill\".",
-		"zh": "定期巡检，让项目的验证 skill 和功能清单（feature map）与实际相符：每个功能并行派一个源码阅读者，在一次真实运行的会话里把所有功能都操作一遍，最多提一个只含已验证修正的 PR。用于 /maintain-verification-skill 或 \"audit the verify skill\"（审计验证 skill）。"
+		"zh": "定期巡检，让验证 skill 和功能清单（feature map）如实：每个功能并行派一个子代理读源码，一次真实会话跑遍所有功能，最多提一个只含已验证修正的 PR。用于 /maintain-verification-skill 或 \"audit the verify skill\"。"
 	},
 	"make-bot-ui": {
 		"source_sha256": "fcd71cf24f930645",
 		"en": "Use when building a custom UI (page, dashboard, buttons) that should wake a Grok Bot over a webhook, when the user must provide a webhook sender key, or when exposing that UI on Tailscale.",
-		"zh": "搭建需要通过 webhook 唤醒 Grok Bot 的自定义 UI（页面、仪表盘、按钮）时使用；也适用于需要用户提供 webhook 发送方密钥，或要把这个 UI 暴露到 Tailscale 上的情况。"
+		"zh": "搭建要通过 webhook 唤醒 Grok Bot 的自定义 UI（页面、仪表盘、按钮），需要用户提供 webhook sender key，或要把该 UI 暴露到 Tailscale 时使用。"
 	},
 	"no-comments": {
 		"source_sha256": "9efba35040913bc3",
 		"en": "Spawn Comment Sicko, fix accepted findings, and offer encodings for claimed constraints.",
-		"zh": "派出 Comment Sicko 审查注释，修复采纳的问题，并为注释中声称的约束提出用代码落实的办法。"
+		"zh": "派出 Comment Sicko，修掉采纳的问题，并提出把注释里声称的约束落实到代码的办法。"
 	},
 	"poteto-help": {
 		"source_sha256": "2b99db2458378576",
 		"en": "Guides users through pstack setup, /poteto-mode, and picking the skill, playbook, or principle for a task. Type /poteto-help with a question.",
-		"zh": "引导用户完成 pstack 设置、使用 /poteto-mode，以及为一项任务挑选 skill、playbook 或原则。输入 /poteto-help，后面跟上问题。"
+		"zh": "引导用户完成 pstack 设置、使用 /poteto-mode，并按任务挑选 skill、playbook 或原则。输入 /poteto-help，后面跟上问题。"
 	},
 	"poteto-mode": {
 		"source_sha256": "3083df2532d54b06",
 		"en": "poteto's agent style for concise, detailed responses, deliberate subagents, unslopped prose, simple code, and verified work. Use for poteto, /poteto-mode, or requests to work in this style.",
-		"zh": "poteto 的代理工作风格：回复简洁又不漏细节，子代理用得有分寸，文字去掉 slop，代码简单，工作经过验证。用于 poteto、/poteto-mode，或要求按这种风格工作的请求。"
+		"zh": "poteto 的代理风格：回复简洁又详细，子代理用得克制，文字无 slop，代码简单，工作要验证。用于 poteto、/poteto-mode，或要求这种风格时。"
 	},
 	"principle-attack-the-premise": {
 		"source_sha256": "409bff04155cf1a5",
 		"en": "Apply when two or more fixes that share one premise have failed the same gate. Write the premise down and test it directly before you write another fix that assumes it.",
-		"zh": "当两个或多个共享同一前提的修复在同一关卡失败时适用。先把前提写下来并直接验证，再写下一个假设该前提成立的修复。"
+		"zh": "两个或多个修复共享一个前提，又在同一关卡失败时，先写下前提并验证，再写依赖它的修复。"
 	},
 	"principle-boundary-discipline": {
 		"source_sha256": "d8cd1ddfdecea6f2",
 		"en": "Apply when wiring validation, error handling, or framework adapters. Concentrate guards at system boundaries (CLI, config, network, external APIs); trust internal types and keep business logic in pure functions.",
-		"zh": "在接入校验、错误处理或框架适配器时适用。把守卫集中在系统边界（CLI、配置、网络、外部 API）；信任内部类型，业务逻辑放在纯函数里。"
+		"zh": "接入校验、错误处理或框架适配器时，把守卫放在边界（CLI、配置、网络、外部 API），信任内部类型，业务逻辑放进纯函数。"
 	},
 	"principle-build-the-lever": {
 		"source_sha256": "64b883b29d994e28",
 		"en": "Apply to any non-trivial work, not just bulk work: edits, migrations, analyses, checks. Build the tool that does it or proves it (codemod, script, generator, or a skill your subagents follow) instead of working by hand. The tool is the artifact a reviewer can rerun.",
-		"zh": "适用于任何非琐碎工作，不限于批量任务：编辑、迁移、分析、检查。构建能完成或证明它的工具（codemod、脚本、生成器，或子代理遵循的 skill），而不是手工做。该工具是审查者可以重跑的产物。"
+		"zh": "不简单的工作都适用，不限批量：编辑、迁移、分析、检查。做能完成或证明它的工具（codemod、脚本、生成器，或子代理遵循的 skill），别手工做。工具本身就是审查者可重跑的产物。"
 	},
 	"principle-encode-lessons-in-structure": {
 		"source_sha256": "0903e88fac77027b",
 		"en": "Apply when you catch yourself writing the same instruction a second time, or notice a recurring correction. Encode the rule as a lint, metadata flag, runtime check, or script instead of more text.",
-		"zh": "当你发现自己第二次写同一条指令，或注意到反复出现的纠正时适用。把规则落实为 lint、元数据标志、运行时检查或脚本，而不是再写更多文字。"
+		"zh": "第二次写下同一指令，或纠正反复出现时，把规则做成 lint、元数据标记、运行时检查或脚本，别再写文字。"
 	},
 	"principle-exhaust-the-design-space": {
 		"source_sha256": "bb7b5d5c1d3d3364",
 		"en": "Apply when facing a novel UI interaction or architectural decision with no precedent in the codebase. Build 2-3 competing prototypes and compare side by side before committing.",
-		"zh": "面对代码库中没有先例的新 UI 交互或架构决策时适用。选定方案前，先做 2-3 个互相竞争的原型并并排比较。"
+		"zh": "遇到代码库里没有先例的新 UI 交互或架构决策时，先做 2-3 个原型并排比较，再拍板。"
 	},
 	"principle-experience-first": {
 		"source_sha256": "8ac7758c4a94d42e",
 		"en": "Apply when product, UX, or feature-scope tradeoffs come up. Choose user delight over implementation convenience; ship fewer polished features over more rough ones.",
-		"zh": "当产品、UX 或功能范围权衡出现时适用。优先让用户高兴，而不是图实现方便；少而精的功能优于多而糙的功能。"
+		"zh": "产品、UX 或功能范围取舍时，用户高兴优先于实现省事；功能少而精，不多而糙。"
 	},
 	"principle-explain-the-number": {
 		"source_sha256": "579a8e6b5edaf859",
 		"en": "Apply before you trust, report, or act on a number you measured: a speedup, a regression, a throughput, a latency, or an eval result. Find what limits it, and rule out that it measured something other than the work you think.",
-		"zh": "在相信、汇报或依据自己测到的数字行动之前适用，比如提速、退步、吞吐量、延迟或评测结果。先找出限制它的因素，再排除“测到的其实不是你以为的那项工作”这种可能。"
+		"zh": "相信、汇报或按自己测到的数字行动前适用：提速、回退、吞吐量、延迟或评测。先找限制因素，再排除测错对象的可能。"
 	},
 	"principle-fix-root-causes": {
 		"source_sha256": "1bed9bf9a66f3bec",
 		"en": "Apply when debugging. Trace each symptom back to the first place the system went wrong and fix it there. A guard is a fix only when the state it handles is legitimate.",
-		"zh": "调试时适用。把每个症状追溯到系统第一次出错的地方，并在那里修复。只有当守卫处理的状态本身合法时，守卫才算修复。"
+		"zh": "调试时把每个症状追到第一次出错处再修。只有处理的状态合法，守卫才算修复。"
 	},
 	"principle-foundational-thinking": {
 		"source_sha256": "0ab62e059c5cae1c",
 		"en": "Apply before writing logic: choosing core types and data structures, sequencing scaffold-vs-feature work, asking what concurrent actors share. Get the data structures right so downstream code becomes obvious.",
-		"zh": "写逻辑前适用：选定核心类型与数据结构、安排先做脚手架还是先做功能、问清并发参与方共享什么。先把数据结构做对，下游代码自然清楚。"
+		"zh": "写逻辑前先定核心类型和数据结构，排好脚手架与功能的先后，问清并发各方共享什么。数据结构对了，下游代码才清楚。"
 	},
 	"principle-guard-the-context-window": {
 		"source_sha256": "efcd9ae4cde688ff",
 		"en": "Apply when context is filling up: large outputs, long files, repeated reads, fan-out planning. Route bulk to subagents; keep summaries in the main thread, not raw payloads.",
-		"zh": "当上下文快填满时适用：大段输出、长文件、重复读取、扇出规划。把大块工作交给子代理；主线程只留摘要，不留原始载荷。"
+		"zh": "上下文窗口快满（大输出、长文件、重复读、扇出规划）时，大块交给子代理，主线程只留摘要，不留原始内容。"
 	},
 	"principle-laziness-protocol": {
 		"source_sha256": "5a67babe4dd8e699",
 		"en": "Apply when refactoring, evaluating diff size, or tempted to add abstractions, layers, or signal threading. Bias toward deletion and the smallest change that solves the problem.",
-		"zh": "在重构、评估 diff 规模，或想加抽象、层级或信号穿线时适用。偏向删除，以及能解决问题的最小改动。"
+		"zh": "重构、看 diff 大小，或想加抽象、分层、把信号逐层下传时，优先删除，只取能解决问题的最小改动。"
 	},
 	"principle-make-operations-idempotent": {
 		"source_sha256": "4bb9a96d2c1fe354",
 		"en": "Apply when designing commands, lifecycle steps, or processing loops that run amid crashes, restarts, and retries. Converge to the same end state regardless of partial prior runs.",
-		"zh": "设计会在崩溃、重启和重试中运行的命令、生命周期步骤或处理循环时适用。无论先前是否跑过一部分，都收敛到同一终态。"
+		"zh": "命令、生命周期或处理循环会遇上崩溃、重启和重试时，跑到一半也要收敛到同一终态。"
 	},
 	"principle-migrate-callers-then-delete-legacy-apis": {
 		"source_sha256": "729e129c75b6b9d0",
 		"en": "Apply when introducing a new internal API while old callers still exist. Migrate callers and delete the old API in the same wave instead of preserving compatibility layers.",
-		"zh": "引入新内部 API 而旧调用方仍在时适用。在同一波里迁移调用方并删除旧 API，而不是保留兼容层。"
+		"zh": "新内部 API 还有旧调用方时，同一波迁走调用方并删掉旧 API，不留兼容层。"
 	},
 	"principle-minimize-reader-load": {
 		"source_sha256": "2e56c73c78440a9b",
 		"en": "Apply when reviewing or shaping code that's hard to trace. Count layers between question and answer, and hidden state in the reader's head; collapse one-caller wrappers and shrink mutable scope.",
-		"zh": "审查或整理难以追踪的代码时适用。数清问题与答案之间隔了几层，以及读者脑子里要记的隐藏状态；拆掉只有一个调用方的包装，缩小可变作用域。"
+		"zh": "审改难追踪的代码时，数清问与答隔了几层、读者要记的隐藏状态，去掉单调用方包装，缩小可变范围。"
 	},
 	"principle-model-the-domain": {
 		"source_sha256": "ec9a90af6dca8234",
 		"en": "Apply when writing stateful logic, or when code branches a lot or repeats a shape assumption across files.",
-		"zh": "编写有状态逻辑，或代码分支繁多、在多个文件里重复同一种形状假设时适用。"
+		"zh": "写有状态逻辑，或分支很多，或同一种形状假设跨多个文件重复时适用。"
 	},
 	"principle-never-block-on-the-human": {
 		"source_sha256": "450e2773ac954bb0",
 		"en": "Apply when tempted to ask 'should I do X?' on reversible work.",
-		"zh": "在可逆工作上想问 'should I do X?'（要不要做 X？）时适用。"
+		"zh": "可逆工作上想问 'should I do X?' 时适用。"
 	},
 	"principle-outcome-oriented-execution": {
 		"source_sha256": "a315bf51a5471504",
 		"en": "Apply during planned rewrites and migrations with explicit phase boundaries. Converge on the target architecture; don't preserve smooth intermediate states with throwaway compatibility code.",
-		"zh": "在有明确阶段边界的计划性重写与迁移中适用。收敛到目标架构；不要靠一次性兼容代码维持平滑的中间态。"
+		"zh": "做阶段边界明确的重写或迁移时，直接收敛到目标架构，别用一次性兼容代码维持平滑的中间态。"
 	},
 	"principle-prove-it-works": {
 		"source_sha256": "5138fb81dd31bb4f",
 		"en": "Apply after completing a task, before declaring done. Verify against the real artifact (run the feature, read the actual value, inspect the diff), not a proxy, self-report, or 'it compiles.'",
-		"zh": "完成任务后、宣布做完之前适用。对照真实产物验证（跑功能、读实际值、检查 diff），而不是替代物、自报或 'it compiles.'（能编译）。"
+		"zh": "做完后、宣布完成前，对照真实产物（跑功能、读实际值、看 diff），别用替代物、自报或 'it compiles.' 充数。"
 	},
 	"principle-redesign-from-first-principles": {
 		"source_sha256": "2ee0d35302fd8b1c",
 		"en": "Apply when integrating a new requirement into an existing design.",
-		"zh": "把新需求接入现有设计时适用。"
+		"zh": "新需求要接入现有设计时适用。"
 	},
 	"principle-separate-before-serializing-shared-state": {
 		"source_sha256": "4f7db82b7cc3d85b",
 		"en": "Apply when concurrent actors might write to the same file, branch, key, or state object. Eliminate the sharing first; serialize structurally only when one shared writer is a real invariant.",
-		"zh": "当并发参与方可能写入同一文件、分支、键或状态对象时适用。先消除共享；只有当单一共享写入者是真正的不变量时，才在结构上串行化。"
+		"zh": "并发参与方可能写同一文件、分支、键或状态时，先去掉共享；只有单一共享写入者确实是不变量，才从结构上串行化。"
 	},
 	"principle-sequence-verifiable-units": {
 		"source_sha256": "52ef2e8b21041ff8",
 		"en": "Apply to multi-step work (sweeps, migrations, runs of similar edits) and to how you stack commits and PRs. Break work into small units that each end in a verifiable state, check each before the next, and order delivery so the sequence proves itself to a reviewer.",
-		"zh": "适用于多步工作（清扫、迁移、一批相似编辑）以及 commit 和 PR 的堆叠方式。把工作拆成各自以可验证状态结束的小单元，下一步之前先检查当前单元，并按顺序交付，让整串进度对审查者自证。"
+		"zh": "用于多步工作（sweep、迁移、一批同类编辑）以及 commit 和 PR 的堆叠。把工作拆成各自可验证的小单元，检查后再做下一步，并按序交付，让审查者按顺序核对。"
 	},
 	"principle-subtract-before-you-add": {
 		"source_sha256": "753756ce113d0ffd",
 		"en": "Apply when sequencing an addition, refactor, or rewrite. Remove dead code, redundant validators, and stub references first, then build on the simpler base.",
-		"zh": "安排一次新增、重构或重写的顺序时适用。先去掉死代码、多余的校验器和桩引用，再在更简单的基座上构建。"
+		"zh": "新增、重构或重写前，先删死代码、多余校验器和桩引用，再在更简单的基础上做。"
 	},
 	"principle-test-behavior-not-implementation": {
 		"source_sha256": "0c1eab0c502755e4",
 		"en": "Apply when you write, change, or keep a test. Assert what the code's users can observe, so that the test fails when that behavior breaks and keeps passing when only the internals change.",
-		"zh": "编写、修改或保留测试时适用。断言代码的使用者能观察到的东西，这样行为坏了测试会失败，只改内部实现时测试继续通过。"
+		"zh": "编写、修改或保留测试时适用。断言使用者能观察到的行为：行为一坏测试就失败，只改内部则仍然通过。"
 	},
 	"principle-type-system-discipline": {
 		"source_sha256": "1d29d946472ef139",
 		"en": "Apply when designing types, reviewing a function signature, or writing code in any statically-typed language. Make illegal states unrepresentable, brand semantic primitives, parse external data at boundaries, refuse to lie to the compiler, exhaust variants, derive from authoritative schemas.",
-		"zh": "设计类型、审查函数签名，或在任何静态类型语言中写代码时适用。让非法状态无法表示，给语义原语打上品牌类型，在边界解析外部数据，拒绝欺骗编译器，穷尽变体，从权威 schema 派生。"
+		"zh": "设计类型、审函数签名或写静态类型代码时，让非法状态无法表示，给语义原语加品牌，在边界解析外部数据，不欺骗编译器，穷尽变体，从权威 schema 派生。"
 	},
 	"recall": {
 		"source_sha256": "ee2ce4a1289359cb",
 		"en": "Reconstruct your recent working context from your own chat history, live state, and the shared record (user reports, prior fixes, incidents), then hand back a tight current-state brief. Use for 'recall my work on X', 'catch me up', 'what have I been working on', 'where did I leave off', before starting or resuming work.",
-		"zh": "从自己的聊天历史、现场状态与共享记录（用户报告、既往修复、事故）重建近期工作上下文，交回一份紧凑的当前状态简报。用于 'recall my work on X'（回忆我在 X 上的工作）、'catch me up'（给我补进度）、'what have I been working on'（我最近在做什么）、'where did I leave off'（我做到哪了），或在开始或恢复工作前。"
+		"zh": "从你自己的聊天历史、实时状态和共享记录（用户报告、既往修复、事故）重建近期上下文，交回一份紧凑简报。用于 'recall my work on X'、'catch me up'、'what have I been working on'、'where did I leave off'，以及开工或恢复前。"
 	},
 	"reflect": {
 		"source_sha256": "3a49c77517034bb5",
 		"en": "Spawn three parallel review subagents over the active transcript, surface learnings, and route each to a concrete edit on an existing skill. Use when the user says reflect.",
-		"zh": "对当前对话记录并行派出三个评审子代理，找出值得沉淀的经验，并把每条落到对现有 skill 的具体修改上。用户说 reflect 时使用。"
+		"zh": "对当前对话记录并行派三个评审子代理，提炼经验，每条落到现有 skill 的一处修改上。用户说 reflect 时使用。"
 	},
 	"setup-pstack": {
 		"source_sha256": "c580c60c8616a520",
 		"en": "Configure which models pstack uses per role and at what reasoning budget. Detects your available models and writes an always-applied rule that overrides the skill defaults. Use for /setup-pstack, \"configure pstack models\", \"pstack budget\", or changing pstack's model choices.",
-		"zh": "配置 pstack 各角色使用的模型及推理预算。检测可用模型，并写入一条始终生效的规则以覆盖 skill 默认值。用于 /setup-pstack、\"configure pstack models\"（配置 pstack 模型）、\"pstack budget\"（pstack 预算），或更改 pstack 的模型选择时。"
+		"zh": "配置 pstack 各角色的模型和推理预算。检测可用模型，写一条始终生效的 rule，覆盖 skill 默认值。用于 /setup-pstack、\"configure pstack models\"、\"pstack budget\"，或要改 pstack 的模型选择时。"
 	},
 	"sharpen": {
 		"source_sha256": "3af12178d63fabea",
 		"en": "Sharpen a task before starting: the expert approach, what the user is really after, and the right level of specification. Use for /sharpen.",
-		"zh": "开工前先把任务磨利：专家会怎么做、用户真正要什么、规格该写到什么粒度。用于 /sharpen。"
+		"zh": "开工前磨利任务：专家会怎么做、用户真正要什么、规格该多细。用于 /sharpen。"
 	},
 	"show-me-your-work": {
 		"source_sha256": "d353bbd66eb0127e",
 		"en": "Keep a reviewable decision trail for long-running or unattended work: a TSV log with one row per decision (what, why, evidence, result). Local by default; commit it when a reviewer needs the trail to trust the result. Use for /show-me-your-work, autonomous or multi-phase runs, or work a human reviews after stepping away.",
-		"zh": "为长时间或无人值守的工作留下可审查的决策记录：一份 TSV 日志，每行一条决策（做了什么、为什么、证据、结果）。默认只留在本地；审查者需要这份记录才能信任结果时再 commit。用于 /show-me-your-work、自主或多阶段运行，或等人离开后再回来审查的工作。"
+		"zh": "长时间或无人值守的工作，要留下可审查的决策记录：TSV，每行一条（做了什么、为什么、证据、结果）。默认留在本地；审查者靠它才信结果时再 commit。用于 /show-me-your-work、自主或多阶段运行，或人离开后才审的工作。"
 	},
 	"swarm": {
 		"source_sha256": "6c6e0406ed880bc8",
 		"en": "Fan out N parallel workers, drain them, and return one report. Use for /swarm, 'swarm this', or parallel coverage, races, gauntlets, and exploration.",
-		"zh": "扇出 N 个并行 worker，等全部完成后汇总成一份报告。用于 /swarm、'swarm this'（让一群 agent 一起做），或需要并行覆盖、竞速、轮番挑战和探索的场景。"
+		"zh": "扇出 N 个并行 worker，收齐后交一份报告。用于 /swarm、'swarm this'，或并行覆盖、竞速、轮番挑战和探索。"
 	},
 	"tdd": {
 		"source_sha256": "64b0c222a5bda981",
 		"en": "Use only when the user explicitly asks for TDD, a failing test, or a regression test, OR when the bug has an obvious cheap local test target. Skip when the test path is unclear, expensive, integration-heavy, or not requested.",
-		"zh": "仅当用户明确要求 TDD、失败测试或回归测试时使用，或 bug 有明显且廉价的本地测试目标时使用。测试路径不清、昂贵、偏集成或未要求时跳过。"
+		"zh": "仅当用户明确要求 TDD、会失败的测试或回归测试，或 bug 有明显且便宜的本地测试目标时使用。测试路径不清、太贵、偏集成或未要求时跳过。"
 	},
 	"teach": {
 		"source_sha256": "8be0f75107b48a49",
 		"en": "Explain a body of work plainly so a person actually understands it. Runs the `how` and `why` skills and weaves what they find into one clear explanation. Use for 'teach me this', 'help me really understand X', 'explain this change or subsystem to me'.",
-		"zh": "用平实语言解释一段工作，让人真正理解。运行 `how` 和 `why` skill，把它们的发现织成一份清楚的说明。用于 'teach me this'（教我这个）、'help me really understand X'（帮我真正搞懂 X）、'explain this change or subsystem to me'（把这次改动或这个子系统讲给我听）。"
+		"zh": "用白话讲清一段工作，让人真正理解。运行 `how` 和 `why` skill，把发现合成一份说明。用于 'teach me this'、'help me really understand X'、'explain this change or subsystem to me'。"
 	},
 	"technical-writing": {
 		"source_sha256": "45bec9c8b3cd37bc",
 		"en": "Layered technical-writing standard: Diátaxis structure, Google developer style sentences, STE instruction rules, Global English syntax. Use for /technical-writing or when writing or reviewing docs, RFCs, readmes, PR descriptions, or commit messages.",
-		"zh": "分层技术写作标准：Diátaxis 结构、Google 开发者风格句子、STE 指令规则、Global English 句法。用于 /technical-writing，或撰写、审查文档、RFC、readme、PR 描述或 commit message 时。"
+		"zh": "分层技术写作标准：Diátaxis 结构、Google 开发者文风、STE 指令、Global English 句法。用于 /technical-writing，或写、审文档、RFC、readme、PR 描述或 commit message 时。"
 	},
 	"typescript-best-practices": {
 		"source_sha256": "9d42a17f466003f7",
@@ -262,11 +262,11 @@
 	"unslop": {
 		"source_sha256": "32a8cbdc8b7aafd9",
 		"en": "Cut AI tells from any writing.",
-		"zh": "从任意写作中剔除 AI 痕迹。"
+		"zh": "去掉任何文字里的 AI 腔。"
 	},
 	"why": {
 		"source_sha256": "b2c51fcaf9df4210",
 		"en": "Use for 'why does X work this way', 'why we picked Y', design rationale, regressions, postmortems, or data-backed thresholds. Discovers available MCPs and queries each evidence category (source control, issue tracker, long-form docs, real-time chat, infrastructure observability, error tracking, product analytics warehouse) in parallel, then returns a cited read on decisions and tradeoffs. Use how for runtime behavior.",
-		"zh": "用于 'why does X work this way'（为什么 X 是这样实现的）、'why we picked Y'（为什么选了 Y）、设计理由、回归、事后复盘，或有数据支撑的阈值。发现可用的 MCP，并行查询各类证据（源码控制、工单跟踪、长文文档、实时聊天、基础设施可观测性、错误跟踪、产品分析数仓），然后返回带引用的决策与权衡解读。运行时行为请用 how。"
+		"zh": "用于 'why does X work this way'、'why we picked Y'、设计理由、回归、复盘，或有数据的阈值。发现可用 MCP，并行查询每类证据（源码管理、工单、长文档、实时聊天、基建可观测性、错误跟踪、产品分析数仓），交回带引用的决策与权衡。运行时行为用 how。"
 	}
 }

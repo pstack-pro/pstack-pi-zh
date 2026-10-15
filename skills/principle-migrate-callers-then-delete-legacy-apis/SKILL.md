@@ -1,6 +1,6 @@
 ---
 name: principle-migrate-callers-then-delete-legacy-apis
-description: "引入新内部 API 而旧调用方仍在时适用。在同一波里迁移调用方并删除旧 API，而不是保留兼容层。"
+description: "新内部 API 还有旧调用方时，同一波迁走调用方并删掉旧 API，不留兼容层。"
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: technical-writing
-description: "分层技术写作标准：Diátaxis 结构、Google 开发者风格句子、STE 指令规则、Global English 句法。用于 /skill:technical-writing，或撰写、审查文档、RFC、readme、PR 描述或 commit message 时。"
+description: "分层技术写作标准：Diátaxis 结构、Google 开发者文风、STE 指令、Global English 句法。用于 /skill:technical-writing，或写、审文档、RFC、readme、PR 描述或 commit message 时。"
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: principle-separate-before-serializing-shared-state
-description: "当并发参与方可能写入同一文件、分支、键或状态对象时适用。先消除共享；只有当单一共享写入者是真正的不变量时，才在结构上串行化。"
+description: "并发参与方可能写同一文件、分支、键或状态时，先去掉共享；只有单一共享写入者确实是不变量，才从结构上串行化。"
 disable-model-invocation: true
 ---
 

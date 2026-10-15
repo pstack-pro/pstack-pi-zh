@@ -1,6 +1,6 @@
 ---
 name: principle-outcome-oriented-execution
-description: "在有明确阶段边界的计划性重写与迁移中适用。收敛到目标架构；不要靠一次性兼容代码维持平滑的中间态。"
+description: "做阶段边界明确的重写或迁移时，直接收敛到目标架构，别用一次性兼容代码维持平滑的中间态。"
 disable-model-invocation: true
 ---
 

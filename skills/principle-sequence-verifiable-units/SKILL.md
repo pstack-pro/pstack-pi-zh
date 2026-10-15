@@ -1,6 +1,6 @@
 ---
 name: principle-sequence-verifiable-units
-description: "适用于多步工作（清扫、迁移、一批相似编辑）以及 commit 和 PR 的堆叠方式。把工作拆成各自以可验证状态结束的小单元，下一步之前先检查当前单元，并按顺序交付，让整串进度对审查者自证。"
+description: "用于多步工作（sweep、迁移、一批同类编辑）以及 commit 和 PR 的堆叠。把工作拆成各自可验证的小单元，检查后再做下一步，并按序交付，让审查者按顺序核对。"
 disable-model-invocation: true
 ---
 

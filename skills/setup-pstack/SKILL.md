@@ -1,6 +1,6 @@
 ---
 name: setup-pstack
-description: "为当前项目单独配置 pstack 各角色使用的模型和推理预算。检测 pi 可用的模型及价格，给出兼顾成本的预设，并写入 .pi/pstack-models.md，由 pstack 扩展注入到每条提示词中。用于 /skill:setup-pstack、\"configure pstack models\"（配置 pstack 模型）、\"pstack budget\"（pstack 预算），或调整 pstack 的模型选择时。"
+description: "只为当前项目配置 pstack 各角色的模型和推理预算。检测 pi 能跑的模型及价格，给出兼顾成本的预设，写入 .pi/pstack-models.md，由 pstack 扩展注入每条提示词。用于 /skill:setup-pstack、\"configure pstack models\"、\"pstack budget\"，或要改 pstack 的模型选择时。"
 ---
 
 # Setup pstack (pi)

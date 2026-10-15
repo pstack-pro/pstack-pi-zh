@@ -1,6 +1,6 @@
 ---
 name: poteto-help
-description: "引导用户完成 pstack 设置、使用 /skill:poteto-mode，以及为一项任务挑选 skill、playbook 或原则。输入 /skill:poteto-help，后面跟上问题。"
+description: "引导用户完成 pstack 设置、使用 /skill:poteto-mode，并按任务挑选 skill、playbook 或原则。输入 /skill:poteto-help，后面跟上问题。"
 disable-model-invocation: true
 ---
 

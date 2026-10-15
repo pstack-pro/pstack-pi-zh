@@ -1,6 +1,6 @@
 ---
 name: make-bot-ui
-description: "搭建需要通过 webhook 唤醒 Grok Bot 的自定义 UI（页面、仪表盘、按钮）时使用；也适用于需要用户提供 webhook 发送方密钥，或要把这个 UI 暴露到 Tailscale 上的情况。"
+description: "搭建要通过 webhook 唤醒 Grok Bot 的自定义 UI（页面、仪表盘、按钮），需要用户提供 webhook sender key，或要把该 UI 暴露到 Tailscale 时使用。"
 disable-model-invocation: true
 ---
 # How to make a bot UI

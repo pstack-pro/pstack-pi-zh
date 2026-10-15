@@ -1,6 +1,6 @@
 ---
 name: arena
-description: "让 N 个候选并行做同一任务，选一个作为基础，再把落选方案里最好的部分嫁接进来。用于 /skill:arena、'arena this'（放进竞技场）、'throw it in the arena'（丢进竞技场比一比），或产物不简单、只做一版容易定错结构时。"
+description: "派出 N 个候选并行做同一任务，选好基础，把落选方案的最强部分嫁接进去。用于 /skill:arena、'arena this'、'throw it in the arena'，或不简单的产物只做一版就会定错结构时。"
 disable-model-invocation: true
 ---
 

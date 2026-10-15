@@ -1,6 +1,6 @@
 ---
 name: poteto-mode
-description: "poteto 的代理工作风格：回复简洁又不漏细节，子代理用得有分寸，文字去掉 slop，代码简单，工作经过验证。用于 poteto、/skill:poteto-mode，或要求按这种风格工作的请求。"
+description: "poteto 的代理风格：回复简洁又详细，子代理用得克制，文字无 slop，代码简单，工作要验证。用于 poteto、/skill:poteto-mode，或要求这种风格时。"
 disable-model-invocation: true
 icon: crown
 color: yellow

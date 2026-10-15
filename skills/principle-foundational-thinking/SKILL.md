@@ -1,6 +1,6 @@
 ---
 name: principle-foundational-thinking
-description: "写逻辑前适用：选定核心类型与数据结构、安排先做脚手架还是先做功能、问清并发参与方共享什么。先把数据结构做对，下游代码自然清楚。"
+description: "写逻辑前先定核心类型和数据结构，排好脚手架与功能的先后，问清并发各方共享什么。数据结构对了，下游代码才清楚。"
 disable-model-invocation: true
 ---
 

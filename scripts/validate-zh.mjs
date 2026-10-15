@@ -6,7 +6,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { fileURLToPath } from "node:url";
-import { SEPARATOR, diffTokens, loadDescriptions, protectedTokens, readDescription, sha256 } from "./zh-lib.mjs";
+import { diffTokens, loadDescriptions, protectedTokens, readDescription, sha256 } from "./zh-lib.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const allowStale = process.argv.includes("--allow-stale");
@@ -38,18 +38,16 @@ for (const name of fs.readdirSync(skillsDir)) {
 	if (!fm[1].split("\n").includes(`name: ${name}`)) errors.push(`${name}: name must equal directory`);
 	const d = readDescription(text)?.value ?? "";
 	if (d.length > 1024) errors.push(`${name}: description ${d.length} chars > 1024`);
-	if (d.includes(SEPARATOR)) errors.push(`${name}: description still has full "| EN:" bilingual tail (want lean zh)`);
-	const zh = d.includes(SEPARATOR) ? d.slice(0, d.indexOf(SEPARATOR)) : d;
-	const entry = db[name];
-	if (entry?.zh) {
-		const expect = entry.zh; // prefix rewrite may differ; compare protected tokens against en source
-		for (const x of diffTokens(protectedTokens(norm(entry.en), names), protectedTokens(norm(zh), names))) errors.push(`skills/${name}: shipped token mismatch ${x}`);
-	}
-	if (!CJK.test(zh)) errors.push(`${name}: shipped description has no Chinese`);
+	if (d.includes("| EN:") || !CJK.test(d)) errors.push(`skills/${name}: description must be Chinese only`);
+	const e = db[name];
+	if (!e) { errors.push(`skills/${name}: no translation entry`); continue; }
+	// Shipped text = the translation with only the command prefix / platform tool names rewritten.
+	if (norm(d) !== norm(e.zh)) errors.push(`skills/${name}: shipped description differs from i18n entry`);
+	for (const x of diffTokens(protectedTokens(norm(e.en), names), protectedTokens(norm(d), names))) errors.push(`skills/${name}: shipped token mismatch vs English ${x}`);
+	for (const q of quoted(e.en)) if (!d.includes(q)) errors.push(`skills/${name}: trigger phrase missing: ${q}`);
 	const prefixes = new Set([...d.matchAll(/\/(pstack|skill):/g)].map((m) => m[1]));
 	if (prefixes.size > 1) errors.push(`skills/${name}: mixed command prefixes`);
-	if (/(?<![\w./:-])\/[a-z][\w-]*(?![\w/-])/.test(zh.replace(/\/(?:pstack|skill):/g, "")) && [...zh.matchAll(/(?<![\w./:-])\/([a-z][\w-]*)/g)].some((m) => names.includes(m[1])))
-		errors.push(`skills/${name}: unprefixed slash command in zh`);
+	if ([...d.matchAll(/(?<![\w./:-])\/([a-z][\w-]*)(?![\w/-])/g)].some((m) => names.includes(m[1]))) errors.push(`skills/${name}: unprefixed slash command`);
 }
 
 // 3. Full-file translations (none yet in this preview).

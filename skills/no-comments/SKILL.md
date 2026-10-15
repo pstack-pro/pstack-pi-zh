@@ -1,6 +1,6 @@
 ---
 name: no-comments
-description: "派出 Comment Sicko 审查注释，修复采纳的问题，并为注释中声称的约束提出用代码落实的办法。"
+description: "派出 Comment Sicko，修掉采纳的问题，并提出把注释里声称的约束落实到代码的办法。"
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: maintain-verification-skill
-description: "定期巡检，让项目的验证 skill 和功能清单（feature map）与实际相符：每个功能并行派一个源码阅读者，在一次真实运行的会话里把所有功能都操作一遍，最多提一个只含已验证修正的 PR。用于 /skill:maintain-verification-skill 或 \"audit the verify skill\"（审计验证 skill）。"
+description: "定期巡检，让验证 skill 和功能清单（feature map）如实：每个功能并行派一个子代理读源码，一次真实会话跑遍所有功能，最多提一个只含已验证修正的 PR。用于 /skill:maintain-verification-skill 或 \"audit the verify skill\"。"
 disable-model-invocation: true
 ---
 

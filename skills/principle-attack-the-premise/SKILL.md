@@ -1,6 +1,6 @@
 ---
 name: principle-attack-the-premise
-description: "当两个或多个共享同一前提的修复在同一关卡失败时适用。先把前提写下来并直接验证，再写下一个假设该前提成立的修复。"
+description: "两个或多个修复共享一个前提，又在同一关卡失败时，先写下前提并验证，再写依赖它的修复。"
 disable-model-invocation: true
 ---
 

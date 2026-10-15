@@ -1,6 +1,6 @@
 ---
 name: show-me-your-work
-description: "为长时间或无人值守的工作留下可审查的决策记录：一份 TSV 日志，每行一条决策（做了什么、为什么、证据、结果）。默认只留在本地；审查者需要这份记录才能信任结果时再 commit。用于 /skill:show-me-your-work、自主或多阶段运行，或等人离开后再回来审查的工作。"
+description: "长时间或无人值守的工作，要留下可审查的决策记录：TSV，每行一条（做了什么、为什么、证据、结果）。默认留在本地；审查者靠它才信结果时再 commit。用于 /skill:show-me-your-work、自主或多阶段运行，或人离开后才审的工作。"
 disable-model-invocation: true
 ---
 

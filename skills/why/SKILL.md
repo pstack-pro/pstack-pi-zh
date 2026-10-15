@@ -1,6 +1,6 @@
 ---
 name: why
-description: "用于 'why does X work this way'（为什么 X 是这样实现的）、'why we picked Y'（为什么选了 Y）、设计理由、回归、事后复盘，或有数据支撑的阈值。发现可用的 MCP，并行查询各类证据（源码控制、工单跟踪、长文文档、实时聊天、基础设施可观测性、错误跟踪、产品分析数仓），然后返回带引用的决策与权衡解读。运行时行为请用 how。"
+description: "用于 'why does X work this way'、'why we picked Y'、设计理由、回归、复盘，或有数据的阈值。发现可用 MCP，并行查询每类证据（源码管理、工单、长文档、实时聊天、基建可观测性、错误跟踪、产品分析数仓），交回带引用的决策与权衡。运行时行为用 how。"
 disable-model-invocation: true
 ---
 

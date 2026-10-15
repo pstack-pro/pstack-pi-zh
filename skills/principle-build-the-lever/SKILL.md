@@ -1,6 +1,6 @@
 ---
 name: principle-build-the-lever
-description: "适用于任何非琐碎工作，不限于批量任务：编辑、迁移、分析、检查。构建能完成或证明它的工具（codemod、脚本、生成器，或子代理遵循的 skill），而不是手工做。该工具是审查者可以重跑的产物。"
+description: "不简单的工作都适用，不限批量：编辑、迁移、分析、检查。做能完成或证明它的工具（codemod、脚本、生成器，或子代理遵循的 skill），别手工做。工具本身就是审查者可重跑的产物。"
 disable-model-invocation: true
 ---
 # Build the Lever

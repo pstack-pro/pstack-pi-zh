@@ -1,6 +1,6 @@
 ---
 name: principle-type-system-discipline
-description: "设计类型、审查函数签名，或在任何静态类型语言中写代码时适用。让非法状态无法表示，给语义原语打上品牌类型，在边界解析外部数据，拒绝欺骗编译器，穷尽变体，从权威 schema 派生。"
+description: "设计类型、审函数签名或写静态类型代码时，让非法状态无法表示，给语义原语加品牌，在边界解析外部数据，不欺骗编译器，穷尽变体，从权威 schema 派生。"
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: principle-make-operations-idempotent
-description: "设计会在崩溃、重启和重试中运行的命令、生命周期步骤或处理循环时适用。无论先前是否跑过一部分，都收敛到同一终态。"
+description: "命令、生命周期或处理循环会遇上崩溃、重启和重试时，跑到一半也要收敛到同一终态。"
 disable-model-invocation: true
 ---
 

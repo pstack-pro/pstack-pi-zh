@@ -1,0 +1,1136 @@
+[
+  {
+    "id": "architect-zh1",
+    "skill": "architect",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "发票导出要横跨 packages/billing 和 apps/web，我怕一上来就写 charge.ts，形状就定死了。你先把类型、函数签名、模块怎么切画出来，再按这个草图把实现填上。填的时候草图要是顶不住，就停下来告诉我，别闷头改。"
+  },
+  {
+    "id": "architect-zh2",
+    "skill": "architect",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/architect 优惠券叠加。先出类型和模块草图，再按草图把 packages/coupons 的实现补上。我要看着你填，别直接甩一版成品。"
+  },
+  {
+    "id": "architect-en1",
+    "skill": "architect",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "The webhook retry worker crosses packages/webhooks and apps/worker. Sketch the types, function signatures, and module split before writing any bodies, then implement against that sketch. Stop if the code starts fighting the sketch."
+  },
+  {
+    "id": "arena-zh1",
+    "skill": "arena",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "结账空状态别只写一稿。packages/ui/EmptyCheckout.tsx 你并行出几份完整实现，挑一版当底，再把其他几版里真正好用的部分嫁进去，合成一版能交的。"
+  },
+  {
+    "id": "arena-zh2",
+    "skill": "arena",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "把 CSV 导入扔进 arena。同一份任务各写一版 packages/import/csv.ts，选一个底座，再把输家身上值得留的补进去。"
+  },
+  {
+    "id": "arena-en1",
+    "skill": "arena",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Don't keep the first draft of the CSV importer. Run several complete attempts at packages/import/csv.ts in parallel on the same brief, pick one as the base, and graft the strongest pieces from the others into it."
+  },
+  {
+    "id": "automate-me-zh1",
+    "skill": "automate-me",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "我跟代理磨了好几周，老在重复同一套：提交说明用中文、能删代码就别加封装、页面改完得自己在浏览器里点通。你翻我最近的会话，写成一份以后新开会话都会照着执行的技能，按我的习惯来。只出现过一次的别写进去。"
+  },
+  {
+    "id": "automate-me-zh2",
+    "skill": "automate-me",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/automate-me 我叫林舟。看看最近的聊天，把我的习惯收成 linzhou-mode。已经有的话就更新，别另起一份。"
+  },
+  {
+    "id": "automate-me-en1",
+    "skill": "automate-me",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Go through my recent agent chats and write a personal skill that future agents can follow when they should work the way I do. Keep only habits that show up more than once: Chinese commit subjects, no new wrapper layers, and click through the page before calling a UI change done."
+  },
+  {
+    "id": "benchmark-checklist-zh1",
+    "skill": "benchmark-checklist",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "我想用 bench/export.ts 决定换不换序列化库，数据是 6 万行。这是选型，不是估个大概。跑之前先把性能测试该核对的过一遍：机器忙不忙、两边是不是都按生产配置、有没有报错、计时区间里那些行是不是真写出去了、两边交替多跑几次再看中位数和波动。别直接甩一个百分比。"
+  },
+  {
+    "id": "benchmark-checklist-zh2",
+    "skill": "benchmark-checklist",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/benchmark-checklist 我准备在 PR 里写导出 p50 快了 30%。先按清单核 bench/export.ts，核完之前别让我引用这个数。"
+  },
+  {
+    "id": "benchmark-checklist-en1",
+    "skill": "benchmark-checklist",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "I'm about to measure bench/query.bench.ts to choose between two tokenizers, and I want a p50 I can put in the PR. Vet the run before I trust it: is the box busy, are both sides tuned the way production runs, did anything error, did the queries actually execute inside the timer, and is the gap bigger than the spread across alternating repeats?"
+  },
+  {
+    "id": "blast-radius-zh1",
+    "skill": "blast-radius",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "api/orders.ts 里我只把 status 从字符串改成了枚举，diff 很小，但我不敢合。帮我看看仓库别处会不会坏，比如对账 worker、admin 导出、还在发旧字符串的手机客户端。别只把调用方列出来。找出它能安全合入是因为哪一件事实，并且真跑代码把这件事证明掉。"
+  },
+  {
+    "id": "blast-radius-zh2",
+    "skill": "blast-radius",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "帮我看 blast radius of packages/webhooks/verify.ts 这一小改：签名从 hex 换成 base64。别光盯着 diff。"
+  },
+  {
+    "id": "blast-radius-en1",
+    "skill": "blast-radius",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "The cookie rename in src/auth/session.ts is three lines and I don't trust it. Look past the diff for fallout in the mobile client and the admin session parser. Don't stop at a caller list. Name the one fact that makes it safe, and prove that fact by running the real code."
+  },
+  {
+    "id": "bro-zh1",
+    "skill": "bro",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "你上一条我没看懂，全是可见性超时、租约令牌、偏移量提交。就把你刚才那段用正常人说话的方式重讲一遍，短一点。别再出新方案。"
+  },
+  {
+    "id": "bro-zh2",
+    "skill": "bro",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/bro 刚才那段 outbox 和 dispatcher 的，说人话，别加新内容。"
+  },
+  {
+    "id": "bro-en1",
+    "skill": "bro",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Your last message lost me. It was all lease tokens and visibility timeouts. Say that same message again in plain language, shorter, like you're talking to a person. Don't add a new design."
+  },
+  {
+    "id": "correct-zh1",
+    "skill": "correct",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "这个仓库里代理已经第三次在新路由里自己写重试，也不用 lib/http/retry.ts。你翻最近的提交、被打回的 PR 和 review 评论，把这类反复犯的错变成做不到的事。能用结构挡住就先别写文档，并且拿过去某次真实的错误提交证明新检查会失败。"
+  },
+  {
+    "id": "correct-zh2",
+    "skill": "correct",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/correct 代理老抄 apps/api/legacy/cors.ts 手写 CORS。让下一只代理在这个仓库里做不到这件事。"
+  },
+  {
+    "id": "correct-en1",
+    "skill": "correct",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Agents here keep parsing dates as raw strings in apps/web instead of using packages/time/Instant.ts. I have flagged it in three reviews. Change the repo so the next agent cannot repeat that. Prefer a structural fix over a new paragraph in AGENTS.md, and prove the new check fails on one of those old patches."
+  },
+  {
+    "id": "create-verification-skill-zh1",
+    "skill": "create-verification-skill",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "咱们仓库现在没有任何东西能像用户那样把产品走一遍。网页在 apps/shop，命令行是 packages/cli 里的 acme orders export。写一份放在项目里的技能，讲清怎么启动、下单和导出这两条真实路径怎么驱动。以后改完靠它证明行为，不是只靠单测。"
+  },
+  {
+    "id": "create-verification-skill-zh2",
+    "skill": "create-verification-skill",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/create-verification-skill 现在没有现成的。apps/shop 是网页，packages/cli 是命令行，按用户真实会点的路径写进仓库。"
+  },
+  {
+    "id": "create-verification-skill-en1",
+    "skill": "create-verification-skill",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Nothing in this repo can drive the product the way a user does. Add a project-local skill that launches apps/shop and packages/cli and walks the real flows, including placing an order and exporting it, so a later change can be shown on those flows."
+  },
+  {
+    "id": "figure-it-out-zh1",
+    "skill": "figure-it-out",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "会话存储要从 Redis 迁到 Postgres，API、worker、回填脚本都沾上，仓库里没有能套上的现成步骤。我今晚不在，明天回来审。你先把做法设计出来：怎样算做完得能被打脸，风险大的未知先做，每小步写成一个假设，对照真实结果决定留还是回退。先别改迁移代码。"
+  },
+  {
+    "id": "figure-it-out-zh2",
+    "skill": "figure-it-out",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/figure-it-out 通知要从自研队列迁到 SQS，跨五个服务。没有更窄的流程能套，我会隔几小时回来看。"
+  },
+  {
+    "id": "figure-it-out-en1",
+    "skill": "figure-it-out",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Splitting billing out of the monolith touches the API, a worker, and a backfill, and none of the existing procedures fit. I'll be away and review it when I'm back. Design the workflow before any code: a done check that can fail, the risky unknowns first, and each step kept or reverted from what the real system shows."
+  },
+  {
+    "id": "how-zh1",
+    "skill": "how",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "我正要改退款，先别动代码，也先别考古当初为啥这么写。把退款请求从 apps/api 进到 packages/billing/refund.ts 再进账本，运行时怎么走、状态放哪讲清楚。另外部分退款的舍入，应该落在 billing 这边还是 ledger 那边，我想先有个能改代码的心智模型。"
+  },
+  {
+    "id": "how-zh2",
+    "skill": "how",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/how 结账折扣是怎么算到报价上的，从 apps/web/checkout 到 packages/pricing/quote.ts。我要改代码前的心智模型，不要决策考古。"
+  },
+  {
+    "id": "how-en1",
+    "skill": "how",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Before I touch invoice numbering, walk me through the runtime path from apps/api/invoices/create.ts into packages/ledger: where the sequence lives, and whether a new prefix rule belongs next to the handler or next to the ledger. I want a mental model I can edit against. Save the design history for another pass."
+  },
+  {
+    "id": "in-your-own-words-zh1",
+    "skill": "in-your-own-words",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "先别改。我刚才把访客购物车、刷新后赠品消失、cookie、本地库存缓存扯在一起了。你说一下你觉得我到底想达成什么，要解决的问题是什么。对上之前先别动 packages/cart。"
+  },
+  {
+    "id": "in-your-own-words-zh2",
+    "skill": "in-your-own-words",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/in-your-own-words 先说你理解的目标和问题。我还没让你修，只是在讲刷新后赠品没了。"
+  },
+  {
+    "id": "in-your-own-words-en1",
+    "skill": "in-your-own-words",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Don't edit yet. I rambled about guest carts losing the gift line after refresh, and I mentioned both the cookie and the local stock cache. Tell me what you think I am trying to achieve and what problem that actually is."
+  },
+  {
+    "id": "interrogate-zh1",
+    "skill": "interrogate",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "PR 884 把支付回调改成了并行落库，我自己看 diff 容易自嗨。找几个不同的模型，各自从独立的角度来挑 packages/payments/callback.ts 这段的毛病，专门找我没想到的坑。我要看他们互相不同意的地方，不要一份和稀泥的总结。"
+  },
+  {
+    "id": "interrogate-zh2",
+    "skill": "interrogate",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "对 packages/payments/settle.ts 做一轮 adversarial review，几个模型从不同角度把这次改动挑战一遍。"
+  },
+  {
+    "id": "interrogate-en1",
+    "skill": "interrogate",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "I just rewrote settlement batching in packages/payments/settle.ts. Have several different models review that diff from separate angles and try to poke holes in it. Bring me the disagreements, not one blended summary."
+  },
+  {
+    "id": "ketchup-zh1",
+    "skill": "ketchup",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "我离开这个聊天两小时了，中间你和子任务跑了不少。只用几句人话告诉我，从我上一条消息之后，这里发生了什么。需要我拍板的，每件给刚好够做决定的上下文。屏幕有变化就配个小图。别去翻我别的会话。"
+  },
+  {
+    "id": "ketchup-zh2",
+    "skill": "ketchup",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/ketchup 我上一条是让你修购物车赠品。之后的事短说，等我决定的单独拎出来。"
+  },
+  {
+    "id": "ketchup-en1",
+    "skill": "ketchup",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "I stepped away from this chat. In a few plain sentences, tell me only what changed here after my last message. For anything that needs my decision, give me just enough context to choose. If a screen changed, include a small picture. Leave my other chats out of it."
+  },
+  {
+    "id": "maintain-verification-skill-zh1",
+    "skill": "maintain-verification-skill",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": ".cursor/skills/verify-shop 跟现在的应用对不上了。功能地图还写着旧的优惠码入口，步骤要点一个已经删掉的按钮，搜索也没写进去。请按功能去读源码，再用一次真实会话把地图上的功能都点一遍。能证明的修正收进一个 PR，别顺手把整份技能重写掉。"
+  },
+  {
+    "id": "maintain-verification-skill-zh2",
+    "skill": "maintain-verification-skill",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/maintain-verification-skill 对一下 verify-shop。地图和真页面已经漂了，最多开一个 PR。"
+  },
+  {
+    "id": "maintain-verification-skill-en1",
+    "skill": "maintain-verification-skill",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "The existing project skill .cursor/skills/verify-shop no longer matches the app. Its feature map still lists the old coupon entry, and the steps click a button we deleted. Read the source per feature, drive every feature once in a live session, and open at most one PR with the corrections you can actually prove."
+  },
+  {
+    "id": "make-bot-ui-zh1",
+    "skill": "make-bot-ui",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "做个内部小页面，两个按钮：重跑昨夜对账、查看失败的发票任务。这台机器上的服务收到点击后，往 Grok Bot 的 webhook 发 JSON 把机器人叫醒。发送方密钥只能待在服务端，用密钥卡片问我要，别让我贴在聊天里。页面用 Tailscale 给同事开，别再申请一个新主机名。"
+  },
+  {
+    "id": "make-bot-ui-zh2",
+    "skill": "make-bot-ui",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "运营想点一下『重放 webhook 4321』就唤醒我们的 Grok Bot 去跑重放。浏览器里不能出现 sender key。地址用自动化面板上那条，别猜 id。POST 失败就把同样的 JSON 记到本地，让例程来抽，不要改成轮询。"
+  },
+  {
+    "id": "make-bot-ui-en1",
+    "skill": "make-bot-ui",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Build a page whose buttons wake our Grok Bot by posting JSON to its webhook. One button sends the action rerun-reconcile for yesterday. Keep the sender key on the server, ask me for it with a secret card rather than in chat, and put the page on Tailscale without creating a second hostname."
+  },
+  {
+    "id": "no-comments-zh1",
+    "skill": "no-comments",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "评审前先清这次 diff 里的注释。packages/billing 那些把下一行又说一遍的删掉。有注释声称『这里不能并发』，就改成类型或检查真能卡住的写法，别留一句『别删』。@ts-expect-error 如果只是压错误、没有我们改不了的外部原因，也去掉。别改业务行为。"
+  },
+  {
+    "id": "no-comments-zh2",
+    "skill": "no-comments",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/no-comments 分支上新加的注释过一遍。该删的删，声称约束的改成能执行的检查。"
+  },
+  {
+    "id": "no-comments-en1",
+    "skill": "no-comments",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Before review, go through the new comments on this branch. services/sync/pull.ts restates the next line in a comment, and two ts-expect-error suppressions have no external constraint behind them. Remove the ones that should not stay. Where a comment only claims a rule, turn that rule into something the toolchain can enforce. Don't change behavior."
+  },
+  {
+    "id": "poteto-help-zh1",
+    "skill": "poteto-help",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "先别开工。我还没配过 pstack 的模型规则。现在只想知道：一个很小的 diff，我不放心它会不会弄坏别处，该用哪个技能或原则，我该把哪句提示贴给代理。告诉我答案出自哪份说明就行。"
+  },
+  {
+    "id": "poteto-help-zh2",
+    "skill": "poteto-help",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/poteto-help 我想挂机跑一个大迁移，该选哪个 playbook，提示怎么写？不要现在就开始做。"
+  },
+  {
+    "id": "poteto-help-en1",
+    "skill": "poteto-help",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Don't start the work. Which pstack skill should I use when I want several models to try to break a diff, and what should I paste? Point me at the doc the answer comes from."
+  },
+  {
+    "id": "poteto-mode-zh1",
+    "skill": "poteto-mode",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "修 apps/web 订单列表的 bug：时区偏移是负数时，『昨天』筛出来是空的，逻辑在 packages/orders/range.ts。这次按完整的严谨流程来。对上该用的步骤清单，跳过的步骤写上原因，每个关键决定标出它依据的原则。句子短但别省细节，代码保持小，最后在真实列表页上验证。"
+  },
+  {
+    "id": "poteto-mode-zh2",
+    "skill": "poteto-mode",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/poteto-mode 修 packages/orders/range.ts：负时区下『昨天』筛成空列表。走对应流程，做完要验证。"
+  },
+  {
+    "id": "poteto-mode-en1",
+    "skill": "poteto-mode",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Fix the empty 'yesterday' filter in packages/orders/range.ts when the UTC offset is negative. Run it as a full rigorous pass: open the matching step list, keep any skipped step visible with a reason, name the principle behind each decision, keep the code small, and verify on the real orders page."
+  },
+  {
+    "id": "principle-attack-the-premise-zh1",
+    "skill": "principle-attack-the-premise",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "packages/billing/tax.test.ts 上我已经交了两版修复，都挂了。一版改四舍五入，一版改税率表的加载时机，两版都默认失败是因为『税额在读表之前就算完了』。先把这个前提写成一句话，直接拿运行证据检验。检验完之前，别写第三版还抱着同一个假设的补丁。"
+  },
+  {
+    "id": "principle-attack-the-premise-zh2",
+    "skill": "principle-attack-the-premise",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "services/notifications/dispatch.ts 两份补丁都没通过『只发一封邮件』那个门禁。它们共用一个想法：重复是用户双击发送造成的。先别再修。把这个想法写下来单独验证。要是证据对不上，就去找这两次失败真正的共同点。"
+  },
+  {
+    "id": "principle-attack-the-premise-en1",
+    "skill": "principle-attack-the-premise",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Two patches to services/notifications/dispatch.ts failed the same contract test, the one that expects exactly one welcome email. Both assumed the extra send comes from a double click in apps/web/signup. Write that assumption down and test it directly before you draft a third fix that still assumes it."
+  },
+  {
+    "id": "principle-boundary-discipline-zh1",
+    "skill": "principle-boundary-discipline",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "订单金额算着算着不纯了。apps/api/orders/route.ts 已经验过 body，packages/orders/create.ts 里又把每个字段 if 一遍，中间还直接打税控的 HTTP。把校验和外部调用收到边上，进来以后信任内部类型，金额计算留成纯函数。"
+  },
+  {
+    "id": "principle-boundary-discipline-zh2",
+    "skill": "principle-boundary-discipline",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "配置文件一读进来就是裸字符串，packages/importer/run.ts 深处还在反复判断端口像不像数字、URL 像不像样。这些检查应该在读配置和命令行参数的地方做完。里面的导入逻辑别再碰请求对象。"
+  },
+  {
+    "id": "principle-boundary-discipline-en1",
+    "skill": "principle-boundary-discipline",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "packages/pricing/quote.ts both re-checks fields the route already validated and calls the tax HTTP API from the middle of the math. Put the guards on the route and the tax client, trust the internal types after that, and keep the price calculation a pure function."
+  },
+  {
+    "id": "principle-build-the-lever-zh1",
+    "skill": "principle-build-the-lever",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "大概 40 个路由还在用 req.query.userId，要改成从会话里取。手改我会漏。你先手改一个摸清配方，然后写一个能再跑一遍的脚本去做剩下的。评审靠重跑这个脚本来查，不是肉眼对 diff。"
+  },
+  {
+    "id": "principle-build-the-lever-zh2",
+    "skill": "principle-build-the-lever",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "六个服务要加几乎一样的健康检查路由。别一个个手写文件。做一个生成器吐出这六个文件，再跑一次要得到同样的结果。脚本留在改动里。"
+  },
+  {
+    "id": "principle-build-the-lever-en1",
+    "skill": "principle-build-the-lever",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Renaming the flag newCheckout to checkoutV2 hits about sixty call sites. Don't edit them by hand. Build the smallest script that does the rename, show that it matches one file you edited manually, and leave that script in the change so a reviewer can rerun it."
+  },
+  {
+    "id": "principle-encode-lessons-in-structure-zh1",
+    "skill": "principle-encode-lessons-in-structure",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "AGENTS.md 里已经写了『不要在 apps/web 里直接 import 服务端 db 客户端』。我刚才又想在 packages/ui 的说明里再贴一遍同样的话。别加第二段文字。做成 lint 或检查，报错里写明该用哪个客户端。"
+  },
+  {
+    "id": "principle-encode-lessons-in-structure-zh2",
+    "skill": "principle-encode-lessons-in-structure",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "你刚在 packages/ui/README 里又写了一段『web 不能直接引 db 客户端』，AGENTS.md 里已经有同样一句。把第二段删掉，改成一条检查，失败时告诉人该引哪个模块。不要再补说明文字。"
+  },
+  {
+    "id": "principle-encode-lessons-in-structure-en1",
+    "skill": "principle-encode-lessons-in-structure",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "I am about to paste the same warning into a second doc: never read Invoice.status outside packages/billing/invoice.ts. REVIEW.md already says it. Don't add another paragraph. Encode it as a lint or a check whose failure names the function to call instead."
+  },
+  {
+    "id": "principle-exhaust-the-design-space-zh1",
+    "skill": "principle-exhaust-the-design-space",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "时间线要支持按住一条消息拖到另一天。仓库里没有任何类似交互可以照着做。先在 apps/web/timeline 旁边做两三个能点的原型，并排放着比手感。选定之前别写进正式组件。"
+  },
+  {
+    "id": "principle-exhaust-the-design-space-zh2",
+    "skill": "principle-exhaust-the-design-space",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "权限要做成『挂在资源上的策略』还是『挂在角色上的位』，现有代码两种都没有，没先例可抄。先做两到三个能跑的原型对照，别直接在 packages/auth 里押一个方案。"
+  },
+  {
+    "id": "principle-exhaust-the-design-space-en1",
+    "skill": "principle-exhaust-the-design-space",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Nothing in the product lets someone pin two logs and scrub them together, and there is no interaction here to copy. Build two or three competing prototypes and compare them side by side before committing to a shape under apps/web/logs."
+  },
+  {
+    "id": "principle-experience-first-zh1",
+    "skill": "principle-experience-first",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "设置页这一期，产品想同时上通知细项、主题、发票、快捷键，四个都是半成品。堆进一个表单最好写，但用户会懵。按用起来爽来砍：只把通知偏好做到能一眼看懂，另外三个本期不要。"
+  },
+  {
+    "id": "principle-experience-first-zh2",
+    "skill": "principle-experience-first",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "批量改负责人写个多选接口很快，但空状态、撤销和报错都会很糙。我宁可这期只把『改标签』做顺，负责人留到下次。别为了少写前端，把三个半成品一起塞进 apps/web/issues。"
+  },
+  {
+    "id": "principle-experience-first-en1",
+    "skill": "principle-experience-first",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "We can ship a rough editor for tags, assignees, and due dates this week, or polish only the tag editor until it feels obvious. The combined form is less code. Choose the smaller polished experience in apps/web/issues and leave the other two out of this release."
+  },
+  {
+    "id": "principle-explain-the-number-zh1",
+    "skill": "principle-explain-the-number",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "检索评测从 61 涨到 74，我正想据此把 reranker 换掉。先别行动。这个数为什么到不了翻倍，是什么把它卡住的？再排除它其实是在测缓存命中、空回答被算成对、或者一共就三条样本。运行次数和波动跟数字放在一起。"
+  },
+  {
+    "id": "principle-explain-the-number-zh2",
+    "skill": "principle-explain-the-number",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "工具调用那组评测从 70 到 78，我准备换提示词。先别动。一半样例里模型根本没调工具，却被算成成功。这个数为什么到不了再好一倍，是什么卡住的？把『没做题却得分』这种可能排除掉，运行次数和波动跟数字放一起。"
+  },
+  {
+    "id": "principle-explain-the-number-en1",
+    "skill": "principle-explain-the-number",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "The nightly eval says the new chunker moved answer accuracy from 0.54 to 0.63. Don't put that in the decision doc. What keeps the score from being twice as high, and what else could that gap be measuring, such as cached retrieval or trials that never called the model? Keep the run count and the spread next to the number."
+  },
+  {
+    "id": "principle-fix-root-causes-zh1",
+    "skill": "principle-fix-root-causes",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "用户看到发票 PDF 上税额是空白。别在 render.ts 里加『空就显示 0』。顺着调用往回找到系统第一次走错的地方，我怀疑 packages/billing/tax/calc.ts 在税码缺失时悄悄给了 undefined。这种空白要是本来就不该出现，在界面上加个兜底不算修好。"
+  },
+  {
+    "id": "principle-fix-root-causes-zh2",
+    "skill": "principle-fix-root-causes",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "结账有时运费是空白。别在 apps/web/checkout/Summary.tsx 写兜底。查到第一次把运费弄丢的那个点再修。只有这个空状态本身是合法的，界面上的兜底才算修复。"
+  },
+  {
+    "id": "principle-fix-root-causes-en1",
+    "skill": "principle-fix-root-causes",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Support sees a blank shipping price on checkout. Don't hide it with a fallback in apps/web/checkout/Summary.tsx. Trace the blank to the first place the system went wrong and fix it there. A guard counts as a fix only when that empty state is legitimate."
+  },
+  {
+    "id": "principle-foundational-thinking-zh1",
+    "skill": "principle-foundational-thinking",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "匹配逻辑先别写。抢单里有司机、报价、行程，API 和 worker 都会碰行程。先把核心数据结构定下来，说清楚这两个执行体共享了什么，并把共享类型和测试夹具这些后面每一步都要用的底子先落好，再写 packages/dispatch 里的功能。"
+  },
+  {
+    "id": "principle-foundational-thinking-zh2",
+    "skill": "principle-foundational-thinking",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "新建排班之前先想数据。班次、请假、换班的访问方式差很多，结构要是选错，后面全是特殊分支。先定能让后面的代码变直白的数据结构。这包的测试底子 CI 里还没有，该先有的先补上，再谈界面。"
+  },
+  {
+    "id": "principle-foundational-thinking-en1",
+    "skill": "principle-foundational-thinking",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Don't write the matching logic yet. Drivers, offers, and trips will be touched by both the API and a worker. Choose the core data structures in packages/dispatch first, say what those two actors would share, and land the shared types and the test scaffold before any feature behavior."
+  },
+  {
+    "id": "principle-guard-the-context-window-zh1",
+    "skill": "principle-guard-the-context-window",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "昨夜 payments-worker 在 settle 附近重启，日志有 200MB。别把原文读进当前这个对话，上下文会爆。大段日志和那份一万行的 trace 交给子任务去翻，这边只留摘要。我要的是失败原因，不是原始堆栈贴三遍。"
+  },
+  {
+    "id": "principle-guard-the-context-window-zh2",
+    "skill": "principle-guard-the-context-window",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "你准备把 12 个包的全文都读进来，再规划怎么改导入路径。别这样。正文放到子任务里，这里只收每包几行结论，不然这轮后面没法干活了。"
+  },
+  {
+    "id": "principle-guard-the-context-window-en1",
+    "skill": "principle-guard-the-context-window",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "The deploy failure is buried in three huge CI logs and a 12k-line trace. Don't pull those payloads into this thread. Send the bulk reads to subagents and keep only short summaries here, enough to say why job 4418 died in the migrate step."
+  },
+  {
+    "id": "principle-laziness-protocol-zh1",
+    "skill": "principle-laziness-protocol",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "重置密码只要修『会发两封邮件』。你却在加 NotificationPolicy 这一层，还把一个 shouldSend 标记穿过四层，diff 太大了。packages/auth/reset.ts 用最小的改动解决，能删的重复路径就删，别为了好看加抽象。"
+  },
+  {
+    "id": "principle-laziness-protocol-zh2",
+    "skill": "principle-laziness-protocol",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "重构 packages/notify 时先别引入 EventBus 和 channel adapter。『要不要发短信』这个判断已经在三处各写一遍。收成一处的结果传下去。行数少比结构漂亮重要。"
+  },
+  {
+    "id": "principle-laziness-protocol-en1",
+    "skill": "principle-laziness-protocol",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "The password-reset fix is growing a new policy hierarchy and threading a flag through four layers. That is too much for a duplicate email. Make the smallest change that stops the second send in packages/auth/reset.ts, and delete the extra path instead of abstracting it."
+  },
+  {
+    "id": "principle-make-operations-idempotent-zh1",
+    "skill": "principle-make-operations-idempotent",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "结算命令跑到一半会被部署杀掉，队列还会重投。packages/billing/settle-invoice.ts 现在会再插一行账。请让它不管上次停在哪，再跑都落到同一个终态。留下的锁、临时文件、写了一半的记录，下次要能认出是过期的，而不是要人去清。"
+  },
+  {
+    "id": "principle-make-operations-idempotent-zh2",
+    "skill": "principle-make-operations-idempotent",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "close-day 在写出打款记录之后、标记当天已关账之前崩溃过，重跑把商户付了两次。把 services/billing/close-day.ts 这几步做成再执行一次也还是同一个结果，别靠『记得不要重跑』。"
+  },
+  {
+    "id": "principle-make-operations-idempotent-en1",
+    "skill": "principle-make-operations-idempotent",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "services/billing/close-day.ts can crash after writing the payout row and before marking the day closed, and the queue retries the job. Shape the steps so a second run reaches the same end state instead of paying the merchant twice. A leftover lock or half-written file has to be recognizable as stale by the next run."
+  },
+  {
+    "id": "principle-migrate-callers-then-delete-legacy-apis-zh1",
+    "skill": "principle-migrate-callers-then-delete-legacy-apis",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "packages/auth 里新的 getSession 已经是我们要的内部接口，旧的 readSessionCookie 还有 15 处内部调用。别留一层转发。这一次把 apps/web 和 apps/api 的调用方都迁走，然后把旧函数删掉。"
+  },
+  {
+    "id": "principle-migrate-callers-then-delete-legacy-apis-zh2",
+    "skill": "principle-migrate-callers-then-delete-legacy-apis",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "formatAddressV2 写好了，formatAddress 还被发票和地址表单用着。不要为了内部调用方留一个兼容壳。同一波把调用方改完，把旧函数删掉。"
+  },
+  {
+    "id": "principle-migrate-callers-then-delete-legacy-apis-en1",
+    "skill": "principle-migrate-callers-then-delete-legacy-apis",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "formatAddressV2 in packages/geo is the internal API we want, and formatAddress still has callers in apps/web and packages/invoices. Migrate those callers and delete the old function in the same change. Don't leave a shim that forwards to the new one."
+  },
+  {
+    "id": "principle-minimize-reader-load-zh1",
+    "skill": "principle-minimize-reader-load",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "我想回答『退款金额从哪来、谁能改它』，从 packages/billing 走进去要经过 RefundService、RefundFacade，还有一个只有一个调用方的 RefundMapper，税率还放在模块级变量里。把这种直通包装收掉，能变成返回值的别放在外面的可变状态里。新人应该半分钟内答得出来。"
+  },
+  {
+    "id": "principle-minimize-reader-load-zh2",
+    "skill": "principle-minimize-reader-load",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "placeOrder 外面套了三层，每层方法名和参数几乎一样，读的人还得在脑子里记 currentQuote 现在被谁改过。层数和要记的状态都减一减。别用架构好看当理由把它们留着。"
+  },
+  {
+    "id": "principle-minimize-reader-load-en1",
+    "skill": "principle-minimize-reader-load",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Following a refund amount means walking RefundService, RefundFacade, and a one-caller RefundMapper, while a module-level variable holds the rate. Collapse those pass-through layers and shrink the mutable state so a reader can see where the amount comes from without keeping a diagram in their head."
+  },
+  {
+    "id": "principle-model-the-domain-zh1",
+    "skill": "principle-model-the-domain",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "订单是不是『已付且未发货且未取消』，四个文件里各写一套 if。再加『部分退款』只会把这个形状再复制一遍。用一个能表达订单生命周期的结构把这些判断收起来，别继续散落布尔值。"
+  },
+  {
+    "id": "principle-model-the-domain-zh2",
+    "skill": "principle-model-the-domain",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "订阅状态在 packages/billing/subscription.ts、续费 worker 和管理后台各有一套 trialing、pastDue、canceledAt、paused。同样的形状抄了三遍，分支还在涨。把这个生命周期收成一处，让那些重复的条件消失。"
+  },
+  {
+    "id": "principle-model-the-domain-en1",
+    "skill": "principle-model-the-domain",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Subscription state is a set of booleans copied across packages/billing/subscription.ts, the renewal worker, and the admin page. Each file repeats the same shape. Encode the lifecycle as one structure so those scattered conditions can go away."
+  },
+  {
+    "id": "principle-never-block-on-the-human-zh1",
+    "skill": "principle-never-block-on-the-human",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "你又停下来问我要不要删掉没人用的 import、要不要跑一下本地单测。这些都能撤回。直接做完把结果给我，别为这种事卡住。真要删生产表再问我。"
+  },
+  {
+    "id": "principle-never-block-on-the-human-zh2",
+    "skill": "principle-never-block-on-the-human",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "重置本地测试数据库、把调试日志从 packages/search/debug.ts 里去掉，这种都能撤回来的事，别再问『要不要我做』。做完告诉我你做了什么就行。"
+  },
+  {
+    "id": "principle-never-block-on-the-human-en1",
+    "skill": "principle-never-block-on-the-human",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Stop asking whether you should remove the unused import and rerun the unit tests in packages/search/tokenize.ts. That work can be undone. Do it and show me the result. Ask only before something like dropping the production table."
+  },
+  {
+    "id": "principle-outcome-oriented-execution-zh1",
+    "skill": "principle-outcome-oriented-execution",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "会话从 Redis 迁到 Postgres，计划里的阶段边界是清楚的。你在中间提交加了临时适配器，让新旧两条路径同时能工作，还想一直留着免得主干红。别这样。朝 Postgres 那条目标路径收。哪一段中间允许是坏的，事先说清楚。计划做完时做完整验证。一次性的兼容代码不要留下来。"
+  },
+  {
+    "id": "principle-outcome-oriented-execution-zh2",
+    "skill": "principle-outcome-oriented-execution",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "权限从角色字符串改成策略表，阶段都划好了。不要为了每个中间提交都能单独上线，去写一套用完即弃的双写壳。终点的结构对就行，过渡态不必装成稳定产品。"
+  },
+  {
+    "id": "principle-outcome-oriented-execution-en1",
+    "skill": "principle-outcome-oriented-execution",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "The session migration from Redis to Postgres already has explicit phases. Don't add a compatibility shim so every intermediate commit keeps both stores working. Converge on the Postgres path, name where temporary breakage is allowed, and run full verification when the plan is complete."
+  },
+  {
+    "id": "principle-prove-it-works-zh1",
+    "skill": "principle-prove-it-works",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "你说购物车赠品修好了，依据是 tsc 过了，子代理回了句 done。这不算。把『访客把赠品加进购物车、刷新、赠品还在』在真正的页面上走一遍，或者读出库里那一行的真实值。没看到真实结果就别说做完。"
+  },
+  {
+    "id": "principle-prove-it-works-zh2",
+    "skill": "principle-prove-it-works",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "导出修复别用『编译过了』收尾。对着 fixtures/orders-60.csv 真的跑一次导出，把写出来的文件打开核对。我要的是这个产物，不是你自己说好了。"
+  },
+  {
+    "id": "principle-prove-it-works-en1",
+    "skill": "principle-prove-it-works",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Don't call the export bug fixed because the package typechecks. Run the export against fixtures/orders-60.csv and read the file it writes before you say the task is done."
+  },
+  {
+    "id": "principle-redesign-from-first-principles-zh1",
+    "skill": "principle-redesign-from-first-principles",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "折扣引擎当初是按『一张优惠券』做的。现在要优惠券和满减同时生效，还带互斥。别在 applyCoupon 后面再塞 if。请当成这个需求从第一天就有，重新想 packages/pricing 会是什么样子。类型、示例、旁边的说明一起改，再分成几次落地。"
+  },
+  {
+    "id": "principle-redesign-from-first-principles-zh2",
+    "skill": "principle-redesign-from-first-principles",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "通知原来一个事件只发一个渠道。现在同一个事件要同时进邮件和站内信，失败还互不影响。不要在 packages/notify/send.ts 末尾再加一次调用。按这个扇出从一开始就存在来重做这块。"
+  },
+  {
+    "id": "principle-redesign-from-first-principles-en1",
+    "skill": "principle-redesign-from-first-principles",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Notifications were built as one channel per event. A single event now has to reach email and the inbox, and a failure in one must not block the other. Don't bolt a second call onto packages/notify/send.ts. Redo the design as if that fan-out had been there from the start, and land it in increments."
+  },
+  {
+    "id": "principle-separate-before-serializing-shared-state-zh1",
+    "skill": "principle-separate-before-serializing-shared-state",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "三个子代理都要改同一条 release 分支上的 CHANGELOG.md，有人提议加文件锁。先别加锁。给每个代理自己的工作区或自己的文件。只有『整个发布只能有一个写入者』真是躲不掉的约束时，才保留这一份共享写入。"
+  },
+  {
+    "id": "principle-separate-before-serializing-shared-state-zh2",
+    "skill": "principle-separate-before-serializing-shared-state",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "两个夜间任务都往 reports/daily.json 写，评审里在讨论互斥锁。先把这份共享写去掉，各写各的产物。不要先加锁再祈祷。"
+  },
+  {
+    "id": "principle-separate-before-serializing-shared-state-en1",
+    "skill": "principle-separate-before-serializing-shared-state",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Both nightly jobs write reports/daily.json, and the current idea is a mutex. Remove the shared write first. Give each job its own output, and keep a single writer only if one shared file is a real invariant."
+  },
+  {
+    "id": "principle-sequence-verifiable-units-zh1",
+    "skill": "principle-sequence-verifiable-units",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "30 个包的路径别名都要改。别攒一个大 PR 最后一起测。拆成小块，每块结束时仓库都处在能核对的状态，这块过了再做下一块。提交的顺序要让评审顺着看就相信没改坏，而不是听我保证。"
+  },
+  {
+    "id": "principle-sequence-verifiable-units-zh2",
+    "skill": "principle-sequence-verifiable-units",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "导入路径替换要动 18 个包。检查不要堆到最后。每一步都停在一个你能核对的状态，核对完再继续。PR 怎么叠，本身就要把过程证明给评审看。"
+  },
+  {
+    "id": "principle-sequence-verifiable-units-en1",
+    "skill": "principle-sequence-verifiable-units",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "The import rewrite touches 18 packages. Don't save the checks for one big test at the end. Break the work into small units that each finish in a state you can verify, check each before the next, and order the commits so the sequence itself shows a reviewer it held together."
+  },
+  {
+    "id": "principle-subtract-before-you-add-zh1",
+    "skill": "principle-subtract-before-you-add",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "给搜索加同义词之前，packages/search 里还有没人调用的 FuzzyV1、两套重复的空查询校验，以及一个只写着 see V2 的桩文件。先把这些拿掉，在更干净的底上再加同义词。别一边加功能一边留着死代码。"
+  },
+  {
+    "id": "principle-subtract-before-you-add-zh2",
+    "skill": "principle-subtract-before-you-add",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "账单服务要加 webhook 发送。动手前先删掉没人用的 RetryV0、重复的那份签名校验，还有那个只指向旧草稿的桩文件。删完再在剩下的底上建新的发送器。"
+  },
+  {
+    "id": "principle-subtract-before-you-add-en1",
+    "skill": "principle-subtract-before-you-add",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Before adding webhooks to the billing service, remove the unused RetryV0 helper, the duplicate signature check, and the stub file that only points at the old draft. Build the new sender on what remains."
+  },
+  {
+    "id": "principle-test-behavior-not-implementation-zh1",
+    "skill": "principle-test-behavior-not-implementation",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "packages/cart/totals.test.ts 在断言 apply 调了内部的 roundHalfUp，还断言缓存 map 的大小。我一换算法测试就红，可用户看到的购物车合计没变。请改成断言调用方能看到的结果：这几行输入算出来应付多少。只改内部实现时，测试应该继续过。"
+  },
+  {
+    "id": "principle-test-behavior-not-implementation-zh2",
+    "skill": "principle-test-behavior-not-implementation",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "分配负责人的测试 mock 了私有方法 recomputeLabelCache，并断言它被调了一次。请改 packages/issues/assign.test.ts，去检查分配之后 issue 上的标签。缓存怎么更新变了，只要标签结果还对，测试就该过。"
+  },
+  {
+    "id": "principle-test-behavior-not-implementation-en1",
+    "skill": "principle-test-behavior-not-implementation",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "The assignment test mocks the private method recomputeLabelCache and asserts it was called once. Change packages/issues/assign.test.ts so it checks the labels a caller can see on the issue after assign, and so it still passes when only the cache internals change."
+  },
+  {
+    "id": "principle-type-system-discipline-zh1",
+    "skill": "principle-type-system-discipline",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "先别实现，看这个 Kotlin 签名：fun transfer(fromId: String, toId: String, amount: Int, currency: String)。两个 id 能传反，金额能为负，币种是任意字符串。把不该存在的状态从类型里拿掉。id 和货币做成带语义的类型，外部 JSON 在边界解析进这些类型，别用强转骗编译器，分支要能穷尽。"
+  },
+  {
+    "id": "principle-type-system-discipline-zh2",
+    "skill": "principle-type-system-discipline",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "Rust 的 apply_payment(user_id: String, cents: i64, currency: String, refund_of: Option<String>) 把付款和退款塞进同一个函数，cents 还能是负的。评审这个签名：不合法的组合应该构造不出来，标识符别能混用，线上来的 payload 在边界解析。有权威 schema 就从它推类型，不要手写一份平行的。"
+  },
+  {
+    "id": "principle-type-system-discipline-en1",
+    "skill": "principle-type-system-discipline",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Review this Rust signature before anyone implements it: fn apply_payment(user_id: String, cents: i64, currency: String, refund_of: Option<String>). A charge and a refund should not both be representable, cents should not be negative, and the ids are interchangeable strings. Make those illegal states impossible to construct, brand the ids, and parse the wire payload at the edge instead of casting it."
+  },
+  {
+    "id": "recall-zh1",
+    "skill": "recall",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "我要接着弄发票 PDF 税额空白。先别改代码。把我最近在这件事上的情况收成一份短简报：我自己那些会话里决定过什么、现在的分支和 PR、工单里用户还在报什么、上次修了又被撤回的那次。最后给一个最该做的下一步。"
+  },
+  {
+    "id": "recall-zh2",
+    "skill": "recall",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/recall 我在 packages/billing 税额这件事上做到哪了。开工前给我一份当前状态，别只看这个聊天。"
+  },
+  {
+    "id": "recall-en1",
+    "skill": "recall",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Before I resume, put together where the blank invoice tax stands. Use my recent chats, the live branch and pull requests, and the tickets still reporting it, including the fix that shipped and was reverted. Give me a tight brief and one next move. Don't start editing."
+  },
+  {
+    "id": "reflect-zh1",
+    "skill": "reflect",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "这个会话里我们两次发现并行分片的汇总会漏掉失败的那片，代码走读还把『该放哪个包』答成了逐行实现。别只留在聊天里。对照当前这份会话记录，给出应该改到哪些现有技能上的具体编辑，列给我看。我点头之前不要改技能文件。"
+  },
+  {
+    "id": "reflect-zh2",
+    "skill": "reflect",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/reflect 就看这次对话。把该留下的教训变成现有技能上的具体修改，先等我选，别自动改。"
+  },
+  {
+    "id": "reflect-en1",
+    "skill": "reflect",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Look at this session's transcript. We twice had to redo the migration in smaller steps, and the verification notes drifted from the app. Turn those lessons into concrete edits on the skills we already have, show me the proposals, and wait for my approval before changing a skill file."
+  },
+  {
+    "id": "setup-pstack-zh1",
+    "skill": "setup-pstack",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "pstack 各角色还在用技能自带的默认模型，账单太高。看看这环境里实际能用哪些模型，给每个角色指定一个，把想事情的档位整档降下来，写成新会话会自动带上、并盖过技能默认值的规则。别开始改业务代码。"
+  },
+  {
+    "id": "setup-pstack-zh2",
+    "skill": "setup-pstack",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/setup-pstack 给每个角色配模型，推理预算调小，写进会覆盖技能默认值的规则。"
+  },
+  {
+    "id": "setup-pstack-en1",
+    "skill": "setup-pstack",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "pstack is still on the defaults baked into the skills, and the bill is too high. Detect which models this environment can actually run, assign one to each role, lower the reasoning effort, and write the rule that new chats will apply over those defaults. No application code."
+  },
+  {
+    "id": "sharpen-zh1",
+    "skill": "sharpen",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "先别照我写的做。我让你把导出改成流式，又规定必须用 RxJS、必须兼容 IE11、分块格式也得按我画的来。你先想真正做过这事的人会怎么下手，我其实要的是用户不用干等整文件，哪些约束是绑太死的。该松的松开，该我拍板的别替我定，然后直接做。不要把改写后的提示词交回来。"
+  },
+  {
+    "id": "sharpen-zh2",
+    "skill": "sharpen",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/sharpen 然后做。apps/web 的表格要列宽拖拽，我写了一堆实现细节，你先判断这个任务是写太死还是写太虚。"
+  },
+  {
+    "id": "sharpen-en1",
+    "skill": "sharpen",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Before you build the streaming export I described, work out the approach someone who has shipped this would take, what I actually want for the person waiting on the download, and which of my requirements are too tight. I insisted on RxJS, IE11, and a custom chunk format in apps/api/export.ts. Loosen what does not serve the goal, leave the real product choice open, then do the work. Don't return a rewritten prompt."
+  },
+  {
+    "id": "show-me-your-work-zh1",
+    "skill": "show-me-your-work",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "重放脚本按昨晚说的跑就行，不用重做方案。我去睡觉，你把失败的 webhook 重放跑完。每做一个决定在本地记一行：做了什么、为什么、证据是什么、结果如何。先不要提交这张表。我早上要能顺着它看你为什么丢掉某次重试。"
+  },
+  {
+    "id": "show-me-your-work-zh2",
+    "skill": "show-me-your-work",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/show-me-your-work 今晚这个无人值守的对账，每个决定在本地记一行。等我要拿给评审再提交。"
+  },
+  {
+    "id": "show-me-your-work-en1",
+    "skill": "show-me-your-work",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "I'm stepping away while you finish the backfill. Keep a local log with one row per decision: what you did, why, the evidence, and the result. Don't commit it unless I ask for that trail in the PR tomorrow."
+  },
+  {
+    "id": "swarm-zh1",
+    "skill": "swarm",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "别一个人顺序看。把 packages 下面 12 个包的权限检查拆开并行查，每一片看有没有把用户 id 拼进 SQL。最后收成一份报告，谁掉线了就记上缺口。不要把各片的原始输出全贴上来，也不要把他们的改动合成一个新实现。"
+  },
+  {
+    "id": "swarm-zh2",
+    "skill": "swarm",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/swarm 把 apps/web 的路由按目录分片，并行查没接住的 promise，汇成一份报告。"
+  },
+  {
+    "id": "swarm-en1",
+    "skill": "swarm",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Split the locale files under apps/web/messages into parallel slices. Each slice checks for keys missing against en.json. Bring back one report that names the gaps. I don't want twelve writeups, and I don't want the slices rewritten into a single new file."
+  },
+  {
+    "id": "tdd-zh1",
+    "skill": "tdd",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "packages/pricing/quote.ts 是纯函数，优惠券传空字符串会得到 NaN，本地一条测试就能钉住。先写测试，让它在现在的代码上变红，确认红了，再改实现直到变绿。不要先改函数再补测试。"
+  },
+  {
+    "id": "tdd-zh2",
+    "skill": "tdd",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "用 TDD 修这个。quote.ts 空优惠券得到 NaN，先来一个失败测试。这是个便宜的本地目标。"
+  },
+  {
+    "id": "tdd-en1",
+    "skill": "tdd",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Empty coupon strings make packages/pricing/quote.ts return NaN. The function does no I/O, so a local test is cheap. Start from a test that goes red on the current code, then change the implementation until it goes green. Don't edit the function first."
+  },
+  {
+    "id": "teach-zh1",
+    "skill": "teach",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "我下周接手退款，别改代码。也别只给我一张调用图，或者只挖当初的决策。把 packages/billing/refund 讲到我能向同事复述：它是干什么的、一笔退款请求怎么走、为什么是同步扣账而不是丢进队列。先讲我能带走的那一点，我再问你再展开。"
+  },
+  {
+    "id": "teach-zh2",
+    "skill": "teach",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/teach 讲清楚 PR 912 对结算子系统改了什么。我要真的懂，不是看一份 diff 清单。"
+  },
+  {
+    "id": "teach-en1",
+    "skill": "teach",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "I'm taking over refunds next week and I need to understand them, not change them. In one explanation, tell me what packages/billing/refund is, how a request moves through it, and why the ledger write is synchronous. Plain enough that I could repeat it to a teammate. Main point first, and stop so I can ask for the next layer."
+  },
+  {
+    "id": "technical-writing-zh1",
+    "skill": "technical-writing",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "docs/billing/export.md 现在把教程和参考搅在一起，步骤里还有『和/或』，句子长得读不完。请把教程、操作步骤和参考拆开，步骤一条只做一个动作，句子写成非英语母语的人也能读的短句。另外 PR 884 的描述改成评审一分钟能看完的简报，别把日志和指标表贴进去。"
+  },
+  {
+    "id": "technical-writing-zh2",
+    "skill": "technical-writing",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/technical-writing 给 packages/cli 写 README，还有这次的提交说明。操作步骤和 API 参考分开，指令一条一步，提交说明说清楚改了什么、为什么。"
+  },
+  {
+    "id": "technical-writing-en1",
+    "skill": "technical-writing",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Rewrite docs/export/README.md and the body of PR 884. The page mixes a tutorial with the reference, the steps say and/or, and the PR body is a dump of logs. Separate those doc modes, use short sentences, one action per step, and make the PR body a briefing a reviewer can finish in a minute."
+  },
+  {
+    "id": "typescript-best-practices-zh1",
+    "skill": "typescript-best-practices",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "我在改 apps/web/src/components/InvoiceTable.tsx 和旁边那个 hook。里面一堆 as any，点击处理里留着 console.log，组件吃了八个位置参数，switch 也不穷尽。按咱们写 TypeScript 的习惯收拾这几个 tsx：外部数据用 unknown，能从 schema 推类型就别手写，用 satisfies 而不是乱转，热路径以外改成对象参数。"
+  },
+  {
+    "id": "typescript-best-practices-zh2",
+    "skill": "typescript-best-practices",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "看 packages/web/src/api/invoices.ts 这个 ts 文件。接口数据还是 any，类型守卫名叫 isInvoice 但只判断了是个对象，默认分支没有 never 检查。我正在读这块，按咱们写 TypeScript 的规矩改，别换成别的语言。"
+  },
+  {
+    "id": "typescript-best-practices-en1",
+    "skill": "typescript-best-practices",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "I'm editing apps/web/src/components/InvoiceTable.tsx. It has as any on the row payload, a console.log in the click handler, eight positional props, and a switch that is not exhaustive. Clean those up the way we write TypeScript: unknown at the edge, schema-inferred types, satisfies instead of casts, and object parameters off the hot path."
+  },
+  {
+    "id": "unslop-zh1",
+    "skill": "unslop",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "这段要发到团队频道，机器腔太重。把套话和『不仅……更……』去掉，改成正常人会打出来的字。别重写成教程，也别换成另一件事。原文：值得注意的是，我们不仅优化了结账体验，更在深层次上赋能了用户，让转化率更上一层楼——这仅仅是开始。"
+  },
+  {
+    "id": "unslop-zh2",
+    "skill": "unslop",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/unslop 下面这段发布说明，把机器腔剪掉，意思别改，也别加成小标题和清单：『在当今快速变化的环境中，本次更新不仅显著提升了性能，更为用户解锁了无缝、稳健且令人愉悦的体验，彰显了我们对协同增效的承诺。』"
+  },
+  {
+    "id": "unslop-en1",
+    "skill": "unslop",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "Cut the AI tells out of this announcement. Keep the meaning, and don't turn it into a tutorial or a reference page. Text: It's worth noting that this change doesn't just streamline checkout — it unlocks a seamless, robust, and delightful experience, underscoring our commitment to leverage synergy."
+  },
+  {
+    "id": "why-zh1",
+    "skill": "why",
+    "lang": "zh",
+    "hinted": false,
+    "prompt": "退款为什么是同步写账本，而不是丢进队列？我要的是决策和取舍，并带来源，比如当时的 PR、工单、事故记录。有阈值的话说明数字从哪来。先别讲请求是从哪个函数调到哪个函数的。"
+  },
+  {
+    "id": "why-zh2",
+    "skill": "why",
+    "lang": "zh",
+    "hinted": true,
+    "prompt": "/why 导出上限卡在 6 万行。这个数是拍的还是有记录撑着？给我带来源的结论，不要运行时导览。"
+  },
+  {
+    "id": "why-en1",
+    "skill": "why",
+    "lang": "en",
+    "hinted": false,
+    "prompt": "I need the rationale for the synchronous ledger write in packages/billing/refund.ts, and the tradeoff against putting it on a queue. Cite the history, tickets, and any incident or metric that forced it. If a threshold is involved, say where the number came from. Leave the call-flow walkthrough out."
+  }
+]

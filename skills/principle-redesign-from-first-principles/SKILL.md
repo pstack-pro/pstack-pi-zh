@@ -1,6 +1,6 @@
 ---
 name: principle-redesign-from-first-principles
-description: "把新需求接入现有设计时适用。"
+description: "新需求要接入现有设计时适用。"
 disable-model-invocation: true
 ---
 
