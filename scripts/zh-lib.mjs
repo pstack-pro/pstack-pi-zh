@@ -39,9 +39,10 @@ export function writeDescription(text, value) {
 	return text.replace(d.line, () => `description: ${JSON.stringify(value)}`);
 }
 
-// The bilingual description shipped to users: Chinese first, original English kept for trigger words.
+// Shipped description: Chinese with embedded English trigger words (token-lean).
+// SEPARATOR kept so validate can reject leftover full-bilingual "| EN:" tails.
 export const SEPARATOR = " | EN: ";
-export const bilingual = (zh, en) => `${zh}${SEPARATOR}${en}`;
+export const bilingual = (zh, en) => zh; // lean: drop full English duplicate; triggers live inside zh
 
 // Tokens that must survive translation unchanged (as a multiset).
 export function protectedTokens(text, skillNames = []) {

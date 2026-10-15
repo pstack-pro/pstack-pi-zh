@@ -1,6 +1,6 @@
 ---
 name: principle-exhaust-the-design-space
-description: "面对代码库中没有先例的新 UI 交互或架构决策时适用。选定方案前，先做 2-3 个互相竞争的原型并并排比较。 | EN: Apply when facing a novel UI interaction or architectural decision with no precedent in the codebase. Build 2-3 competing prototypes and compare side by side before committing."
+description: "面对代码库中没有先例的新 UI 交互或架构决策时适用。选定方案前，先做 2-3 个互相竞争的原型并并排比较。"
 disable-model-invocation: true
 ---
 

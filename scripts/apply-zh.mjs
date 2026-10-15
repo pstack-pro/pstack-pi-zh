@@ -20,10 +20,10 @@ export function applyZh({ root, src, prefix, transform = (t) => t }) {
 		const entry = db[name];
 		if (!entry?.zh) { missing.push(name); continue; }
 		if (entry.source_sha256 !== sha256(en)) stale.push(name);
-		// Shipped description: Chinese + the generated (platform-adapted) English, both with this side's prefix.
+		// Shipped description: Chinese with embedded English triggers (lean; no full "| EN:" duplicate).
 		const enOut = readDescription(fs.readFileSync(out, "utf-8")).value;
 		const zh = transform(entry.zh).replace(cmd, `${prefix}$1`);
-		fs.writeFileSync(out, writeDescription(fs.readFileSync(out, "utf-8"), bilingual(zh, enOut)));
+		fs.writeFileSync(out, writeDescription(fs.readFileSync(out, "utf-8"), bilingual(zh, enOut))); // bilingual() returns zh only
 	}
 	if (missing.length) console.log(`zh: untranslated descriptions (English kept): ${missing.join(", ")}`);
 	if (stale.length) console.log(`zh: STALE translations (upstream text changed): ${stale.join(", ")}`);

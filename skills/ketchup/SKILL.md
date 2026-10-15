@@ -1,6 +1,6 @@
 ---
 name: ketchup
-description: "用几句白话和少量示意图，补上用户上一条消息之后这次对话里发生的事。每件待办只附上够拍板的背景。用于 /skill:ketchup。 | EN: Catch the user up on what changed in this chat since their last message, in a few plain sentences and small visuals. Give each action item just enough context to make the call. Use for /skill:ketchup."
+description: "用几句白话和少量示意图，补上用户上一条消息之后这次对话里发生的事。每件待办只附上够拍板的背景。用于 /skill:ketchup。"
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: principle-test-behavior-not-implementation
-description: "编写、修改或保留测试时适用。断言代码的使用者能观察到的东西，这样行为坏了测试会失败，只改内部实现时测试继续通过。 | EN: Apply when you write, change, or keep a test. Assert what the code's users can observe, so that the test fails when that behavior breaks and keeps passing when only the internals change."
+description: "编写、修改或保留测试时适用。断言代码的使用者能观察到的东西，这样行为坏了测试会失败，只改内部实现时测试继续通过。"
 disable-model-invocation: true
 ---
 

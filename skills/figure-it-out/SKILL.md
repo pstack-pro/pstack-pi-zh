@@ -1,6 +1,6 @@
 ---
 name: figure-it-out
-description: "没有更专门的 playbook 适用时，设计一份可审计的 playbook：大规模迁移、目标大且牵涉多个部分的改动，或等人离开后再回来审查的工作。按任务调整严谨程度，循环提出并验证假设，并记录决策。用于 /skill:figure-it-out 或 'figure it out'（想办法搞定）。 | EN: Design an auditable playbook when no narrower one fits: a large migration, an ambitious multi-part change, or work a human reviews after stepping away. Scales rigor to the task, runs a hypothesis loop, and logs decisions. Use for /skill:figure-it-out or 'figure it out'."
+description: "没有更专门的 playbook 适用时，设计一份可审计的 playbook：大规模迁移、目标大且牵涉多个部分的改动，或等人离开后再回来审查的工作。按任务调整严谨程度，循环提出并验证假设，并记录决策。用于 /skill:figure-it-out 或 'figure it out'（想办法搞定）。"
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: correct
-description: "找出这个仓库里代理反复犯的错，并让每一种都没法再犯。先改架构，再靠类型，再靠报错里直接点名改法的 lint，然后测试，文档放最后。每项检查都要用一次真实的既往错误证明它会失败。操作者每次纠正你，都再做一轮。用于 /skill:correct。 | EN: Find the mistakes agents keep repeating in this repo and make each one impossible. Try architecture first, then types, then a lint whose error names the fix, then a test, and write docs last. Prove each check fails on a real past mistake. Repeat this each time the operator corrects you. Use for /skill:correct."
+description: "找出这个仓库里代理反复犯的错，并让每一种都没法再犯。先改架构，再靠类型，再靠报错里直接点名改法的 lint，然后测试，文档放最后。每项检查都要用一次真实的既往错误证明它会失败。操作者每次纠正你，都再做一轮。用于 /skill:correct。"
 disable-model-invocation: true
 ---
 

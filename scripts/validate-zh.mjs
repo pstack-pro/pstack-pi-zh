@@ -38,10 +38,14 @@ for (const name of fs.readdirSync(skillsDir)) {
 	if (!fm[1].split("\n").includes(`name: ${name}`)) errors.push(`${name}: name must equal directory`);
 	const d = readDescription(text)?.value ?? "";
 	if (d.length > 1024) errors.push(`${name}: description ${d.length} chars > 1024`);
-	const i = d.indexOf(SEPARATOR);
-	if (i < 0) { errors.push(`${name}: description is not bilingual`); continue; }
-	const zh = d.slice(0, i), en = d.slice(i + SEPARATOR.length);
-	for (const x of diffTokens(protectedTokens(norm(en), names), protectedTokens(norm(zh), names))) errors.push(`skills/${name}: shipped token mismatch ${x}`);
+	if (d.includes(SEPARATOR)) errors.push(`${name}: description still has full "| EN:" bilingual tail (want lean zh)`);
+	const zh = d.includes(SEPARATOR) ? d.slice(0, d.indexOf(SEPARATOR)) : d;
+	const entry = db[name];
+	if (entry?.zh) {
+		const expect = entry.zh; // prefix rewrite may differ; compare protected tokens against en source
+		for (const x of diffTokens(protectedTokens(norm(entry.en), names), protectedTokens(norm(zh), names))) errors.push(`skills/${name}: shipped token mismatch ${x}`);
+	}
+	if (!CJK.test(zh)) errors.push(`${name}: shipped description has no Chinese`);
 	const prefixes = new Set([...d.matchAll(/\/(pstack|skill):/g)].map((m) => m[1]));
 	if (prefixes.size > 1) errors.push(`skills/${name}: mixed command prefixes`);
 	if (/(?<![\w./:-])\/[a-z][\w-]*(?![\w/-])/.test(zh.replace(/\/(?:pstack|skill):/g, "")) && [...zh.matchAll(/(?<![\w./:-])\/([a-z][\w-]*)/g)].some((m) => names.includes(m[1])))

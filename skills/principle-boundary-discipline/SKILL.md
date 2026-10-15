@@ -1,6 +1,6 @@
 ---
 name: principle-boundary-discipline
-description: "在接入校验、错误处理或框架适配器时适用。把守卫集中在系统边界（CLI、配置、网络、外部 API）；信任内部类型，业务逻辑放在纯函数里。 | EN: Apply when wiring validation, error handling, or framework adapters. Concentrate guards at system boundaries (CLI, config, network, external APIs); trust internal types and keep business logic in pure functions."
+description: "在接入校验、错误处理或框架适配器时适用。把守卫集中在系统边界（CLI、配置、网络、外部 API）；信任内部类型，业务逻辑放在纯函数里。"
 disable-model-invocation: true
 ---
 

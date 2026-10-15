@@ -1,6 +1,6 @@
 ---
 name: principle-subtract-before-you-add
-description: "安排一次新增、重构或重写的顺序时适用。先去掉死代码、多余的校验器和桩引用，再在更简单的基座上构建。 | EN: Apply when sequencing an addition, refactor, or rewrite. Remove dead code, redundant validators, and stub references first, then build on the simpler base."
+description: "安排一次新增、重构或重写的顺序时适用。先去掉死代码、多余的校验器和桩引用，再在更简单的基座上构建。"
 disable-model-invocation: true
 ---
 

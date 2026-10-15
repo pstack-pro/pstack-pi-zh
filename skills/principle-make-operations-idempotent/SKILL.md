@@ -1,6 +1,6 @@
 ---
 name: principle-make-operations-idempotent
-description: "设计会在崩溃、重启和重试中运行的命令、生命周期步骤或处理循环时适用。无论先前是否跑过一部分，都收敛到同一终态。 | EN: Apply when designing commands, lifecycle steps, or processing loops that run amid crashes, restarts, and retries. Converge to the same end state regardless of partial prior runs."
+description: "设计会在崩溃、重启和重试中运行的命令、生命周期步骤或处理循环时适用。无论先前是否跑过一部分，都收敛到同一终态。"
 disable-model-invocation: true
 ---
 

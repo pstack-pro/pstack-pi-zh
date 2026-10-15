@@ -1,6 +1,6 @@
 ---
 name: principle-never-block-on-the-human
-description: "在可逆工作上想问 'should I do X?'（要不要做 X？）时适用。 | EN: Apply when tempted to ask 'should I do X?' on reversible work."
+description: "在可逆工作上想问 'should I do X?'（要不要做 X？）时适用。"
 disable-model-invocation: true
 ---
 

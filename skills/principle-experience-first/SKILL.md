@@ -1,6 +1,6 @@
 ---
 name: principle-experience-first
-description: "当产品、UX 或功能范围权衡出现时适用。优先让用户高兴，而不是图实现方便；少而精的功能优于多而糙的功能。 | EN: Apply when product, UX, or feature-scope tradeoffs come up. Choose user delight over implementation convenience; ship fewer polished features over more rough ones."
+description: "当产品、UX 或功能范围权衡出现时适用。优先让用户高兴，而不是图实现方便；少而精的功能优于多而糙的功能。"
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: principle-explain-the-number
-description: "在相信、汇报或依据自己测到的数字行动之前适用，比如提速、退步、吞吐量、延迟或评测结果。先找出限制它的因素，再排除“测到的其实不是你以为的那项工作”这种可能。 | EN: Apply before you trust, report, or act on a number you measured: a speedup, a regression, a throughput, a latency, or an eval result. Find what limits it, and rule out that it measured something other than the work you think."
+description: "在相信、汇报或依据自己测到的数字行动之前适用，比如提速、退步、吞吐量、延迟或评测结果。先找出限制它的因素，再排除“测到的其实不是你以为的那项工作”这种可能。"
 disable-model-invocation: true
 ---
 

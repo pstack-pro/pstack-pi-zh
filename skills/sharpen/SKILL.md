@@ -1,6 +1,6 @@
 ---
 name: sharpen
-description: "开工前先把任务磨利：专家会怎么做、用户真正要什么、规格该写到什么粒度。用于 /skill:sharpen。 | EN: Sharpen a task before starting: the expert approach, what the user is really after, and the right level of specification. Use for /skill:sharpen."
+description: "开工前先把任务磨利：专家会怎么做、用户真正要什么、规格该写到什么粒度。用于 /skill:sharpen。"
 disable-model-invocation: true
 ---
 

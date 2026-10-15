@@ -1,6 +1,6 @@
 ---
 name: maintain-verification-skill
-description: "定期巡检，让项目的验证 skill 和功能清单（feature map）与实际相符：每个功能并行派一个源码阅读者，在一次真实运行的会话里把所有功能都操作一遍，最多提一个只含已验证修正的 PR。用于 /skill:maintain-verification-skill 或 \"audit the verify skill\"（审计验证 skill）。 | EN: Periodic pass that keeps a project's verification skill and feature map honest: parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections. Use for /skill:maintain-verification-skill or \"audit the verify skill\"."
+description: "定期巡检，让项目的验证 skill 和功能清单（feature map）与实际相符：每个功能并行派一个源码阅读者，在一次真实运行的会话里把所有功能都操作一遍，最多提一个只含已验证修正的 PR。用于 /skill:maintain-verification-skill 或 \"audit the verify skill\"（审计验证 skill）。"
 disable-model-invocation: true
 ---
 

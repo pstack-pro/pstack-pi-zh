@@ -1,6 +1,6 @@
 ---
 name: interrogate
-description: "用于 \"interrogate\"（盘问）、\"adversarial review\"（对抗评审）、\"multi-model review\"（多模型评审）、\"challenge this\"（挑战这个）、\"stress test this code\"（压测这段代码）、\"find blind spots\"（找盲点）或 \"tear this apart\"（拆开挑刺）。多个 LLM 评审者从彼此独立的角度挑战改动。 | EN: Use for \"interrogate\", \"adversarial review\", \"multi-model review\", \"challenge this\", \"stress test this code\", \"find blind spots\", or \"tear this apart\". Multiple LLM reviewers challenge changes from independent angles."
+description: "用于 \"interrogate\"（盘问）、\"adversarial review\"（对抗评审）、\"multi-model review\"（多模型评审）、\"challenge this\"（挑战这个）、\"stress test this code\"（压测这段代码）、\"find blind spots\"（找盲点）或 \"tear this apart\"（拆开挑刺）。多个 LLM 评审者从彼此独立的角度挑战改动。"
 disable-model-invocation: true
 ---
 

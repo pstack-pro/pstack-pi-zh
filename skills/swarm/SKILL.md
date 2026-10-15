@@ -1,6 +1,6 @@
 ---
 name: swarm
-description: "扇出 N 个并行 worker，等全部完成后汇总成一份报告。用于 /skill:swarm、'swarm this'（让一群 agent 一起做），或需要并行覆盖、竞速、轮番挑战和探索的场景。 | EN: Fan out N parallel workers, drain them, and return one report. Use for /skill:swarm, 'swarm this', or parallel coverage, races, gauntlets, and exploration."
+description: "扇出 N 个并行 worker，等全部完成后汇总成一份报告。用于 /skill:swarm、'swarm this'（让一群 agent 一起做），或需要并行覆盖、竞速、轮番挑战和探索的场景。"
 disable-model-invocation: true
 ---
 

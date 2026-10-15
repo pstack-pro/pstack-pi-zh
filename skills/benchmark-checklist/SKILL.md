@@ -1,6 +1,6 @@
 ---
 name: benchmark-checklist
-description: "在汇报一次性能测量或据此行动之前，先核查它：限制因素、调优、是否越限、有无出错、能否复现、是否相关，以及工作是否真的发生了。跑基准测试，或汇报自己测到的提速或退步时使用。 | EN: Vet a perf measurement (limiter, tuning, limits, errors, repeatability, relevance, and whether the work happened) before you report or act on it. Use when you run a benchmark or report a speedup or regression you measured."
+description: "在汇报一次性能测量或据此行动之前，先核查它：限制因素、调优、是否越限、有无出错、能否复现、是否相关，以及工作是否真的发生了。跑基准测试，或汇报自己测到的提速或退步时使用。"
 disable-model-invocation: true
 ---
 

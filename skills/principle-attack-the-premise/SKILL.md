@@ -1,6 +1,6 @@
 ---
 name: principle-attack-the-premise
-description: "当两个或多个共享同一前提的修复在同一关卡失败时适用。先把前提写下来并直接验证，再写下一个假设该前提成立的修复。 | EN: Apply when two or more fixes that share one premise have failed the same gate. Write the premise down and test it directly before you write another fix that assumes it."
+description: "当两个或多个共享同一前提的修复在同一关卡失败时适用。先把前提写下来并直接验证，再写下一个假设该前提成立的修复。"
 disable-model-invocation: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: architect
-description: "写代码之前先勾勒类型、签名和模块结构，实现逐步落地时也全程参与。用于 /skill:architect、'architect this'（帮我做架构）、'design this'（帮我设计），或一上手就写代码容易定错结构的非琐碎工作。 | EN: Sketch types, signatures, and module structure before code, then stay in the loop while implementation fills in. Use for /skill:architect, 'architect this', 'design this', or non-trivial work where jumping to code would lock in the wrong shape."
+description: "写代码之前先勾勒类型、签名和模块结构，实现逐步落地时也全程参与。用于 /skill:architect、'architect this'（帮我做架构）、'design this'（帮我设计），或一上手就写代码容易定错结构的非琐碎工作。"
 disable-model-invocation: true
 ---
 

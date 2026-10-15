@@ -1,6 +1,6 @@
 ---
 name: reflect
-description: "对当前对话记录并行派出三个评审子代理，找出值得沉淀的经验，并把每条落到对现有 skill 的具体修改上。用户说 reflect 时使用。 | EN: Spawn three parallel review subagents over the active transcript, surface learnings, and route each to a concrete edit on an existing skill. Use when the user says reflect."
+description: "对当前对话记录并行派出三个评审子代理，找出值得沉淀的经验，并把每条落到对现有 skill 的具体修改上。用户说 reflect 时使用。"
 disable-model-invocation: true
 ---
 
