@@ -19,7 +19,7 @@ pstack 的 skill 是照着 Cursor 的工具写的。这个 package 没有逐个�
 
 54 个 skill 的 description 改成纯中文，句子里直接嵌入 slash 命令和英文触发短语（如 `'arena this'`），所以用中文或英文提问都能匹配；不再附整段英文原文，每次会话少加载一半 token。`test/routing-eval/` 里有模拟路由评测（不等同于真实的 Claude Code / pi 路由）。
 
-skill 正文、playbook、references 和 agents 已全部译成中文（上游 111 个 Markdown 文件全部译完）。这是预览质量的机器辅助翻译，难免有生硬或不准的地方；代码块、命令、工具名、路径、链接和脚本要解析的字符串都保持英文，并有脚本逐项核对。移植时新增或改写的文件（`overrides/` 里的 `setup-pstack`、`readonly` agent，以及本仓库自己的适配说明）仍是英文。**如果觉得中文版不好用，请安装英文版：[pstack-claude](https://github.com/taokeqin/pstack-claude) 或 [pstack-pi](https://github.com/taokeqin/pstack-pi)。**
+skill 正文、playbook、references 和 agents 已全部译成中文（上游 111 个 Markdown 文件全部译完）。这是预览质量的机器辅助翻译，难免有生硬或不准的地方；代码块、命令、工具名、路径、链接和脚本要解析的字符串都保持英文，并有脚本逐项核对。移植时新增或改写的文件（`overrides/` 里的 `setup-pstack`、`readonly` agent，以及本仓库自己的适配说明）仍是英文。**如果觉得中文版不好用，请安装英文版：[pstack-claude](https://github.com/pstack-pro/pstack-claude) 或 [pstack-pi](https://github.com/pstack-pro/pstack-pi)。**
 
 ## 前置条件
 
@@ -33,19 +33,19 @@ skill 正文、playbook、references 和 agents 已全部译成中文（上游 1
 
 ```bash
 # 只在当前项目启用（写入 .pi/settings.json；首次运行 pi 时需要信任该项目）
-pi install -l git:github.com/taokeqin/pstack-pi-zh
+pi install -l git:github.com/pstack-pro/pstack-pi-zh
 
 # 只试一次，不写任何配置
-pi -e git:github.com/taokeqin/pstack-pi-zh
+pi -e git:github.com/pstack-pro/pstack-pi-zh
 
 # 从当前项目卸载
-pi remove -l --approve git:github.com/taokeqin/pstack-pi-zh
+pi remove -l --approve git:github.com/pstack-pro/pstack-pi-zh
 ```
 
 想改代码或固定在本地某个版本时，可以 clone 到任意目录，然后用本地路径安装：
 
 ```bash
-git clone https://github.com/taokeqin/pstack-pi-zh.git <任意目录>
+git clone https://github.com/pstack-pro/pstack-pi-zh.git <任意目录>
 pi install -l <任意目录>
 ```
 
@@ -104,9 +104,9 @@ test/run.sh                                  # 用 mock 模型做端到端测试
 
 ## 相关仓库
 
-- 英文版 pi package：<https://github.com/taokeqin/pstack-pi>
-- 英文版 Claude Code 移植：<https://github.com/taokeqin/pstack-claude>
-- Claude Code 中文版：<https://github.com/taokeqin/pstack-claude-zh>
+- 英文版 pi package：<https://github.com/pstack-pro/pstack-pi>
+- 英文版 Claude Code 移植：<https://github.com/pstack-pro/pstack-claude>
+- Claude Code 中文版：<https://github.com/pstack-pro/pstack-claude-zh>
 - 上游 pstack：<https://github.com/cursor/plugins/tree/main/pstack>
 
 ## 致谢与许可
