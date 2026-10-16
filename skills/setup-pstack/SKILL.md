@@ -63,7 +63,7 @@ done; wait
 
 **(c) 套上预算：** 在每个真实模型（含评审组条目）后加 pi 的 thinking 后缀。目标档位：`unlimited` → `max`，`large` → `xhigh`，`medium` → `high`，`small` → `medium`。模型的 thinking 档位（来自 `PstackModels`）包含目标就用目标，否则用目标以下最高的，再否则用目标以上最低的。thinking 为 `none` 的模型不加后缀。别名不加后缀。
 
-**(d) 展示角色并确认。** 用表格列出每个角色、其模型、该模型的输出价格，再加一行成本说明：哪个模型最贵、哪些角色在用它。标出需要选择的角色，并列出第 2 步丢掉的行。用 `AskQuestion` 确认。题干：`按这张表写入 .pi/pstack-models.md？`；选项至少包括 `就这样`、`改几个角色`（再列出已检测模型与 `inherit-parent`）。评审组角色（arena runners、architect runners、interrogate reviewers）的值是列表，每个条目起一个子代理，所以列表长度就是数量。若只检测到一个家族，直说：评审组仍会跑，但跨模型交叉检查会弱一些。`arena cross-judge pool` 也是列表；arena 会尽量选一个与父模型不同家族的值。`swarm workers` 是每个 worker 的默认模型。
+**(d) 展示角色并确认。** 用 `AskQuestion` 确认。题干**必须**包含完整映射表（每个角色、其模型、该模型的输出价格）和一行成本说明：哪个模型最贵、哪些角色在用它；标出需要选择的角色，并列出第 2 步丢掉的行。表之后再问是否写入 `.pi/pstack-models.md`（不要只写「按这张表」却不把表放进同一题干）。也可在聊天里再发一遍表，但用户看到的以 AskQuestion 题干为准。选项至少包括 `就这样`，以及改角色的选项（列出已检测模型与 `inherit-parent`）。评审组角色（arena runners、architect runners、interrogate reviewers）的值是列表，每个条目起一个子代理，所以列表长度就是数量。若只检测到一个家族，直说：评审组仍会跑，但跨模型交叉检查会弱一些。`arena cross-judge pool` 也是列表；arena 会尽量选一个与父模型不同家族的值。`swarm workers` 是每个 worker 的默认模型。
 
 ### 4. 校验
 
